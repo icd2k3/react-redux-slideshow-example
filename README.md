@@ -82,5 +82,8 @@ This project has quite a few dependencies, but the list below represents the key
 
 > Note: usually for large data applications I would also include [Immutable](https://facebook.github.io/immutable-js) which provides an extra layer of predictability and security to application state. It would be very easy to modify reducers to use [Immutable](https://facebook.github.io/immutable-js) for this example. I just left it out because there is not much data in this example app.
 
+## Planned Improvements
+- Add router and routes for each image
+
 ## Get at Me!
 Please email me at me@justin-schrader.com or submit an issue if you have any questions or issues with this repo. Suggestions and PRs also welcome!
