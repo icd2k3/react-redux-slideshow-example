@@ -44,7 +44,7 @@ Code coverage report is provided via Istanbul and highlights which parts of the 
 4. ????
 5. Profit
 
-In this flow components are de-coupled from the state, they do not worry about anything that's going on around them; they just know they're supposed to receive certain properties and render. Also, since the entire state exists at the root level of the application, any component can easily be granted access to any part of the state <strong>and</strong> we can track every user interaction with the app and how it modifies state:
+In this flow components are de-coupled from the state, they do not worry about anything that's going on around them; they just know they're supposed to receive certain properties and render. Also, since the entire state exists at the root level of the application, any component can easily be granted access to any part of the state <strong>and</strong> we can track every user interaction with the app and how it modifies state. Really useful for debugging.
 
 ![Logger](https://raw.githubusercontent.com/icd2k3/react-redux-slideshow-example/master/readme-images/redux-logger.gif)
 
