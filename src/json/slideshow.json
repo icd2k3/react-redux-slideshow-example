@@ -1,0 +1,22 @@
+[
+    {
+        "description": "Some description",
+        "src": "src/images/coffee-777612_640.jpg",
+        "title": "Picture Title One"
+    },
+    {
+        "description": "Some description",
+        "src": "src/images/coins-1523383_1920.jpg",
+        "title": "Picture Title One"
+    },
+    {
+        "description": "Some description",
+        "src": "src/images/posing-999199_1920.jpg",
+        "title": "Picture Title One"
+    },
+    {
+        "description": "Some description",
+        "src": "src/images/raspberries-1426859_1920.jpg",
+        "title": "Picture Title One"
+    }
+]

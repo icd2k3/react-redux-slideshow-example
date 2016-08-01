@@ -1,0 +1,8 @@
+/node_modules/
+/dist/
+/code-coverage-report/
+
+npm-debug.log
+
+*.sublime-project
+*.sublime-workspace

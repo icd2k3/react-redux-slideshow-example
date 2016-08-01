@@ -1,0 +1,109 @@
+@import '../../constants/constants.css';
+
+.root, .content {
+	width: inherit;
+    height: inherit;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    transition: width 0.25s $ease-out-quad;
+}
+
+.contentSettingsToggled {
+    width: calc(100% - $settings-panel-width);
+
+    @mixin breakpoint small {
+        width: 0;
+    }
+}
+
+.cog {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    color: #fff;
+    font-size: 2.4em;
+    cursor: pointer;
+    z-index: 1;
+    transition: transform 0.15s $ease-out-quad;
+    &:hover {
+        transform: scale(1.2, 1.2);
+    }
+}
+
+.transition {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: inherit;
+    overflow: hidden;
+    background: $gray;
+}
+
+/* slide transition */
+
+:global .react-css-transition-slide-next-enter {
+    left: 100%;
+}
+
+:global .react-css-transition-slide-next-enter-active {
+    left: 0;
+    transition: left $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-slide-next-leave {
+    left: 0;
+}
+
+:global .react-css-transition-slide-next-leave-active {
+    left: -50%;
+    opacity: 0;
+    transition: all $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-slide-prev-enter {
+    left: -100%;
+}
+
+:global .react-css-transition-slide-prev-enter-active {
+    left: 0;
+    transition: left $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-slide-prev-leave {
+    left: 0;
+}
+
+:global .react-css-transition-slide-prev-leave-active {
+    left: 50%;
+    opacity: 0;
+    transition: all $transition-speed $ease-in-out-quad;
+}
+
+/* fade transition */
+
+:global .react-css-transition-fade-next-enter,
+:global .react-css-transition-fade-prev-enter {
+    opacity: 0;
+}
+
+:global .react-css-transition-fade-next-enter-active,
+:global .react-css-transition-fade-prev-enter-active {
+    opacity: 1;
+    transition: opacity $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-fade-next-leave,
+:global .react-css-transition-fade-prev-leave {
+    opacity: 1;
+}
+
+:global .react-css-transition-fade-next-leave-active,
+:global .react-css-transition-fade-prev-leave-active {
+    opacity: 0;
+    transition: opacity $transition-speed $ease-in-out-quad;
+}

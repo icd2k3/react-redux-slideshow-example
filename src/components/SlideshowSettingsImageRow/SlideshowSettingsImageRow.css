@@ -1,0 +1,35 @@
+@import '../../constants/constants.css';
+
+.root {
+    height: $settings-thumbnail-size;
+    box-sizing: border-box;
+}
+
+.thumbnail {
+    width: $settings-thumbnail-size;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: $gray;
+    float: left;
+    border: 7px solid $green;
+    border-width: 0px;
+    box-sizing: border-box;
+    transition: border-width 0.15s $ease-out-quad;
+}
+
+.thumbnailSelected {
+    border-width: 7px;
+}
+
+.info {
+    list-style: none;
+    padding-left: calc($settings-thumbnail-size + 10px);
+    margin-bottom: 20px;
+
+    span {
+        padding-left: 5px;
+        font-size: 0.9em;
+    }
+}
