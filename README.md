@@ -32,7 +32,7 @@ Slideshow features include json config file, settings panel for transitions/imag
 ## Run Unit Tests & Code Coverage Reports
 - `npm run test` This script runs all karma unit tests (any `*.spec.js` file in `/src`) then generates a code coverage report.
 
-Code coverage report is provided via Istanbul and highlights which parts of the app are not covered:
+Code coverage report is provided via Istanbul and highlights which parts of the app are not covered. This report can bew viewed in `code-coverage-report/html/index.html` <strong>after</strong> running `npm run test`:
 ![Coverage](https://raw.githubusercontent.com/icd2k3/react-redux-slideshow-example/master/readme-images/coverage.jpg)
 
 ## Create Production Builds
