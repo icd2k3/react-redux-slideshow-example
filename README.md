@@ -26,7 +26,7 @@ Slideshow features include json config file, settings panel for transitions/imag
 ### Key Pain Points To Solve
 - [x] If a bug surfaces in the platform it should <strong>not</strong> be difficult to find the origin.
 - [x] It should be entirely modular in that each piece of functionality (component) should be able to work independently of the rest of the app.
-- [x] The platform should be easy to modify or add to.
+- [x] The platform should be easy to edit or add to.
 - [x] It should be able to be entirely covered with unit tests.
 
 ## Run Unit Tests & Code Coverage Reports
