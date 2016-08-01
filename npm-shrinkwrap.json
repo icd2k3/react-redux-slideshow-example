@@ -1534,9 +1534,9 @@
       "resolved": "https://registry.npmjs.org/eslint-loader/-/eslint-loader-1.4.1.tgz"
     },
     "eslint-plugin-react": {
-      "version": "5.2.2",
-      "from": "eslint-plugin-react@*",
-      "resolved": "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-5.2.2.tgz"
+      "version": "6.0.0",
+      "from": "eslint-plugin-react@6.0.0",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-react/-/eslint-plugin-react-6.0.0.tgz"
     },
     "esniff": {
       "version": "1.0.0",
