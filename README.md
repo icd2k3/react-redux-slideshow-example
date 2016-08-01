@@ -19,15 +19,15 @@ Slideshow features include json config file, settings panel for transitions/imag
 1. [Node](https://nodejs.org/en) & [NPM](https://www.npmjs.com) should be installed globally
 1. Clone this repo
 1. `npm i` - install all project dependencies
-1. `npm run dev` - run local dev server with hot module reloading
+1. `npm run dev` - run local dev server with hot module reloading*
+
+> *Hot module reloading is enabled. Example [video link](https://cl.ly/3C3H201q2L31) - normally in this flow we'd have to reload the page, navigate back to the final image, and view it 4 times in order to test this change. With hot module reloading the component is updated instantly in the current app state.
 
 ### Key Pain Points To Solve
 - [x] If a bug surfaces in the platform it should <strong>not</strong> be difficult to find the origin.
 - [x] It should be entirely modular in that each piece of functionality (component) should be able to work independently of the rest of the app.
 - [x] The platform should be easy to modify or add to.
 - [x] It should be able to be entirely covered with unit tests.
-
-Hot module reloading is enabled. Example [video link](https://cl.ly/3C3H201q2L31) - normally in this flow we'd have to reload the page, navigate back to the final image, and view it 4 times in order to test this change. With hot module reloading the component is updated instantly in the current app state.
 
 ## Run Unit Tests & Code Coverage Reports
 - `npm run test` This script runs all karma unit tests (any `*.spec.js` file in `/src`) then generates a code coverage report.
