@@ -25,6 +25,8 @@ This is obviously <strong>waaay</strong> over-engineered for a simple slideshow 
 1. `npm i` - install all project dependencies
 1. `npm run dev` - run local dev server with hot module reloading
 
+> Hot module reloading is enabled. Example video: https://cl.ly/3C3H201q2L31 - normally in this flow we'd have to reload the page, navigate back to the final image, and view it 4 times in order to test this change. With hot module reloading the component is updated instantly in the current app state.
+
 ## Run Unit Tests & Code Coverage Reports
 - `npm run test` This script runs all karma unit tests (any `*.spec.js` file in `/src`) then generates a code coverage report.
 
