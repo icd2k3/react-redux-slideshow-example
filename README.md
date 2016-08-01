@@ -25,7 +25,7 @@ This is obviously <strong>waaay</strong> over-engineered for a simple slideshow 
 1. `npm i` - install all project dependencies
 1. `npm run dev` - run local dev server with hot module reloading
 
-> Hot module reloading is enabled. Example video: https://cl.ly/3C3H201q2L31 - normally in this flow we'd have to reload the page, navigate back to the final image, and view it 4 times in order to test this change. With hot module reloading the component is updated instantly in the current app state.
+Hot module reloading is enabled. Example video: https://cl.ly/3C3H201q2L31 - normally in this flow we'd have to reload the page, navigate back to the final image, and view it 4 times in order to test this change. With hot module reloading the component is updated instantly in the current app state.
 
 ## Run Unit Tests & Code Coverage Reports
 - `npm run test` This script runs all karma unit tests (any `*.spec.js` file in `/src`) then generates a code coverage report.
@@ -55,10 +55,10 @@ With this approach it is easy to add & modify functionality anywhere in the app 
 Components, actions, and reducers (state) can be individually unit tested as they are functional code islands.
 
 ### Con: Lots of Dependencies
-I use `npm shrinkwrap --dev` to avoid versioning issues, but this is still my #1 complaint about this approach as it creates a large dist bundle. Lately I've been exploring [Riot](riotjs.com) as a substitute which certainly cuts the bloat down quite a bit, but [React](https://facebook.github.io/react) just has a much larger community of devs behind it. At the end of the day, I think the benefits this application structure provides is worth it.
+While most of the dependencies are for local build & unit tests, there is still 9 dependencies included in the final dist bundle. Lately I've been exploring [Riot](riotjs.com) which seems promising in terms of cutting down final build size while still maintaining a similar app structure.
 
 ### Con: Learning Curve
-For developers that haven't used [React](https://facebook.github.io/react) or [Redux](https://github.com/reactjs/redux) before there would certainly be a bit of ramp-up time. However, as long as the documentation is good it should be fairly stright-forward.
+For developers that haven't used [React](https://facebook.github.io/react) or [Redux](https://github.com/reactjs/redux) before there would certainly be a bit of ramp-up time. However, as long as the documentation is good it should be fairly straightforward.
 
 ## Main Tools Used
 This project has quite a few dependencies, but the list below represents the key tools, and why I decided to include them.
@@ -83,4 +83,4 @@ This project has quite a few dependencies, but the list below represents the key
 > Note: usually for large data applications I would also include [Immutable](https://facebook.github.io/immutable-js) which provides an extra layer of predictability and security to application state. It would be very easy to modify reducers to use [Immutable](https://facebook.github.io/immutable-js) for this example. I just left it out because there is not much data in this example app.
 
 ## Get at Me!
-Please email me at me@justin-schrader.com or submit an issue if you have any questions or issues with this repo.
+Please email me at me@justin-schrader.com or submit an issue if you have any questions or issues with this repo. Suggestions and PRs also welcome!
