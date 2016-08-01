@@ -1,5 +1,5 @@
 <a href="https://david-dm.org/icd2k3/react-redux-slideshow-example"><img src="https://david-dm.org/icd2k3/react-redux-slideshow-example.svg" alt="Dependency Status"></a>
-<a href="https://david-dm.org/icd2k3/react-redux-slideshow-example/?type=dev">![David](https://david-dm.org/icd2k3/react-redux-slideshow-example/dev-status.svg)</a> ![Travis](https://travis-ci.org/icd2k3/react-redux-slideshow-example.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/icd2k3/react-redux-slideshow-example/badge.svg?branch=master)](https://coveralls.io/github/icd2k3/react-redux-slideshow-example?branch=master)
+ ![Travis](https://travis-ci.org/icd2k3/react-redux-slideshow-example.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/icd2k3/react-redux-slideshow-example/badge.svg?branch=master)](https://coveralls.io/github/icd2k3/react-redux-slideshow-example?branch=master)
 
 # React + Redux Slideshow Example Project
 Slideshow example app built with [React](https://facebook.github.io/react), Redux, Webpack, Babel, & Karma.
