@@ -87,6 +87,7 @@ This project has quite a few dependencies, but the list below represents the key
 
 ## Planned Improvements
 - Add router and routes for each image
+- Add image preloader for each image
 
 ## Get at Me!
 Please email me at me@justin-schrader.com or submit an issue if you have any questions or issues with this repo. Suggestions and PRs also welcome!
