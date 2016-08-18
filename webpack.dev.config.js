@@ -1,10 +1,14 @@
 "use strict";
 
+var Dashboard = require('webpack-dashboard');
+var DashboardPlugin = require('webpack-dashboard/plugin');
+
 module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         hot: true,
         progress: true,
+        quiet: true,
         historyApiFallback: true,
         stats: 'errors-only'
     },
@@ -19,5 +23,8 @@ module.exports = {
                 exclude: [/node_modules/, /build/]
             }
         ]
-    }
+    },
+    plugins: process.env.NODE_ENV === 'development'
+        ? [new DashboardPlugin(new Dashboard().setData)]
+        : []
 };
