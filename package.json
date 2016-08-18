@@ -61,7 +61,7 @@
     "outdent": "^0.1.2",
     "path": "^0.12.7",
     "postcss-import": "^8.1.2",
-    "postcss-loader": "^0.9.1",
+    "postcss-loader": "^0.10.1",
     "precss": "^1.4.0",
     "react-addons-test-utils": "^15.2.1",
     "react-transform-hmr": "^1.0.4",

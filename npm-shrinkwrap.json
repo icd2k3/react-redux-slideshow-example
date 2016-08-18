@@ -572,6 +572,11 @@
         }
       }
     },
+    "blessed": {
+      "version": "0.1.81",
+      "from": "blessed@>=0.1.81 <0.2.0",
+      "resolved": "https://registry.npmjs.org/blessed/-/blessed-0.1.81.tgz"
+    },
     "blob": {
       "version": "0.0.4",
       "from": "blob@0.0.4",
@@ -1784,6 +1789,11 @@
           "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-2.0.10.tgz"
         }
       }
+    },
+    "filesize": {
+      "version": "3.3.0",
+      "from": "filesize@>=3.3.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/filesize/-/filesize-3.3.0.tgz"
     },
     "fill-range": {
       "version": "2.2.3",
@@ -4239,9 +4249,9 @@
       "resolved": "https://registry.npmjs.org/pluralize/-/pluralize-1.2.1.tgz"
     },
     "postcss": {
-      "version": "5.1.0",
-      "from": "postcss@>=5.0.21 <6.0.0",
-      "resolved": "https://registry.npmjs.org/postcss/-/postcss-5.1.0.tgz"
+      "version": "5.1.2",
+      "from": "postcss@>=5.1.2 <6.0.0",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-5.1.2.tgz"
     },
     "postcss-advanced-variables": {
       "version": "1.2.2",
@@ -4343,9 +4353,9 @@
       "resolved": "https://registry.npmjs.org/postcss-import/-/postcss-import-8.1.2.tgz"
     },
     "postcss-loader": {
-      "version": "0.9.1",
-      "from": "postcss-loader@*",
-      "resolved": "https://registry.npmjs.org/postcss-loader/-/postcss-loader-0.9.1.tgz"
+      "version": "0.10.1",
+      "from": "postcss-loader@0.10.1",
+      "resolved": "https://registry.npmjs.org/postcss-loader/-/postcss-loader-0.10.1.tgz"
     },
     "postcss-media-minmax": {
       "version": "2.1.2",
@@ -5804,6 +5814,11 @@
           "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.4.4.tgz"
         }
       }
+    },
+    "webpack-dashboard": {
+      "version": "0.0.1",
+      "from": "webpack-dashboard@*",
+      "resolved": "https://registry.npmjs.org/webpack-dashboard/-/webpack-dashboard-0.0.1.tgz"
     },
     "webpack-dev-middleware": {
       "version": "1.6.1",
