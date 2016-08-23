@@ -1,7 +1,7 @@
 "use strict";
 
 // overall config params
-var configFile = require('./config.js'),
+var configFile = require('../config.js'),
 
     // plugins and packages
     webpack = require('webpack'),

@@ -1,6 +1,6 @@
 "use strict";
 
-var configFile = require('./config.js'),
+var configFile = require('../config.js'),
 	stringReplacePlugin = require('string-replace-webpack-plugin');
 
 // test config
