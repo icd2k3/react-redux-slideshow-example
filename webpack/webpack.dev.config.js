@@ -1,6 +1,5 @@
 "use strict";
 
-var Dashboard = require('webpack-dashboard');
 var DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
@@ -25,6 +24,6 @@ module.exports = {
         ]
     },
     plugins: process.env.NODE_ENV === 'development'
-        ? [new DashboardPlugin(new Dashboard().setData)]
+        ? [new DashboardPlugin()]
         : []
 };

@@ -4020,6 +4020,11 @@
       "from": "lower-case-first@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/lower-case-first/-/lower-case-first-1.0.2.tgz"
     },
+    "lru-cache": {
+      "version": "4.0.1",
+      "from": "lru-cache@>=4.0.1 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-4.0.1.tgz"
+    },
     "macaddress": {
       "version": "0.2.8",
       "from": "macaddress@>=0.2.8 <0.3.0",
@@ -6144,9 +6149,58 @@
       }
     },
     "webpack-dashboard": {
-      "version": "0.0.1",
-      "from": "webpack-dashboard@*",
-      "resolved": "https://registry.npmjs.org/webpack-dashboard/-/webpack-dashboard-0.0.1.tgz"
+      "version": "0.1.7",
+      "from": "webpack-dashboard@0.1.7",
+      "resolved": "https://registry.npmjs.org/webpack-dashboard/-/webpack-dashboard-0.1.7.tgz",
+      "dependencies": {
+        "component-emitter": {
+          "version": "1.2.0",
+          "from": "component-emitter@1.2.0",
+          "resolved": "https://registry.npmjs.org/component-emitter/-/component-emitter-1.2.0.tgz"
+        },
+        "cross-spawn": {
+          "version": "4.0.0",
+          "from": "cross-spawn@>=4.0.0 <5.0.0",
+          "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-4.0.0.tgz"
+        },
+        "engine.io": {
+          "version": "1.6.11",
+          "from": "engine.io@1.6.11",
+          "resolved": "https://registry.npmjs.org/engine.io/-/engine.io-1.6.11.tgz"
+        },
+        "engine.io-client": {
+          "version": "1.6.11",
+          "from": "engine.io-client@1.6.11",
+          "resolved": "https://registry.npmjs.org/engine.io-client/-/engine.io-client-1.6.11.tgz",
+          "dependencies": {
+            "component-emitter": {
+              "version": "1.1.2",
+              "from": "component-emitter@1.1.2",
+              "resolved": "https://registry.npmjs.org/component-emitter/-/component-emitter-1.1.2.tgz"
+            },
+            "ws": {
+              "version": "1.0.1",
+              "from": "ws@1.0.1",
+              "resolved": "https://registry.npmjs.org/ws/-/ws-1.0.1.tgz"
+            }
+          }
+        },
+        "socket.io": {
+          "version": "1.4.8",
+          "from": "socket.io@>=1.4.8 <2.0.0",
+          "resolved": "https://registry.npmjs.org/socket.io/-/socket.io-1.4.8.tgz"
+        },
+        "socket.io-client": {
+          "version": "1.4.8",
+          "from": "socket.io-client@>=1.4.8 <2.0.0",
+          "resolved": "https://registry.npmjs.org/socket.io-client/-/socket.io-client-1.4.8.tgz"
+        },
+        "ws": {
+          "version": "1.1.0",
+          "from": "ws@1.1.0",
+          "resolved": "https://registry.npmjs.org/ws/-/ws-1.1.0.tgz"
+        }
+      }
     },
     "webpack-dev-middleware": {
       "version": "1.6.1",
