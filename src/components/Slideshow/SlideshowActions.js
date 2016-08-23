@@ -14,14 +14,12 @@ const
         error,
         type: ACTIONS.SLIDESHOW_JSON_RECEIVE_ERROR
     }),
-    requestJSON = (filePath) => {
-        return (dispatch) => {
-            dispatch(dispatchRequestJSON(filePath));
-            return jsonLoader(filePath).then(
-                (response) => dispatch(dispatchReceiveJSON(response)),
-                (error) => dispatch(dispatchErrorJSON(error))
-            );
-        };
+    requestJSON = (filePath) => (dispatch) => {
+        dispatch(dispatchRequestJSON(filePath));
+        return jsonLoader(filePath).then(
+            (response) => dispatch(dispatchReceiveJSON(response)),
+            (error) => dispatch(dispatchErrorJSON(error))
+        );
     },
     toggleSettings = () => ({
         type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE

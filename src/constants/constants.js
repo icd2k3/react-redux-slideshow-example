@@ -15,4 +15,6 @@ export const
         SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE: null,
         SLIDESHOW_SETTINGS_CHANGE_TRANSITION: null,
         SLIDESHOW_SETTINGS_TOGGLE: null
-    }));
+    })),
+
+    NAME = 'React Redux Slideshow Example App';

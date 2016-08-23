@@ -1,3 +1,12 @@
+/**
+ * Slideshow Dot Component
+ *
+ * type:
+ *    Connected container (aware of redux)
+ * description:
+ *    Renders a single dot that can be toggled
+ */
+
 import React from 'react';
 import {
     connect
@@ -9,29 +18,40 @@ import * as SlideshowDotActions from './SlideshowDotActions.js';
 // styles specific to this component
 import styles from './SlideshowDot.css';
 
-class SlideshowDot extends React.Component {
-    render() {
-        return (
-            <div
-                className={`${styles.root} ${this.props.selected ? styles.selected : ''}`}
-                onClick={
-                    this.props.selected
-                        ? null
-                        : this.props.dispatch.bind(this, SlideshowDotActions.selectDot(this.props.index))
-                }
-            />
-        );
-    }
-}
+const
 
-// component expects these props to be provided from parent
+    // component jsx markup
+    SlideshowDot = (props) => (
+        <div
+            className={`${styles.root} ${props.selected ? styles.selected : ''}`}
+            onClick={
+                props.selected
+                    ? null
+                    : () => props.actions.onClick(props.index)
+            }
+        />
+    ),
+
+    // takes redux state as an input and remaps it to props for this component
+    mapStateToProps = () => ({}),
+
+    // takes redux dispatch function as an input and remaps it to props for this component
+    mapDispatchToProps = (dispatch) => ({
+        actions: {
+            onClick: (index) => {
+                dispatch(SlideshowDotActions.selectDot(index));
+            }
+        }
+    });
+
+// validate that this component is passed the properties it expects
 SlideshowDot.propTypes = {
-    dispatch: React.PropTypes.func.isRequired,
+    actions: React.PropTypes.shape({
+        onClick: React.PropTypes.func.isRequired
+    }).isRequired,
     index: React.PropTypes.number.isRequired,
     selected: React.PropTypes.bool
 };
 
-// connects a component to Redux store so we can use dispatcher
-export default connect(() => {
-    return {};
-})(SlideshowDot);
+// export the redux-connected component
+export default connect(mapStateToProps, mapDispatchToProps)(SlideshowDot);

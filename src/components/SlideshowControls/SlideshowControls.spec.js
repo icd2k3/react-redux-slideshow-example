@@ -9,12 +9,15 @@ import SlideshowControls from './SlideshowControls.jsx';
 describe('SlideshowControls.jsx', () => {
     const mockState = {
             SlideshowControlsReducer: {
-                amountOfSlides: 10,
+                amountOfSlides: 3,
                 currentSlideIndex: 3
+            },
+            SlideshowReducer: {
+                slides: [{},{},{},{}]
             }
         },
         mockProps = {
-            amountOfSlides: 10
+            amountOfSlides: 3
         }
 
     describe('Basic rendering', () => {
@@ -32,7 +35,7 @@ describe('SlideshowControls.jsx', () => {
             expect(component.find('SlideshowPrevNextButton').length, 'SlideshowPrevNextButton').to.equal(2);
             expect(component.find('SlideshowPrevNextButton').first().props().prev, 'SlideshowPrevNextButton.first().props().prev').to.be.true;
             expect(component.find('SlideshowPrevNextButton').last().props().next, 'SlideshowPrevNextButton.first().props().next').to.be.true;
-            expect(component.find('SlideshowDot').length, 'SlideshowDot').to.equal(10);
+            expect(component.find('SlideshowDot').length, 'SlideshowDot').to.equal(4);
             expect(component.find('SlideshowDot').first().props().selected, 'SlideshowDot.first().props().selected').to.be.false;
             expect(component.find('SlideshowDot').at(3).props().selected, 'SlideshowDot.at(3).props().selected').to.be.true;
 

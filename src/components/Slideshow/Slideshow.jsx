@@ -1,3 +1,13 @@
+/**
+ * Slideshow Component
+ *
+ * type:
+ *    Connected container (aware of redux)
+ * description:
+ *    Main root component container for all slideshow children components.
+ *    Also handles transitions between slides
+ */
+
 import React from 'react';
 import {
     connect
@@ -15,30 +25,48 @@ import SlideshowSettings from '../SlideshowSettings/SlideshowSettings.jsx';
 // styles specific to this component
 import styles from './Slideshow.css';
 
+// COMPONENT ///////////////////////////////////////
 class Slideshow extends React.Component {
 
     componentDidMount() {
         if (!this.props.SlideshowReducer.slides) {
-            this.props.dispatch(SlideshowActions.requestJSON('src/json/slideshow.json'));
+            this.props.actions.onRequestJSON();
         }
     }
 
     render() {
         const currentSlideIndex = this.props.SlideshowControlsReducer.currentSlideIndex,
             slide = this.props.SlideshowReducer.slides
-                && this.props.SlideshowReducer.slides[currentSlideIndex];
+                && this.props.SlideshowReducer.slides[currentSlideIndex],
+            transition = this.props.SlideshowSettingsReducer.transition,
+            direction = this.props.SlideshowControlsReducer.direction;
 
         return (
             <div className={styles.root}>
-                <div className={`${styles.content} ${this.props.SlideshowSettingsReducer.toggled ? styles.contentSettingsToggled : ''}`}>
+
+                {/* Container */}
+                <div
+                    className={`
+                        ${styles.content}
+                        ${this.props.SlideshowSettingsReducer.toggled
+                            ? styles.contentSettingsToggled
+                            : ''
+                        }
+                        `.trim()
+                    }
+                >
+
+                    {/* Slide transition container */}
                     <CSSTransitionGroup
                         className={styles.transition}
                         transitionEnterTimeout={450}
                         transitionLeaveTimeout={450}
                         transitionName={
-                            `react-css-transition-${this.props.SlideshowSettingsReducer.transition}-${this.props.SlideshowControlsReducer.direction}`
+                            `react-css-transition-${transition}-${direction}`
                         }
                     >
+
+                        {/* current slide */}
                         {slide
                             ? <Slide
                                 id={slide.id}
@@ -49,19 +77,26 @@ class Slideshow extends React.Component {
                             : null
                         }
                     </CSSTransitionGroup>
-                    {slide ? <SlideshowControls/> : null}
+
+                    {/* Slideshow controls */}
+                    {slide ? <SlideshowControls /> : null}
+
+                    {/* Slideshow settings toggle button */}
                     <a
                         className={`${styles.cog} icon-cog`}
-                        onClick={this.props.dispatch.bind(this, SlideshowActions.toggleSettings())}
+                        onClick={this.props.actions.onSettingsClick}
                     />
-                  </div>
-                <SlideshowSettings/>
+
+                </div>
+
+                {/* Slideshow settings panel */}
+                <SlideshowSettings />
             </div>
         );
     }
 }
 
-// component expects these props to be provided from parent
+// VALIDATE PROPS //////////////////////////////////
 Slideshow.propTypes = {
     SlideshowControlsReducer: React.PropTypes.shape({
         currentSlideIndex: React.PropTypes.number.isRequired,
@@ -77,14 +112,33 @@ Slideshow.propTypes = {
         toggled: React.PropTypes.bool,
         transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
     }).isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    actions: React.PropTypes.shape({
+        onRequestJSON: React.PropTypes.func.isRequired,
+        onSettingsClick: React.PropTypes.func.isRequired
+    }).isRequired
 };
 
-// connects a component to a Redux store
-export default connect((state) => {
-    return {
+// MAP PROPS ///////////////////////////////////////
+const
+
+    // takes redux state as an input and remaps it to this.props for this component
+    mapStateToProps = (state) => ({
         SlideshowControlsReducer: state.SlideshowControlsReducer,
         SlideshowReducer: state.SlideshowReducer,
         SlideshowSettingsReducer: state.SlideshowSettingsReducer
-    };
-})(Slideshow);
+    }),
+
+    // takes redux dispatch function as an input and remaps it to this.props for this component
+    mapDispatchToProps = (dispatch) => ({
+        actions: {
+            onRequestJSON: () => {
+                dispatch(SlideshowActions.requestJSON('src/json/slideshow.json'));
+            },
+            onSettingsClick: () => {
+                dispatch(SlideshowActions.toggleSettings());
+            }
+        }
+    });
+
+// EXPORT /////////////////////////////////////////
+export default connect(mapStateToProps, mapDispatchToProps)(Slideshow);
