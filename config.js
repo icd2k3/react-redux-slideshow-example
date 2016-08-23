@@ -24,7 +24,7 @@ module.exports = {
     webpack_entry              : srcPath + '/index.jsx',
     webpack_exclude            : /node_modules/,
     webpack_test_config        : './webpack.test.config',
-    webpack_test_context       : 'webpack.test.context.js',
+    webpack_test_context       : 'webpack/webpack.test.context.js',
     webpack_test_utils_path    : srcPath + '/testUtils/testUtils.js',
     webpack_utils_path         : srcPath + '/utils/utils.js'
 };

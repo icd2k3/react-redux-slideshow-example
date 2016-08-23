@@ -13,6 +13,10 @@
         "react/jsx-indent-props": ["error", 4]
     },
     "settings": {
-        "import/resolver": "webpack"
+        "import/resolver": {
+            "webpack": {
+                "config": "webpack/webpack.config.js"
+            }
+        }
     }
 }

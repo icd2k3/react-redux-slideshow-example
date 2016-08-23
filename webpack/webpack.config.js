@@ -1,7 +1,7 @@
 "use strict";
 
 // overall config params
-var configFile = require('./config.js'),
+var configFile = require('../config.js'),
 
     // extended webpack config files based on NODE_ENV
     devConfig = require(configFile.webpack_dev_config),
