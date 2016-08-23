@@ -100,6 +100,28 @@ describe('SlideshowSettings.jsx', () => {
             done();
         });
 
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} if user closes settings panel`, (done) => {
+            const store = mockStore({
+                    expectedActions: [
+                        {
+                            type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
+                        }
+                    ],
+                    state: mockState
+                }),
+                component = mount(
+                <Provider store={store}>
+                    <SlideshowSettings />
+                </Provider>
+            );
+
+            component.find('.icon-cross').simulate('click');
+
+            store.testExpectedActions();
+
+            done();
+        });
+
     });
 
 });

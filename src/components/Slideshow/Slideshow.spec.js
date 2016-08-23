@@ -94,6 +94,26 @@ describe('Slideshow.jsx', () => {
             done();
         });
 
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} when settings button is clicked`, (done) => {
+            const store = mockStore({
+                    expectedActions: [
+                        {
+                            type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
+                        }
+                    ],
+                    state: mockState.slide
+                }),
+                component = mount(
+                    <Provider store={store}>
+                        <Slideshow/>
+                    </Provider>
+                );
+
+            component.find('a.icon-cog').simulate('click');
+
+            done();
+        });
+
     });
 
 });

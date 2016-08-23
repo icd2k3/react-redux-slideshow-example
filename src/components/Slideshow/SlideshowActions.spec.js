@@ -51,4 +51,20 @@ describe('SlideshowActions.js', () => {
             .then(store.testExpectedActions);
     });
 
+    it(`Dispatches \`${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE}\` when \`toggleSettings\` is called`, (done) => {
+        store = mockStore({
+            expectedActions: [
+                {
+                    type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
+                }
+            ]
+        });
+
+        store.dispatch(SlideshowActions.toggleSettings())
+        
+        store.testExpectedActions();
+
+        done();
+    });
+
 });
