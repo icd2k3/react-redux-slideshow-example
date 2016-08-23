@@ -1,3 +1,12 @@
+/**
+ * Slideshow Controls Component
+ *
+ * type:
+ *    Connected container (aware of redux)
+ * description:
+ *    Container that renders next, prev, and dot selector components
+ */
+
 import React from 'react';
 import {
     connect
@@ -10,45 +19,44 @@ import SlideshowDot from '../SlideshowDot/SlideshowDot.jsx';
 // styles specific to this component
 import styles from './SlideshowControls.css';
 
-class SlideshowControls extends React.Component {
+const
 
-    render() {
-        const dots = [];
-
-        for (let i = 0; i < this.props.SlideshowControlsReducer.amountOfSlides; i++) {
-            dots.push(
-                <SlideshowDot
-                    index={i}
-                    key={i}
-                    selected={this.props.SlideshowControlsReducer.currentSlideIndex === i}
-                />
-            );
-        }
-
-        return (
-            <div className={styles.root}>
-                <SlideshowPrevNextButton prev/>
-                <SlideshowPrevNextButton next/>
-                <div className={styles.dotsContainer}>
-                    {dots}
-                </div>
+    // component jsx markup
+    SlideshowControls = (props) => (
+        <div className={styles.root}>
+            <SlideshowPrevNextButton prev />
+            <SlideshowPrevNextButton next />
+            <div className={styles.dotsContainer}>
+                {props.SlideshowReducer.slides.map((slide, i) => (
+                    <SlideshowDot
+                        index={i}
+                        key={i}
+                        selected={props.SlideshowControlsReducer.currentSlideIndex === i}
+                    />
+                ))}
             </div>
-        );
-    }
-}
+        </div>
+    ),
 
-// component expects these props to be provided from parent
+    // takes redux state as an input and remaps it to props for this component
+    mapStateToProps = (state) => ({
+        SlideshowControlsReducer: state.SlideshowControlsReducer,
+        SlideshowReducer: state.SlideshowReducer
+    }),
+
+    // takes redux dispatch function as an input and remaps it to props for this component
+    mapDispatchToProps = () => ({});
+
+// validate that this component is passed the properties it expects
 SlideshowControls.propTypes = {
     SlideshowControlsReducer: React.PropTypes.shape({
         amountOfSlides: React.PropTypes.number,
         currentSlideIndex: React.PropTypes.number.isRequired
     }).isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    SlideshowReducer: React.PropTypes.shape({
+        slides: React.PropTypes.array.isRequired
+    }).isRequired
 };
 
-// connects a component to a Redux store
-export default connect((state) => {
-    return {
-        SlideshowControlsReducer: state.SlideshowControlsReducer
-    };
-})(SlideshowControls);
+// export this redux connected component
+export default connect(mapStateToProps, mapDispatchToProps)(SlideshowControls);

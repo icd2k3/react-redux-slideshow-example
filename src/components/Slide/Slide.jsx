@@ -1,3 +1,12 @@
+/**
+ * Slide Component
+ *
+ * type:
+ *    Connected container (aware of redux)
+ * description:
+ *    Renders a single slide
+ */
+
 import React from 'react';
 import {
     connect
@@ -12,10 +21,11 @@ import SlideInfo from '../SlideInfo/SlideInfo.jsx';
 // styles specific to this component
 import styles from './Slide.css';
 
+// COMPONENT ///////////////////////////////////////
 class Slide extends React.Component {
 
     componentWillMount() {
-        this.props.dispatch(SlideActions.view(this.props.id));
+        this.props.actions.onSlideView(this.props.id);
     }
 
     render() {
@@ -37,20 +47,35 @@ class Slide extends React.Component {
     }
 }
 
-// component expects these props to be provided from parent
+// MAP PROPS ///////////////////////////////////////
+const
+
+    // takes redux state as an input and remaps it to this.props for this component
+    mapStateToProps = (state) => ({
+        SlideshowSettingsReducer: state.SlideshowSettingsReducer
+    }),
+
+    // takes redux dispatch function as an input and remaps it to this.props for this component
+    mapDispatchToProps = (dispatch) => ({
+        actions: {
+            onSlideView: (id) => {
+                dispatch(SlideActions.view(id));
+            }
+        }
+    });
+
+// VALIDATE PROPS //////////////////////////////////
 Slide.propTypes = {
     SlideshowSettingsReducer: React.PropTypes.shape({
         backgroundSize: React.PropTypes.oneOf(['cover', 'contain'])
     }).isRequired,
-    dispatch: React.PropTypes.func.isRequired,
+    actions: React.PropTypes.shape({
+        onSlideView: React.PropTypes.func.isRequired
+    }).isRequired,
     id: React.PropTypes.string.isRequired,
     src: React.PropTypes.string.isRequired,
     views: React.PropTypes.number.isRequired
 };
 
-// connects a component to Redux store so we can use dispatcher
-export default connect((state) => {
-    return {
-        SlideshowSettingsReducer: state.SlideshowSettingsReducer
-    };
-})(Slide);
+// EXPORT //////////////////////////////////////////
+export default connect(mapStateToProps, mapDispatchToProps)(Slide);

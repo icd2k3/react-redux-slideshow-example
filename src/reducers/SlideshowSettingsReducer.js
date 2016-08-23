@@ -6,8 +6,7 @@ export const defaultState = Object.freeze({
     transition: 'slide'
 });
 
-export default function(state = defaultState, action = {}) {
-
+export default function (state = defaultState, action = {}) {
     switch (action.type) {
 
     case ACTIONS.SLIDESHOW_SETTINGS_TOGGLE:

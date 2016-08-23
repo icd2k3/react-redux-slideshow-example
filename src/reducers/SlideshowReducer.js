@@ -7,8 +7,7 @@ export const defaultState = Object.freeze({
     loading: false
 });
 
-export default function(state = defaultState, action = {}) {
-
+export default function (state = defaultState, action = {}) {
     switch (action.type) {
 
     case ACTIONS.SLIDESHOW_JSON_REQUEST:

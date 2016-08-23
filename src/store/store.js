@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 // middleware for redux
 import thunk from 'redux-thunk';
-import { logger } from '../middleware/logger.js';
+import logger from '../middleware/logger.js';
 import exceptionReporter from '../middleware/exceptionReporter';
 
 // individual reducer data

@@ -1,3 +1,4 @@
+/* eslint react/prefer-stateless-function: 0 */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -14,11 +15,19 @@ import './index.css';
 class Index extends React.Component {
     render() {
         return (
-            <Provider store={store}>
-                <Slideshow/>
+            <Provider store={this.props.store}>
+                <Slideshow />
             </Provider>
         );
     }
 }
 
-ReactDOM.render(<Index/>, document.getElementById('app'));
+Index.propTypes = {
+    store: React.PropTypes.object.isRequired
+};
+
+Index.defaultProps = {
+    store
+};
+
+ReactDOM.render(<Index />, document.getElementById('app'));
