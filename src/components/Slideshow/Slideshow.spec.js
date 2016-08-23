@@ -43,9 +43,9 @@ describe('Slideshow.jsx', () => {
             );
 
             expect(component).to.be.ok;
-            expect(component.find('CSSTransitionGroup').length, 'CSSTransitionGroup').to.equal(0);
             expect(component.find('Slide').length, 'Slide').to.equal(0);
-            expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(0);
+            expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(1);
+            expect(component.find('SlideshowControls').props().enabled, 'SlideshowControls.props.enabled').to.equal(false);
 
             done();
         });
@@ -65,6 +65,7 @@ describe('Slideshow.jsx', () => {
             expect(component.find('Slide').props().src, 'Slide.props.src').to.equal('mock');
             expect(component.find('Slide').props().views, 'Slide.props.views').to.equal(10);
             expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(1);
+            expect(component.find('SlideshowControls').props().enabled, 'SlideshowControls.props.enabled').to.equal(true);
 
             done();
         });
@@ -90,26 +91,6 @@ describe('Slideshow.jsx', () => {
                 );
 
             store.testExpectedActions();
-
-            done();
-        });
-
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} when settings button is clicked`, (done) => {
-            const store = mockStore({
-                    expectedActions: [
-                        {
-                            type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
-                        }
-                    ],
-                    state: mockState.slide
-                }),
-                component = mount(
-                    <Provider store={store}>
-                        <Slideshow/>
-                    </Provider>
-                );
-
-            component.find('a.icon-cog').simulate('click');
 
             done();
         });

@@ -12,15 +12,15 @@ import React from 'react';
 import {
     connect
 } from 'react-redux';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // actions this view can dispatch
 import * as SlideshowActions from './SlideshowActions.js';
 
 // children
-import Slide from '../Slide/Slide.jsx';
+import SlideTransition from '../SlideTransition/SlideTransition.jsx';
 import SlideshowControls from '../SlideshowControls/SlideshowControls.jsx';
 import SlideshowSettings from '../SlideshowSettings/SlideshowSettings.jsx';
+import SlideshowSettingsButton from '../SlideshowSettingsButton/SlideshowSettingsButton.jsx';
 
 // styles specific to this component
 import styles from './Slideshow.css';
@@ -37,14 +37,10 @@ class Slideshow extends React.Component {
     render() {
         const currentSlideIndex = this.props.SlideshowControlsReducer.currentSlideIndex,
             slide = this.props.SlideshowReducer.slides
-                && this.props.SlideshowReducer.slides[currentSlideIndex],
-            transition = this.props.SlideshowSettingsReducer.transition,
-            direction = this.props.SlideshowControlsReducer.direction;
+                && this.props.SlideshowReducer.slides[currentSlideIndex];
 
         return (
             <div className={styles.root}>
-
-                {/* Container */}
                 <div
                     className={`
                         ${styles.content}
@@ -52,51 +48,46 @@ class Slideshow extends React.Component {
                             ? styles.contentSettingsToggled
                             : ''
                         }
-                        `.trim()
-                    }
+                    `}
                 >
-
-                    {/* Slide transition container */}
-                    <CSSTransitionGroup
-                        className={styles.transition}
-                        transitionEnterTimeout={450}
-                        transitionLeaveTimeout={450}
-                        transitionName={
-                            `react-css-transition-${transition}-${direction}`
-                        }
-                    >
-
-                        {/* current slide */}
-                        {slide
-                            ? <Slide
-                                id={slide.id}
-                                key={slide.id}
-                                src={slide.src}
-                                views={slide.views}
-                            />
-                            : null
-                        }
-                    </CSSTransitionGroup>
-
-                    {/* Slideshow controls */}
-                    {slide ? <SlideshowControls /> : null}
-
-                    {/* Slideshow settings toggle button */}
-                    <a
-                        className={`${styles.cog} icon-cog`}
-                        onClick={this.props.actions.onSettingsClick}
+                    <SlideTransition
+                        direction={this.props.SlideshowControlsReducer.direction}
+                        slide={slide}
+                        transition={this.props.SlideshowSettingsReducer.transition}
                     />
-
+                    <SlideshowControls
+                        enabled={Boolean(slide)}
+                    />
+                    <SlideshowSettingsButton />
                 </div>
-
-                {/* Slideshow settings panel */}
                 <SlideshowSettings />
             </div>
         );
     }
 }
 
-// VALIDATE PROPS //////////////////////////////////
+const
+
+    // takes redux state as an input and remaps it to props for this component
+    mapStateToProps = (state) => ({
+        SlideshowControlsReducer: state.SlideshowControlsReducer,
+        SlideshowReducer: state.SlideshowReducer,
+        SlideshowSettingsReducer: state.SlideshowSettingsReducer
+    }),
+
+    // takes redux dispatch function as an input and remaps it to props for this component
+    mapDispatchToProps = (dispatch) => ({
+        actions: {
+            onRequestJSON: () => {
+                dispatch(SlideshowActions.requestJSON('src/json/slideshow.json'));
+            },
+            onSettingsClick: () => {
+                dispatch(SlideshowActions.toggleSettings());
+            }
+        }
+    });
+
+// validate that this component is passed the properties it expects
 Slideshow.propTypes = {
     SlideshowControlsReducer: React.PropTypes.shape({
         currentSlideIndex: React.PropTypes.number.isRequired,
@@ -117,28 +108,6 @@ Slideshow.propTypes = {
         onSettingsClick: React.PropTypes.func.isRequired
     }).isRequired
 };
-
-// MAP PROPS ///////////////////////////////////////
-const
-
-    // takes redux state as an input and remaps it to this.props for this component
-    mapStateToProps = (state) => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer,
-        SlideshowSettingsReducer: state.SlideshowSettingsReducer
-    }),
-
-    // takes redux dispatch function as an input and remaps it to this.props for this component
-    mapDispatchToProps = (dispatch) => ({
-        actions: {
-            onRequestJSON: () => {
-                dispatch(SlideshowActions.requestJSON('src/json/slideshow.json'));
-            },
-            onSettingsClick: () => {
-                dispatch(SlideshowActions.toggleSettings());
-            }
-        }
-    });
 
 // EXPORT /////////////////////////////////////////
 export default connect(mapStateToProps, mapDispatchToProps)(Slideshow);

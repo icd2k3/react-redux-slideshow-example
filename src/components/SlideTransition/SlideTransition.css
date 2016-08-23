@@ -1,0 +1,75 @@
+@import '../../constants/constants.css';
+
+.root {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: inherit;
+    overflow: hidden;
+    background: $gray;
+}
+
+/* slide transition */
+
+:global .react-css-transition-slide-next-enter {
+    left: 100%;
+}
+
+:global .react-css-transition-slide-next-enter-active {
+    left: 0;
+    transition: left $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-slide-next-leave {
+    left: 0;
+}
+
+:global .react-css-transition-slide-next-leave-active {
+    left: -50%;
+    opacity: 0;
+    transition: all $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-slide-prev-enter {
+    left: -100%;
+}
+
+:global .react-css-transition-slide-prev-enter-active {
+    left: 0;
+    transition: left $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-slide-prev-leave {
+    left: 0;
+}
+
+:global .react-css-transition-slide-prev-leave-active {
+    left: 50%;
+    opacity: 0;
+    transition: all $transition-speed $ease-in-out-quad;
+}
+
+/* fade transition */
+
+:global .react-css-transition-fade-next-enter,
+:global .react-css-transition-fade-prev-enter {
+    opacity: 0;
+}
+
+:global .react-css-transition-fade-next-enter-active,
+:global .react-css-transition-fade-prev-enter-active {
+    opacity: 1;
+    transition: opacity $transition-speed $ease-in-out-quad;
+}
+
+:global .react-css-transition-fade-next-leave,
+:global .react-css-transition-fade-prev-leave {
+    opacity: 1;
+}
+
+:global .react-css-transition-fade-next-leave-active,
+:global .react-css-transition-fade-prev-leave-active {
+    opacity: 0;
+    transition: opacity $transition-speed $ease-in-out-quad;
+}

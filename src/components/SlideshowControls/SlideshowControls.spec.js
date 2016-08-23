@@ -17,12 +17,12 @@ describe('SlideshowControls.jsx', () => {
             }
         },
         mockProps = {
-            amountOfSlides: 3
+            enabled: true
         }
 
     describe('Basic rendering', () => {
 
-        it(`Should render expected components and content if no current slide is available yet`, (done) => {
+        it(`Should render expected components and content`, (done) => {
             const component = mount(
                 <Provider store={mockStore({
                     state: mockState

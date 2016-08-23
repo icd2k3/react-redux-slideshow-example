@@ -64,7 +64,7 @@ const
         }
     });
 
-// VALIDATE PROPS //////////////////////////////////
+// validate that this component is passed the properties it expects
 Slide.propTypes = {
     SlideshowSettingsReducer: React.PropTypes.shape({
         backgroundSize: React.PropTypes.oneOf(['cover', 'contain'])
@@ -77,5 +77,5 @@ Slide.propTypes = {
     views: React.PropTypes.number.isRequired
 };
 
-// EXPORT //////////////////////////////////////////
+// export the redux-connected component
 export default connect(mapStateToProps, mapDispatchToProps)(Slide);
