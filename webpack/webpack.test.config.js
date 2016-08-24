@@ -6,9 +6,6 @@ var configFile = require('../config.js'),
 // test config
 module.exports = {
 	devtool: 'inline-source-map',
-    eslint: {
-        configFile: configFile.eslint_tests_config
-    },
 	module: {
         preLoaders: [
             {
@@ -54,6 +51,11 @@ module.exports = {
 			}
 		]
 	},
+    // eslint config
+    eslint: {
+        configFile: configFile.eslint_tests_config,
+        failOnError: true
+    },
 	// these externals are needed for enzyme to work correctly when running tests
 	externals: {
 		'jsdom': 'window',
