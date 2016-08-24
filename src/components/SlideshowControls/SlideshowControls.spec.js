@@ -1,8 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
-import { ACTIONS } from 'constants';
 
 import SlideshowControls from './SlideshowControls.jsx';
 
@@ -13,20 +13,21 @@ describe('SlideshowControls.jsx', () => {
                 currentSlideIndex: 3
             },
             SlideshowReducer: {
-                slides: [{},{},{},{}]
+                slides: [{}, {}, {}, {}]
             }
         },
         mockProps = {
             enabled: true
-        }
+        };
 
     describe('Basic rendering', () => {
-
-        it(`Should render expected components and content`, (done) => {
+        it('Should render expected components and content', (done) => {
             const component = mount(
-                <Provider store={mockStore({
-                    state: mockState
-                })}>
+                <Provider
+                    store={mockStore({
+                        state: mockState
+                    })}
+                >
                     <SlideshowControls {...mockProps} />
                 </Provider>
             );
@@ -41,7 +42,5 @@ describe('SlideshowControls.jsx', () => {
 
             done();
         });
-
     });
-
 });

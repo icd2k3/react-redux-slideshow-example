@@ -1,9 +1,9 @@
+import { expect } from 'chai';
 import { reducerActionHandler } from 'testUtils';
-import { ACTIONS }  from 'constants';
+import { ACTIONS } from 'constants';
 import SlideshowReducer, { defaultState } from './SlideshowReducer.js';
 
 describe('SlideshowReducer.js', () => {
-
     it('Should return initial state, even with bad input', (done) => {
         expect(SlideshowReducer()).to.eql(defaultState);
         expect(SlideshowReducer(), {}).to.eql(defaultState);
@@ -77,8 +77,8 @@ describe('SlideshowReducer.js', () => {
     it(`Should handle the ${ACTIONS.SLIDE_VIEW} action`, (done) => {
         const modifiedDefaultState = Object.assign({}, defaultState, {
             slides: [
-                {id: 'mock', views: 2},
-                {id: 'something', views: 0}
+                { id: 'mock', views: 2 },
+                { id: 'something', views: 0 }
             ]
         });
 
@@ -94,8 +94,8 @@ describe('SlideshowReducer.js', () => {
             // expected state after handling the action above
             expectedState: Object.assign({}, modifiedDefaultState, {
                 slides: [
-                    {id: 'mock', views: 3},
-                    {id: 'something', views: 0}
+                    { id: 'mock', views: 3 },
+                    { id: 'something', views: 0 }
                 ]
             })
         });

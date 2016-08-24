@@ -7,7 +7,6 @@ import { ACTIONS } from 'constants';
 import SlideshowSettingsButton from './SlideshowSettingsButton.jsx';
 
 describe('SlideshowSettingsButton.jsx', () => {
-    
     it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} when rendered and clicked`, (done) => {
         const store = mockStore({
                 expectedActions: [
@@ -26,5 +25,4 @@ describe('SlideshowSettingsButton.jsx', () => {
 
         done();
     });
-
 });

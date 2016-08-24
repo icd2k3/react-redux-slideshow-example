@@ -1,5 +1,5 @@
 import { mockStore } from 'testUtils';
-import { ACTIONS }  from 'constants';
+import { ACTIONS } from 'constants';
 import * as SlideshowActions from './SlideshowActions.js';
 
 describe('SlideshowActions.js', () => {
@@ -19,7 +19,7 @@ describe('SlideshowActions.js', () => {
                     type: ACTIONS.SLIDESHOW_JSON_REQUEST
                 },
                 {
-                    parsedJSON: {mock: 'mock'},
+                    parsedJSON: { mock: 'mock' },
                     type: ACTIONS.SLIDESHOW_JSON_RECEIVE
                 }
             ]
@@ -60,11 +60,10 @@ describe('SlideshowActions.js', () => {
             ]
         });
 
-        store.dispatch(SlideshowActions.toggleSettings())
-        
+        store.dispatch(SlideshowActions.toggleSettings());
+
         store.testExpectedActions();
 
         done();
     });
-
 });
