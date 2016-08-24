@@ -80,9 +80,6 @@ const
         actions: {
             onRequestJSON: () => {
                 dispatch(SlideshowActions.requestJSON('src/json/slideshow.json'));
-            },
-            onSettingsClick: () => {
-                dispatch(SlideshowActions.toggleSettings());
             }
         }
     });
@@ -104,8 +101,7 @@ Slideshow.propTypes = {
         transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
     }).isRequired,
     actions: React.PropTypes.shape({
-        onRequestJSON: React.PropTypes.func.isRequired,
-        onSettingsClick: React.PropTypes.func.isRequired
+        onRequestJSON: React.PropTypes.func.isRequired
     }).isRequired
 };
 

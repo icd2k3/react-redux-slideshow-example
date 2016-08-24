@@ -24,7 +24,7 @@ describe('SlideTransition.jsx', () => {
             },
             noSlide: {
                 direction: 'next',
-                direction: 'slide'
+                transition: 'slide'
             }
         };
 
