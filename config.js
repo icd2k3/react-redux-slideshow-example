@@ -12,6 +12,7 @@ module.exports = {
     code_coverage_lcov_sub_dir : 'report-lcov',
     code_coverage_sub_dir      : 'html',
     dist                       : 'dist',
+    dist_css_name              : 'dist.css',
     dist_path                  : distPath,
     index_html_path            : srcPath + '/index.html',
     json_path                  : srcPath + '/json/*.json',

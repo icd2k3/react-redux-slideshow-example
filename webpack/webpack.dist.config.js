@@ -5,6 +5,7 @@ var configFile = require('../config.js'),
 
     // plugins and packages
     webpack = require('webpack'),
+    Extract = require('extract-text-webpack-plugin'),
     clean = require('clean-webpack-plugin'),
     copy = require('copy-webpack-plugin');
 
@@ -13,6 +14,17 @@ module.exports = {
     output: {
         path: configFile.dist_path,
         filename: 'dist.js'
+    },
+    module: {
+        loaders: [
+            {
+                test: configFile.webpack_css_regex,
+                loader: Extract.extract(
+                    'style-loader',
+                    'css-loader?modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader'
+                )
+            }
+        ]
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -43,6 +55,7 @@ module.exports = {
                 to: configFile.dist_path + '/src/images',
                 copyUnmodified: true
             }
-        ])
+        ]),
+        new Extract(configFile.dist_css_name)
     ]
 };

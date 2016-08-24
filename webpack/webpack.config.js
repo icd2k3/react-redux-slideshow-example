@@ -25,14 +25,14 @@ var configFile = require('../config.js'),
                     exclude: configFile.webpack_exclude
                 },
                 // postcss compiler which also converts our classNames to something like ComponentName_child__randomHash
-                {
+                /*{
                     test: configFile.webpack_css_regex,
                     loaders: [
                         'style-loader',
                         'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
                     ],
                     exclude: configFile.webpack_exclude
-                }
+                }*/
             ]
         },
         plugins: [
