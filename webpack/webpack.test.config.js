@@ -6,7 +6,17 @@ var configFile = require('../config.js'),
 // test config
 module.exports = {
 	devtool: 'inline-source-map',
+    eslint: {
+        configFile: configFile.eslint_tests_config
+    },
 	module: {
+        preLoaders: [
+            {
+                test: /\.spec.js$/,
+                loader: 'eslint-loader?{envs:["mocha"]}',
+                exclude: /node_modules/
+            }
+        ],
 		// this loader allows istanbul code coverage reported to ignore code that is added from Babel
 		loaders: [
 			{

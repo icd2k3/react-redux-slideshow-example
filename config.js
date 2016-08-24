@@ -14,6 +14,7 @@ module.exports = {
     dist                       : 'dist',
     dist_css_name              : 'dist.css',
     dist_path                  : distPath,
+    eslint_tests_config        : './.eslintrc-tests',
     index_html_path            : srcPath + '/index.html',
     json_path                  : srcPath + '/json/*.json',
     src_path                   : srcPath,
