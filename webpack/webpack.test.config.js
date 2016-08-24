@@ -28,7 +28,12 @@ module.exports = {
                         }
                     ]
                 })
-			}
+			},
+            {
+                test: configFile.webpack_css_regex,
+                loader: 'style-loader!css-loader!postcss-loader',
+                exclude: configFile.webpack_exclude
+            }
 		],
 		// this is necessary or else test report will be for entire webpack bundle instead of each component
 		postLoaders: [
@@ -47,6 +52,10 @@ module.exports = {
 	    'react/lib/ExecutionEnvironment': true,
 	    'react/lib/ReactContext': 'window'
 	},
+    // clear postcss plugins from webpack.config.js for speed
+    postcss: function (webpack) {
+        return [];
+    },
 	// init string replace plugin for babel omissions above
 	plugins: [
 		new stringReplacePlugin()

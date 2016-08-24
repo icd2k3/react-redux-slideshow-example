@@ -1,6 +1,7 @@
 "use strict";
 
-var DashboardPlugin = require('webpack-dashboard/plugin');
+var configFile = require('../config.js'),
+    DashboardPlugin = require('webpack-dashboard/plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -20,6 +21,14 @@ module.exports = {
                     'eslint-loader'
                 ],
                 exclude: [/node_modules/, /build/]
+            }
+        ],
+        loaders: [
+            // postcss compiler which also converts our classNames to something like ComponentName_child__randomHash
+            {
+                test: configFile.webpack_css_regex,
+                loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+                exclude: configFile.webpack_exclude
             }
         ]
     },

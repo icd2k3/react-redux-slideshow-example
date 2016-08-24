@@ -10,7 +10,8 @@ describe('Slideshow.jsx', () => {
     const mockState = {
         noSlide: {
             SlideshowControlsReducer: {
-                currentSlideIndex: 0
+                currentSlideIndex: 0,
+                direction: 'next'
             },
             SlideshowReducer: {},
             SlideshowSettingsReducer: {
