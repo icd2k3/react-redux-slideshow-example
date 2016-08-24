@@ -1,7 +1,8 @@
 "use strict";
 
 var configFile = require('../config.js'),
-	stringReplacePlugin = require('string-replace-webpack-plugin');
+	stringReplacePlugin = require('string-replace-webpack-plugin'),
+    warningsPlugin = require('./webpack-karma-warnings-plugin');
 
 // test config
 module.exports = {
@@ -9,7 +10,7 @@ module.exports = {
 	module: {
         preLoaders: [
             {
-                test: /\.spec.js$/,
+                test: [/\.js$/, /\.jsx$/],
                 loader: 'eslint-loader?{envs:["mocha"]}',
                 exclude: /node_modules/
             }
@@ -53,7 +54,8 @@ module.exports = {
 	},
     // eslint config
     eslint: {
-        configFile: configFile.eslint_tests_config
+        configFile: configFile.eslint_tests_config,
+        failOnError: true
     },
 	// these externals are needed for enzyme to work correctly when running tests
 	externals: {
@@ -69,6 +71,7 @@ module.exports = {
     },
 	// init string replace plugin for babel omissions above
 	plugins: [
-		new stringReplacePlugin()
+		new stringReplacePlugin(),
+        new warningsPlugin()
 	]
 };
