@@ -53,8 +53,7 @@ module.exports = {
 	},
     // eslint config
     eslint: {
-        configFile: configFile.eslint_tests_config,
-        failOnError: true
+        configFile: configFile.eslint_tests_config
     },
 	// these externals are needed for enzyme to work correctly when running tests
 	externals: {
