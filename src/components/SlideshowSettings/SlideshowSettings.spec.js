@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
@@ -7,24 +8,25 @@ import SlideshowSettings from './SlideshowSettings.jsx';
 
 describe('SlideshowSettings.jsx', () => {
     const mockState = {
-            SlideshowControlsReducer: {
-                currentSlideIndex: 1
-            },
-            SlideshowReducer: {
-                slides: [
-                    {id: 'mock-id', src: 'mock-src', views: 7},
-                    {id: 'mock-id-2', src: 'mock-src-2', views: 10}
-                ]
-            }
-        };
+        SlideshowControlsReducer: {
+            currentSlideIndex: 1
+        },
+        SlideshowReducer: {
+            slides: [
+                { id: 'mock-id', src: 'mock-src', views: 7 },
+                { id: 'mock-id-2', src: 'mock-src-2', views: 10 }
+            ]
+        }
+    };
 
     describe('Basic rendering', () => {
-
         it('Should render expected components and content if not selected', (done) => {
             const component = mount(
-                <Provider store={mockStore({
-                    state: mockState
-                })}>
+                <Provider
+                    store={mockStore({
+                        state: mockState
+                    })}
+                >
                     <SlideshowSettings />
                 </Provider>
             );
@@ -49,11 +51,9 @@ describe('SlideshowSettings.jsx', () => {
 
             done();
         });
-
     });
 
     describe('User interactions', () => {
-
         it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION} if user changes background`, (done) => {
             const store = mockStore({
                     expectedActions: [
@@ -65,12 +65,12 @@ describe('SlideshowSettings.jsx', () => {
                     state: mockState
                 }),
                 component = mount(
-                <Provider store={store}>
-                    <SlideshowSettings />
-                </Provider>
-            );
+                    <Provider store={store}>
+                        <SlideshowSettings />
+                    </Provider>
+                );
 
-            component.find('select').first().simulate('change', {target: {value: 'slide'}});
+            component.find('select').first().simulate('change', { target: { value: 'slide' } });
 
             store.testExpectedActions();
 
@@ -88,12 +88,12 @@ describe('SlideshowSettings.jsx', () => {
                     state: mockState
                 }),
                 component = mount(
-                <Provider store={store}>
-                    <SlideshowSettings />
-                </Provider>
-            );
+                    <Provider store={store}>
+                        <SlideshowSettings />
+                    </Provider>
+                );
 
-            component.find('select').last().simulate('change', {target: {value: 'cover'}});
+            component.find('select').last().simulate('change', { target: { value: 'cover' } });
 
             store.testExpectedActions();
 
@@ -110,10 +110,10 @@ describe('SlideshowSettings.jsx', () => {
                     state: mockState
                 }),
                 component = mount(
-                <Provider store={store}>
-                    <SlideshowSettings />
-                </Provider>
-            );
+                    <Provider store={store}>
+                        <SlideshowSettings />
+                    </Provider>
+                );
 
             component.find('.icon-cross').simulate('click');
 
@@ -121,7 +121,5 @@ describe('SlideshowSettings.jsx', () => {
 
             done();
         });
-
     });
-
 });

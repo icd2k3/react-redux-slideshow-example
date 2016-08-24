@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
@@ -17,7 +18,6 @@ describe('SlideshowDot.jsx', () => {
     };
 
     describe('Basic rendering', () => {
-
         it('Should render expected components and content if not selected', (done) => {
             const component = mount(
                 <Provider store={mockStore()}>
@@ -41,11 +41,9 @@ describe('SlideshowDot.jsx', () => {
 
             done();
         });
-
     });
 
     describe('User interactions', () => {
-
         it(`Should dispatch ${ACTIONS.SLIDESHOW_CONTROLS_DOT_SELECT} on click`, (done) => {
             const store = mockStore({
                     expectedActions: [{
@@ -66,7 +64,7 @@ describe('SlideshowDot.jsx', () => {
             done();
         });
 
-        it(`Shouldn't dispatch anything on click if it is already selected`, (done) => {
+        it('Shouldn\'t dispatch anything on click if it is already selected', (done) => {
             const store = mockStore({
                     expectedActions: []
                 }),
@@ -82,7 +80,5 @@ describe('SlideshowDot.jsx', () => {
 
             done();
         });
-
     });
-
 });

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
 import SlideshowPrevNextButton from './SlideshowPrevNextButton.jsx';
 
 describe('SlideshowPrevNextButton.jsx', () => {
-
     describe('Basic rendering', () => {
-
         it('Should render expected components and content if next button', (done) => {
             const component = mount(
                 <Provider store={mockStore()}>
@@ -36,11 +35,9 @@ describe('SlideshowPrevNextButton.jsx', () => {
 
             done();
         });
-
     });
 
     describe('User interactions', () => {
-
         it(`Should dispatch ${ACTIONS.SLIDESHOW_CONTROLS_NEXT} on click for next button`, (done) => {
             const store = mockStore({
                     expectedActions: [{
@@ -78,7 +75,5 @@ describe('SlideshowPrevNextButton.jsx', () => {
 
             done();
         });
-
     });
-
 });

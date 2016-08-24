@@ -1,5 +1,5 @@
 import { mockStore } from 'testUtils';
-import { ACTIONS }  from 'constants';
+import { ACTIONS } from 'constants';
 import * as SlideshowPrevNextButtonActions from './SlideshowPrevNextButtonActions.js';
 
 describe('SlideshowPrevNextButtonActions.js', () => {
@@ -40,5 +40,4 @@ describe('SlideshowPrevNextButtonActions.js', () => {
 
         done();
     });
-
 });

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
@@ -24,7 +25,10 @@ describe('Slideshow.jsx', () => {
                 direction: 'next'
             },
             SlideshowReducer: {
-                slides: [{src: 'mock', views: 10, id: 'mock'}, {src: 'mock', views: 7, id: 'mock2'}]
+                slides: [
+                    { src: 'mock', views: 10, id: 'mock' },
+                    { src: 'mock', views: 7, id: 'mock2' }
+                ]
             },
             SlideshowSettingsReducer: {
                 transition: 'slide'
@@ -33,13 +37,14 @@ describe('Slideshow.jsx', () => {
     };
 
     describe('Basic rendering', () => {
-
-        it(`Should render expected components and content if no current slide is available yet`, (done) => {
+        it('Should render expected components and content if no current slide is available yet', (done) => {
             const component = mount(
-                <Provider store={mockStore({
-                    state: mockState.noSlide
-                })}>
-                    <Slideshow/>
+                <Provider
+                    store={mockStore({
+                        state: mockState.noSlide
+                    })}
+                >
+                    <Slideshow />
                 </Provider>
             );
 
@@ -51,12 +56,14 @@ describe('Slideshow.jsx', () => {
             done();
         });
 
-        it(`Should render expected components and content if slide if current slide is available`, (done) => {
+        it('Should render expected components and content if slide if current slide is available', (done) => {
             const component = mount(
-                <Provider store={mockStore({
-                    state: mockState.slide
-                })}>
-                    <Slideshow/>
+                <Provider
+                    store={mockStore({
+                        state: mockState.slide
+                    })}
+                >
+                    <Slideshow />
                 </Provider>
             );
 
@@ -70,32 +77,29 @@ describe('Slideshow.jsx', () => {
 
             done();
         });
-
     });
 
     describe('User interactions', () => {
-
         it(`Should dispatch ${ACTIONS.SLIDESHOW_JSON_REQUEST} on mount`, (done) => {
             const store = mockStore({
-                    expectedActions: [
-                        {
-                            filePath: 'src/json/slideshow.json',
-                            type: ACTIONS.SLIDESHOW_JSON_REQUEST
-                        }
-                    ],
-                    state: mockState.noSlide
-                }),
-                component = mount(
-                    <Provider store={store}>
-                        <Slideshow/>
-                    </Provider>
-                );
+                expectedActions: [
+                    {
+                        filePath: 'src/json/slideshow.json',
+                        type: ACTIONS.SLIDESHOW_JSON_REQUEST
+                    }
+                ],
+                state: mockState.noSlide
+            });
+
+            mount(
+                <Provider store={store}>
+                    <Slideshow />
+                </Provider>
+            );
 
             store.testExpectedActions();
 
             done();
         });
-
     });
-
 });

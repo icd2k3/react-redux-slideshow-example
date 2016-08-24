@@ -4,10 +4,33 @@
   "description": "Example of a React, Redux, Webpack, Karma FE stack",
   "main": "src/index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/cross-env NODE_ENV=development ./node_modules/.bin/webpack-dashboard -- ./node_modules/.bin/webpack-dev-server --config webpack/webpack.config.js --inline --hot -d",
-    "dist": "./node_modules/.bin/cross-env NODE_ENV=production ./node_modules/.bin/webpack --config webpack/webpack.config.js --progress --bail",
-    "karma": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/karma start",
-    "test": "./node_modules/.bin/npm-run-all dist karma"
+    "dev": "./node_modules/.bin/better-npm-run dev",
+    "dist": "./node_modules/.bin/better-npm-run dist",
+    "karma": "./node_modules/.bin/better-npm-run karma",
+    "test": "./node_modules/.bin/better-npm-run test"
+  },
+  "betterScripts": {
+    "dev": {
+      "command": "./node_modules/.bin/webpack-dashboard -- ./node_modules/.bin/webpack-dev-server --config webpack/webpack.config.js --inline --hot -d",
+      "env": {
+        "NODE_ENV": "development"
+      }
+    },
+    "dist": {
+      "command": "./node_modules/.bin/webpack --config webpack/webpack.config.js --progress --bail",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
+    "karma": {
+      "command": "./node_modules/.bin/karma start",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    },
+    "test": {
+      "command": "npm-run-all karma dist"
+    }
   },
   "repository": {
     "type": "git",
@@ -38,10 +61,10 @@
     "babel-polyfill": "^6.13.0",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
+    "better-npm-run": "0.0.11",
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.10",
     "copy-webpack-plugin": "^3.0.1",
-    "cross-env": "^2.0.0",
     "css-loader": "^0.24.0",
     "deep-sort-object": "^1.0.1",
     "enzyme": "^2.4.1",
