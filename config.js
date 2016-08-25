@@ -14,10 +14,12 @@ module.exports = {
     dist                       : 'dist',
     dist_css_name              : 'dist.css',
     dist_path                  : distPath,
+    dist_static_path           : distPath + '/src/static',
     eslint_tests_config        : './.eslintrc-tests',
     index_html_path            : srcPath + '/index.html',
-    json_path                  : srcPath + '/json/*.json',
+    json_path                  : srcPath + '/static/json/*.json',
     src_path                   : srcPath,
+    src_static_path            : srcPath + '/static',
     webpack_client_regex       : /\.js$|\.jsx$/,
     webpack_constants_path     : srcPath + '/constants/constants.js',
     webpack_css_regex          : /\.css$/,
@@ -27,6 +29,6 @@ module.exports = {
     webpack_exclude            : /node_modules/,
     webpack_test_config        : './webpack.test.config',
     webpack_test_context       : 'webpack/webpack.test.context.js',
-    webpack_test_utils_path    : srcPath + '/testUtils/testUtils.js',
+    webpack_test_utils_path    : srcPath + '/utils/testUtils.js',
     webpack_utils_path         : srcPath + '/utils/utils.js'
 };

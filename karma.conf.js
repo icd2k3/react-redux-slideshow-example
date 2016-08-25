@@ -39,7 +39,7 @@ module.exports = function(config) {
             'karma-webpack'
         ],
         proxies: {
-            '/src/json': '/base/src/json/'
+            '/src/static/json': '/base/src/static/json/'
         },
         reporters: [
             'mocha',

@@ -10,7 +10,7 @@ describe('SlideshowActions.js', () => {
     });
 
     it(`Dispatches \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` and \`${ACTIONS.SLIDESHOW_JSON_RECEIVE}\` when \`requestJSON\` is called, and json is valid`, () => {
-        const filePath = 'src/json/mock-valid.json';
+        const filePath = 'src/static/json/mock-valid.json';
 
         store = mockStore({
             expectedActions: [
