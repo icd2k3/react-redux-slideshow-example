@@ -1,12 +1,20 @@
 "use strict";
 
 var configFile = require('../config.js'),
-	stringReplacePlugin = require('string-replace-webpack-plugin');
+	stringReplacePlugin = require('string-replace-webpack-plugin'),
+    warningsPlugin = require('./webpack-karma-warnings-plugin');
 
 // test config
 module.exports = {
 	devtool: 'inline-source-map',
 	module: {
+        preLoaders: [
+            {
+                test: [/\.js$/, /\.jsx$/],
+                loader: 'eslint-loader?{envs:["mocha"]}',
+                exclude: /node_modules/
+            }
+        ],
 		// this loader allows istanbul code coverage reported to ignore code that is added from Babel
 		loaders: [
 			{
@@ -44,6 +52,11 @@ module.exports = {
 			}
 		]
 	},
+    // eslint config
+    eslint: {
+        configFile: configFile.eslint_tests_config,
+        failOnError: true
+    },
 	// these externals are needed for enzyme to work correctly when running tests
 	externals: {
 		'jsdom': 'window',
@@ -58,6 +71,7 @@ module.exports = {
     },
 	// init string replace plugin for babel omissions above
 	plugins: [
-		new stringReplacePlugin()
+		new stringReplacePlugin(),
+        new warningsPlugin()
 	]
 };

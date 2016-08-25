@@ -1,3 +1,4 @@
+import { expect } from 'chai';
 import deepSortObject from 'deep-sort-object';
 import outdent from 'outdent';
 import configureStore from 'redux-mock-store';
@@ -37,7 +38,7 @@ export function mockStore(opts) {
     };
 
     return storeMock;
-};
+}
 
 export function reducerActionHandler(opts) {
     const defaults = {

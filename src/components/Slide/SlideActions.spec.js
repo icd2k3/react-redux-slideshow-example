@@ -1,5 +1,5 @@
 import { mockStore } from 'testUtils';
-import { ACTIONS }  from 'constants';
+import { ACTIONS } from 'constants';
 import * as SlideActions from './SlideActions.js';
 
 describe('SlideActions.js', () => {
@@ -25,5 +25,4 @@ describe('SlideActions.js', () => {
 
         done();
     });
-
 });

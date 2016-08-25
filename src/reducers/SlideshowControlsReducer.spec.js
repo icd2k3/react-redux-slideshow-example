@@ -1,9 +1,9 @@
+import { expect } from 'chai';
 import { reducerActionHandler } from 'testUtils';
-import { ACTIONS }  from 'constants';
+import { ACTIONS } from 'constants';
 import SlideshowControlsReducer, { defaultState } from './SlideshowControlsReducer.js';
 
 describe('SlideshowControlsReducer.js', () => {
-
     it('Should return initial state, even with bad input', (done) => {
         expect(SlideshowControlsReducer()).to.eql(defaultState);
         expect(SlideshowControlsReducer(), {}).to.eql(defaultState);
@@ -11,15 +11,13 @@ describe('SlideshowControlsReducer.js', () => {
     });
 
     it(`Should handle the ${ACTIONS.SLIDESHOW_JSON_RECEIVE} action`, (done) => {
-        const modifiedDefaultState = Object.assign({}, defaultState, {direction: 'prev'});
-
         reducerActionHandler({
             reducer: SlideshowControlsReducer,
             // initial state
             state: defaultState,
             // action to be handeled by the reducer which will modify state
             action: {
-                parsedJSON: [{src: 'mock'}],
+                parsedJSON: [{ src: 'mock' }],
                 type: ACTIONS.SLIDESHOW_JSON_RECEIVE
             },
             // expected state after handling the action above
@@ -179,5 +177,4 @@ describe('SlideshowControlsReducer.js', () => {
 
         done();
     });
-
 });
