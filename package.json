@@ -101,5 +101,8 @@
     "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.1"
+  },
+  "engines": {
+    "node": ">=5.12.0"
   }
 }
