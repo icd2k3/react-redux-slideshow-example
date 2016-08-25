@@ -84,7 +84,7 @@ describe('Slideshow.jsx', () => {
             const store = mockStore({
                 expectedActions: [
                     {
-                        filePath: 'src/json/slideshow.json',
+                        filePath: 'src/static/json/slideshow.json',
                         type: ACTIONS.SLIDESHOW_JSON_REQUEST
                     }
                 ],

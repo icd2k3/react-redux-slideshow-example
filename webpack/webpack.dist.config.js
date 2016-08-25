@@ -40,20 +40,15 @@ module.exports = {
         }),
         new copy([
             {
-                from: configFile.src_path + '/icomoon',
-                to: configFile.dist_path + '/src/icomoon',
+                from: configFile.src_static_path,
+                to: configFile.dist_static_path,
                 copyUnmodified: true,
-                ignore: ['*.html', '*.txt', '*.json', 'demo-files/**']
-            },
-            {
-                from: configFile.src_path + '/json',
-                to: configFile.dist_path + '/src/json',
-                copyUnmodified: true
-            },
-            {
-                from: configFile.src_path + '/images',
-                to: configFile.dist_path + '/src/images',
-                copyUnmodified: true
+                ignore: [
+                    '*.html',
+                    '*.txt',
+                    'icomoon/*.json',
+                    'icomoon/demo-files/**/*'
+                ]
             }
         ]),
         new Extract(configFile.dist_css_name)

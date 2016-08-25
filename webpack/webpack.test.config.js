@@ -73,5 +73,10 @@ module.exports = {
 	plugins: [
 		new stringReplacePlugin(),
         new warningsPlugin()
-	]
+	],
+    resolve: {
+        alias: {
+            testUtils$: configFile.webpack_test_utils_path
+        }
+    }
 };

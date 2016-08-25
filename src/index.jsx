@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 // app data
-import store from './store/store.js';
+import store from './redux/store.js';
 
 // children
 import Slideshow from './components/Slideshow/Slideshow.jsx';

@@ -2,13 +2,13 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 // middleware for redux
 import thunk from 'redux-thunk';
-import logger from '../middleware/logger.js';
-import exceptionReporter from '../middleware/exceptionReporter';
+import logger from './middleware/logger.js';
+import exceptionReporter from './middleware/exceptionReporter.js';
 
 // individual reducer data
-import SlideshowControlsReducer from '../reducers/SlideshowControlsReducer.js';
-import SlideshowReducer from '../reducers/SlideshowReducer.js';
-import SlideshowSettingsReducer from '../reducers/SlideshowSettingsReducer.js';
+import SlideshowControlsReducer from './reducers/SlideshowControlsReducer.js';
+import SlideshowReducer from './reducers/SlideshowReducer.js';
+import SlideshowSettingsReducer from './reducers/SlideshowSettingsReducer.js';
 
 // combine all individual reducers into 1 object
 const reducer = combineReducers({

@@ -9,7 +9,6 @@ import SlideshowControls from './SlideshowControls.jsx';
 describe('SlideshowControls.jsx', () => {
     const mockState = {
             SlideshowControlsReducer: {
-                amountOfSlides: 3,
                 currentSlideIndex: 3
             },
             SlideshowReducer: {

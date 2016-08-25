@@ -46,7 +46,6 @@ var configFile = require('../config.js'),
             root: configFile.src_path,
             alias: {
                 constants$: configFile.webpack_constants_path,
-                testUtils$: configFile.webpack_test_utils_path,
                 utils$: configFile.webpack_utils_path
             }
         }

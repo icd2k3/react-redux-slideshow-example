@@ -79,7 +79,7 @@ const
     mapDispatchToProps = (dispatch) => ({
         actions: {
             onRequestJSON: () => {
-                dispatch(SlideshowActions.requestJSON('src/json/slideshow.json'));
+                dispatch(SlideshowActions.requestJSON('src/static/json/slideshow.json'));
             }
         }
     });

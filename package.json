@@ -2,7 +2,7 @@
   "name": "react-redux-slideshow-example",
   "version": "1.0.0",
   "description": "Example of a React, Redux, Webpack, Karma FE stack",
-  "main": "src/index.js",
+  "main": "src/index.jsx",
   "scripts": {
     "dev": "./node_modules/.bin/better-npm-run dev",
     "dist": "./node_modules/.bin/better-npm-run dist",
@@ -103,6 +103,7 @@
     "webpack-merge": "^0.14.1"
   },
   "engines": {
-    "node": ">=5.12.0"
+    "node": ">=5.12.0",
+    "npm": ">=3.8.6"
   }
 }
