@@ -13,9 +13,9 @@ import React from 'react';
 import styles from './SlideInfo.css';
 
 // component jsx markup
-const SlideInfo = (props) => (
+const SlideInfo = ({ views }) => (
     <div className={styles.root}>
-        <i className="icon-eye" /> <span>{props.views} VIEWS</span>
+        <i className="icon-eye" /> <span>{views} VIEWS</span>
     </div>
 );
 
