@@ -22,22 +22,24 @@ import styles from './SlideshowControls.css';
 const
 
     // component jsx markup
-    SlideshowControls = (props) => (
-        props.enabled
-            ? <div className={styles.root}>
-                <SlideshowPrevNextButton prev />
-                <SlideshowPrevNextButton next />
-                <div className={styles.dotsContainer}>
-                    {props.SlideshowReducer.slides.map((slide, i) => (
-                        <SlideshowDot
-                            index={i}
-                            key={i}
-                            selected={props.SlideshowControlsReducer.currentSlideIndex === i}
-                        />
-                    ))}
-                </div>
+    SlideshowControls = ({
+        SlideshowControlsReducer,
+        SlideshowReducer,
+        enabled
+    }) => (enabled &&
+        <div className={styles.root}>
+            <SlideshowPrevNextButton prev />
+            <SlideshowPrevNextButton next />
+            <div className={styles.dotsContainer}>
+                {SlideshowReducer.slides.map((slide, i) => (
+                    <SlideshowDot
+                        index={i}
+                        key={i}
+                        selected={SlideshowControlsReducer.currentSlideIndex === i}
+                    />
+                ))}
             </div>
-            : null
+        </div>
     ),
 
     // takes redux state as an input and remaps it to props for this component

@@ -22,15 +22,18 @@ import styles from './SlideshowPrevNextButton.css';
 const
 
     // component jsx markup
-    SlideshowPrevNextButton = (props) => (
+    SlideshowPrevNextButton = ({
+        actions,
+        prev
+    }) => (
         <div
-            className={`${styles.root} ${props.prev ? styles.prev : styles.next}`}
-            onClick={() => props.actions.onClick(props.prev ? 'prev' : 'next')}
+            className={`${styles.root} ${prev ? styles.prev : styles.next}`}
+            onClick={() => actions.onClick(prev ? 'prev' : 'next')}
         >
             <i
                 className={`
                     ${styles.icon}
-                    ${props.prev ? 'icon-arrow-left2' : 'icon-arrow-right2'}
+                    ${prev ? 'icon-arrow-left2' : 'icon-arrow-right2'}
                 `}
             />
         </div>
@@ -57,7 +60,6 @@ SlideshowPrevNextButton.propTypes = {
     actions: React.PropTypes.shape({
         onClick: React.PropTypes.func.isRequired
     }).isRequired,
-    next: React.PropTypes.bool,
     prev: React.PropTypes.bool
 };
 

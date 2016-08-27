@@ -15,31 +15,35 @@ import styles from './SlideshowSettings.css';
 const
 
     // component jsx markup
-    SlideshowSettings = (props) => (
+    SlideshowSettings = ({
+        SlideshowControlsReducer,
+        SlideshowReducer,
+        actions
+    }) => (
         <div className={styles.root}>
             <div className={styles.inner}>
                 <i
                     className={`${styles.close} icon-cross`}
-                    onClick={props.actions.onToggle}
+                    onClick={actions.onToggle}
                 />
                 <h1>Settings</h1>
                 <label htmlFor="selectTransition">Transition</label>
-                <select id="selectTransition" onChange={props.actions.onChangeTransition}>
+                <select id="selectTransition" onChange={actions.onChangeTransition}>
                     <option value="slide">Slide</option>
                     <option value="fade">Fade</option>
                 </select>
                 <label htmlFor="selectBackgroundSize">Background Size</label>
-                <select id="selectBackgroundSize" onChange={props.actions.onChangeBackgroundSize}>
+                <select id="selectBackgroundSize" onChange={actions.onChangeBackgroundSize}>
                     <option value="cover">Cover</option>
                     <option value="contain">Contain</option>
                 </select>
                 <label htmlFor="imageDataList">Image Data</label>
-                {props.SlideshowReducer.slides
-                    && props.SlideshowReducer.slides.map((slide, index) => (
+                {SlideshowReducer.slides
+                    && SlideshowReducer.slides.map((slide, index) => (
                         <SlideshowSettingsImageRow
                             id={slide.id}
                             key={slide.id}
-                            selected={props.SlideshowControlsReducer.currentSlideIndex === index}
+                            selected={SlideshowControlsReducer.currentSlideIndex === index}
                             src={slide.src}
                             views={slide.views}
                         />
