@@ -20,23 +20,26 @@ import styles from './SlideTransition.css';
 const
 
     // component jsx markup
-    SlideTransition = (props) => (
+    SlideTransition = ({
+        direction,
+        slide,
+        transition
+    }) => (
         <CSSTransitionGroup
             className={styles.root}
             transitionEnterTimeout={450}
             transitionLeaveTimeout={450}
             transitionName={
-                `react-css-transition-${props.transition}-${props.direction}`
+                `react-css-transition-${transition}-${direction}`
             }
         >
-            {props.slide
-                ? <Slide
-                    id={props.slide.id}
-                    key={props.slide.id}
-                    src={props.slide.src}
-                    views={props.slide.views}
+            {slide
+                && <Slide
+                    id={slide.id}
+                    key={slide.id}
+                    src={slide.src}
+                    views={slide.views}
                 />
-                : null
             }
         </CSSTransitionGroup>
     );

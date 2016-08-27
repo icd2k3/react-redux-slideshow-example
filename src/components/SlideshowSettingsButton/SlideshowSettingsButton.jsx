@@ -22,10 +22,12 @@ import styles from './SlideshowSettingsButton.css';
 const
 
     // component jsx markup
-    SlideshowSettingsButton = (props) => (
+    SlideshowSettingsButton = ({
+        actions
+    }) => (
         <a
             className={`${styles.root} icon-cog`}
-            onClick={props.actions.onClick}
+            onClick={actions.onClick}
         />
     ),
 

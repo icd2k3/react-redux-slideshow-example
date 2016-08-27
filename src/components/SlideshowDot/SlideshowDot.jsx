@@ -21,13 +21,17 @@ import styles from './SlideshowDot.css';
 const
 
     // component jsx markup
-    SlideshowDot = (props) => (
+    SlideshowDot = ({
+        actions,
+        index,
+        selected
+    }) => (
         <div
-            className={`${styles.root} ${props.selected ? styles.selected : ''}`}
+            className={`${styles.root} ${selected ? styles.selected : ''}`}
             onClick={
-                props.selected
+                selected
                     ? null
-                    : () => props.actions.onClick(props.index)
+                    : () => actions.onClick(index)
             }
         />
     ),

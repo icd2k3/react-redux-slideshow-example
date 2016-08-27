@@ -13,16 +13,21 @@ import React from 'react';
 // styles specific to this component
 import styles from './SlideshowSettingsImageRow.css';
 
-const SlideshowSettingsImageRow = (props) => (
+const SlideshowSettingsImageRow = ({
+    id,
+    selected,
+    src,
+    views
+}) => (
     <div className={styles.root}>
         <div
-            className={`${styles.thumbnail} ${props.selected ? styles.thumbnailSelected : ''}`}
-            style={{ backgroundImage: `url('${props.src}')` }}
+            className={`${styles.thumbnail} ${selected ? styles.thumbnailSelected : ''}`}
+            style={{ backgroundImage: `url('${src}')` }}
         />
         <ul className={styles.info}>
-            <li><strong>ID</strong><span>{props.id}</span></li>
-            <li><strong>SRC</strong><span>{props.src}</span></li>
-            <li><strong>VIEWS</strong><span>{props.views}</span></li>
+            <li><strong>ID</strong><span>{id}</span></li>
+            <li><strong>SRC</strong><span>{src}</span></li>
+            <li><strong>VIEWS</strong><span>{views}</span></li>
         </ul>
     </div>
 );
