@@ -14,41 +14,24 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import * as SlideshowSettingsButtonActions from './SlideshowSettingsButtonActions.js';
+import SlideshowSettingsButtonActions from './SlideshowSettingsButtonActions.js';
 
 // styles specific to this component
 import styles from './SlideshowSettingsButton.css';
 
-const
-
-    // component jsx markup
-    SlideshowSettingsButton = ({
-        actions
-    }) => (
-        <a
-            className={`${styles.root} icon-cog`}
-            onClick={actions.onClick}
-        />
-    ),
-
-    // takes redux state as an input and remaps it to props for this component
-    mapStateToProps = () => ({}),
-
-    // takes redux dispatch function as an input and remaps it to props for this component
-    mapDispatchToProps = (dispatch) => ({
-        actions: {
-            onClick: () => {
-                dispatch(SlideshowSettingsButtonActions.toggleSettings());
-            }
-        }
-    });
+const SlideshowSettingsButton = ({
+    onClick
+}) => (
+    <a
+        className={`${styles.root} icon-cog`}
+        onClick={onClick}
+    />
+);
 
 // validate that this component is passed the properties it expects
 SlideshowSettingsButton.propTypes = {
-    actions: React.PropTypes.shape({
-        onClick: React.PropTypes.func.isRequired
-    }).isRequired
+    onClick: React.PropTypes.func.isRequired
 };
 
 // export the redux-connected component
-export default connect(mapStateToProps, mapDispatchToProps)(SlideshowSettingsButton);
+export default connect(null, SlideshowSettingsButtonActions)(SlideshowSettingsButton);

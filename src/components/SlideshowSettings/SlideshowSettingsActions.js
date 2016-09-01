@@ -1,20 +1,15 @@
 import { ACTIONS } from 'constants';
 
-const
-    changeBackgroundSize = (backgroundSize) => ({
+export default (dispatch) => ({
+    onChangeBackgroundSize: (backgroundSize) => dispatch({
         backgroundSize,
         type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE
     }),
-    changeTransition = (transition) => ({
+    onChangeTransition: (transition) => dispatch({
         transition,
         type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION
     }),
-    toggle = () => ({
+    onToggle: () => dispatch({
         type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
-    });
-
-module.exports = {
-    changeBackgroundSize,
-    changeTransition,
-    toggle
-};
+    })
+});

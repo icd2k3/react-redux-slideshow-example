@@ -13,7 +13,7 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import * as SlideActions from './SlideActions.js';
+import SlideActions from './SlideActions.js';
 
 // children components
 import SlideInfo from '../SlideInfo/SlideInfo.jsx';
@@ -25,7 +25,7 @@ import styles from './Slide.css';
 class Slide extends React.Component {
 
     componentWillMount() {
-        this.props.actions.onSlideView(this.props.id);
+        this.props.onSlideView(this.props.id);
     }
 
     render() {
@@ -47,35 +47,18 @@ class Slide extends React.Component {
     }
 }
 
-// MAP PROPS ///////////////////////////////////////
-const
-
-    // takes redux state as an input and remaps it to this.props for this component
-    mapStateToProps = (state) => ({
-        SlideshowSettingsReducer: state.SlideshowSettingsReducer
-    }),
-
-    // takes redux dispatch function as an input and remaps it to this.props for this component
-    mapDispatchToProps = (dispatch) => ({
-        actions: {
-            onSlideView: (id) => {
-                dispatch(SlideActions.view(id));
-            }
-        }
-    });
-
 // validate that this component is passed the properties it expects
 Slide.propTypes = {
     SlideshowSettingsReducer: React.PropTypes.shape({
         backgroundSize: React.PropTypes.oneOf(['cover', 'contain'])
     }).isRequired,
-    actions: React.PropTypes.shape({
-        onSlideView: React.PropTypes.func.isRequired
-    }).isRequired,
     id: React.PropTypes.string.isRequired,
+    onSlideView: React.PropTypes.func.isRequired,
     src: React.PropTypes.string.isRequired,
     views: React.PropTypes.number.isRequired
 };
 
 // export the redux-connected component
-export default connect(mapStateToProps, mapDispatchToProps)(Slide);
+export default connect((state) => ({
+    SlideshowSettingsReducer: state.SlideshowSettingsReducer
+}), SlideActions)(Slide);

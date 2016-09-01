@@ -1,10 +1,7 @@
 import { ACTIONS } from 'constants';
 
-const
-    toggleSettings = () => ({
+export default (dispatch) => ({
+    onClick: () => dispatch({
         type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
-    });
-
-module.exports = {
-    toggleSettings
-};
+    })
+});

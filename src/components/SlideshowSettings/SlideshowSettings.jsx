@@ -4,7 +4,7 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import * as SlideshowSettingsActions from './SlideshowSettingsActions.js';
+import SlideshowSettingsActions from './SlideshowSettingsActions.js';
 
 // child components
 import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSettingsImageRow.jsx';
@@ -12,66 +12,50 @@ import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSet
 // styles specific to this component
 import styles from './SlideshowSettings.css';
 
-const
-
-    // component jsx markup
-    SlideshowSettings = ({
-        SlideshowControlsReducer,
-        SlideshowReducer,
-        actions
-    }) => (
-        <div className={styles.root}>
-            <div className={styles.inner}>
-                <i
-                    className={`${styles.close} icon-cross`}
-                    onClick={actions.onToggle}
-                />
-                <h1>Settings</h1>
-                <label htmlFor="selectTransition">Transition</label>
-                <select id="selectTransition" onChange={actions.onChangeTransition}>
-                    <option value="slide">Slide</option>
-                    <option value="fade">Fade</option>
-                </select>
-                <label htmlFor="selectBackgroundSize">Background Size</label>
-                <select id="selectBackgroundSize" onChange={actions.onChangeBackgroundSize}>
-                    <option value="cover">Cover</option>
-                    <option value="contain">Contain</option>
-                </select>
-                <label htmlFor="imageDataList">Image Data</label>
-                {SlideshowReducer.slides
-                    && SlideshowReducer.slides.map((slide, index) => (
-                        <SlideshowSettingsImageRow
-                            id={slide.id}
-                            key={slide.id}
-                            selected={SlideshowControlsReducer.currentSlideIndex === index}
-                            src={slide.src}
-                            views={slide.views}
-                        />
-                ))}
-            </div>
+const SlideshowSettings = ({
+    SlideshowControlsReducer,
+    SlideshowReducer,
+    onChangeBackgroundSize,
+    onChangeTransition,
+    onToggle
+}) => (
+    <div className={styles.root}>
+        <div className={styles.inner}>
+            <i
+                className={`${styles.close} icon-cross`}
+                onClick={onToggle}
+            />
+            <h1>Settings</h1>
+            <label htmlFor="selectTransition">Transition</label>
+            <select
+                id="selectTransition"
+                onChange={(e) => onChangeTransition(e.target.value)}
+            >
+                <option value="slide">Slide</option>
+                <option value="fade">Fade</option>
+            </select>
+            <label htmlFor="selectBackgroundSize">Background Size</label>
+            <select
+                id="selectBackgroundSize"
+                onChange={(e) => onChangeBackgroundSize(e.target.value)}
+            >
+                <option value="cover">Cover</option>
+                <option value="contain">Contain</option>
+            </select>
+            <label htmlFor="imageDataList">Image Data</label>
+            {SlideshowReducer.slides
+                && SlideshowReducer.slides.map((slide, index) => (
+                    <SlideshowSettingsImageRow
+                        id={slide.id}
+                        key={slide.id}
+                        selected={SlideshowControlsReducer.currentSlideIndex === index}
+                        src={slide.src}
+                        views={slide.views}
+                    />
+            ))}
         </div>
-    ),
-
-    // takes redux state as an input and remaps it to props for this component
-    mapStateToProps = (state) => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer
-    }),
-
-    // takes redux dispatch function as an input and remaps it to props for this component
-    mapDispatchToProps = (dispatch) => ({
-        actions: {
-            onChangeBackgroundSize: (e) => {
-                dispatch(SlideshowSettingsActions.changeBackgroundSize(e.currentTarget.value));
-            },
-            onChangeTransition: (e) => {
-                dispatch(SlideshowSettingsActions.changeTransition(e.currentTarget.value));
-            },
-            onToggle: () => {
-                dispatch(SlideshowSettingsActions.toggle());
-            }
-        }
-    });
+    </div>
+);
 
 // validate that this component is passed the properties it expects
 SlideshowSettings.propTypes = {
@@ -85,12 +69,13 @@ SlideshowSettings.propTypes = {
             views: React.PropTypes.number.isRequired
         }))
     }).isRequired,
-    actions: React.PropTypes.shape({
-        onChangeBackgroundSize: React.PropTypes.func.isRequired,
-        onChangeTransition: React.PropTypes.func.isRequired,
-        onToggle: React.PropTypes.func.isRequired
-    }).isRequired
+    onChangeBackgroundSize: React.PropTypes.func.isRequired,
+    onChangeTransition: React.PropTypes.func.isRequired,
+    onToggle: React.PropTypes.func.isRequired
 };
 
 // export this redux connected component
-export default connect(mapStateToProps, mapDispatchToProps)(SlideshowSettings);
+export default connect((state) => ({
+    SlideshowControlsReducer: state.SlideshowControlsReducer,
+    SlideshowReducer: state.SlideshowReducer
+}), SlideshowSettingsActions)(SlideshowSettings);

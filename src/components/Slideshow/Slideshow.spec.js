@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
-import { ACTIONS } from 'constants';
+import { ACTIONS, JSON_PATH } from 'constants';
 
 import Slideshow from './Slideshow.jsx';
 
@@ -80,11 +80,11 @@ describe('Slideshow.jsx', () => {
     });
 
     describe('User interactions', () => {
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_JSON_REQUEST} on mount`, (done) => {
+        it(`Should dispatch \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` on mount`, (done) => {
             const store = mockStore({
                 expectedActions: [
                     {
-                        filePath: 'src/static/json/slideshow.json',
+                        filePath: JSON_PATH,
                         type: ACTIONS.SLIDESHOW_JSON_REQUEST
                     }
                 ],

@@ -1,11 +1,8 @@
 import { ACTIONS } from 'constants';
 
-const
-    view = (id) => ({
+export default (dispatch) => ({
+    onSlideView: (id) => dispatch({
         id,
         type: ACTIONS.SLIDE_VIEW
-    });
-
-module.exports = {
-    view
-};
+    })
+});

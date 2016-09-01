@@ -1,14 +1,10 @@
 import { ACTIONS } from 'constants';
 
-const
-    next = () => ({
+export default (dispatch) => ({
+    onNext: () => dispatch({
         type: ACTIONS.SLIDESHOW_CONTROLS_NEXT
     }),
-    prev = () => ({
+    onPrev: () => dispatch({
         type: ACTIONS.SLIDESHOW_CONTROLS_PREV
-    });
-
-module.exports = {
-    next,
-    prev
-};
+    })
+});
