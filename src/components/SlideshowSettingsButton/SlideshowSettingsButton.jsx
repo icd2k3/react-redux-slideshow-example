@@ -19,19 +19,23 @@ import SlideshowSettingsButtonActions from './SlideshowSettingsButtonActions.js'
 // styles specific to this component
 import styles from './SlideshowSettingsButton.css';
 
-const SlideshowSettingsButton = ({
-    onClick
-}) => (
-    <a
-        className={`${styles.root} icon-cog`}
-        onClick={onClick}
-    />
-);
-
-// validate that this component is passed the properties it expects
-SlideshowSettingsButton.propTypes = {
+const propTypes = {
     onClick: React.PropTypes.func.isRequired
 };
+
+function SlideshowSettingsButton({
+    onClick
+}) {
+    return (
+        <a
+            className={`${styles.root} icon-cog`}
+            onClick={onClick}
+        />
+    );
+}
+
+// validate that this component is passed the properties it expects
+SlideshowSettingsButton.propTypes = propTypes;
 
 // export the redux-connected component
 export default connect(null, SlideshowSettingsButtonActions)(SlideshowSettingsButton);

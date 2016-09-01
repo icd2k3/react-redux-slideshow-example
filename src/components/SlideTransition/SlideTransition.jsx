@@ -17,14 +17,22 @@ import Slide from '../Slide/Slide.jsx';
 // styles specific to this component
 import styles from './SlideTransition.css';
 
-const
+const propTypes = {
+    direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
+    slide: React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired,
+        src: React.PropTypes.string.isRequired,
+        views: React.PropTypes.number.isRequired
+    }),
+    transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
+};
 
-    // component jsx markup
-    SlideTransition = ({
-        direction,
-        slide,
-        transition
-    }) => (
+function SlideTransition({
+    direction,
+    slide,
+    transition
+}) {
+    return (
         <CSSTransitionGroup
             className={styles.root}
             transitionEnterTimeout={450}
@@ -43,16 +51,10 @@ const
             }
         </CSSTransitionGroup>
     );
+}
 
-SlideTransition.propTypes = {
-    direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
-    slide: React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        src: React.PropTypes.string.isRequired,
-        views: React.PropTypes.number.isRequired
-    }),
-    transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
-};
+// validate that this component is passed the properties it expects
+SlideTransition.propTypes = propTypes;
 
 // export the presentational component
 export default SlideTransition;

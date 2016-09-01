@@ -30,7 +30,29 @@ import SlideshowSettingsButton from '../SlideshowSettingsButton/SlideshowSetting
 // styles specific to this component
 import styles from './Slideshow.css';
 
-// COMPONENT ///////////////////////////////////////
+const propTypes = {
+        SlideshowControlsReducer: React.PropTypes.shape({
+            currentSlideIndex: React.PropTypes.number.isRequired,
+            direction: React.PropTypes.oneOf(['prev', 'next'])
+        }).isRequired,
+        SlideshowReducer: React.PropTypes.shape({
+            slides: React.PropTypes.arrayOf(React.PropTypes.shape({
+                src: React.PropTypes.string.isRequired,
+                views: React.PropTypes.number.isRequired
+            }))
+        }).isRequired,
+        SlideshowSettingsReducer: React.PropTypes.shape({
+            toggled: React.PropTypes.bool,
+            transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
+        }).isRequired,
+        onRequestJSON: React.PropTypes.func.isRequired
+    },
+    mapStateToProps = (state) => ({
+        SlideshowControlsReducer: state.SlideshowControlsReducer,
+        SlideshowReducer: state.SlideshowReducer,
+        SlideshowSettingsReducer: state.SlideshowSettingsReducer
+    });
+
 class Slideshow extends React.Component {
 
     componentDidMount() {
@@ -72,27 +94,7 @@ class Slideshow extends React.Component {
 }
 
 // validate that this component is passed the properties it expects
-Slideshow.propTypes = {
-    SlideshowControlsReducer: React.PropTypes.shape({
-        currentSlideIndex: React.PropTypes.number.isRequired,
-        direction: React.PropTypes.oneOf(['prev', 'next'])
-    }).isRequired,
-    SlideshowReducer: React.PropTypes.shape({
-        slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-            src: React.PropTypes.string.isRequired,
-            views: React.PropTypes.number.isRequired
-        }))
-    }).isRequired,
-    SlideshowSettingsReducer: React.PropTypes.shape({
-        toggled: React.PropTypes.bool,
-        transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
-    }).isRequired,
-    onRequestJSON: React.PropTypes.func.isRequired
-};
+Slideshow.propTypes = propTypes;
 
 // EXPORT /////////////////////////////////////////
-export default connect((state) => ({
-    SlideshowControlsReducer: state.SlideshowControlsReducer,
-    SlideshowReducer: state.SlideshowReducer,
-    SlideshowSettingsReducer: state.SlideshowSettingsReducer
-}), SlideshowActions)(Slideshow);
+export default connect(mapStateToProps, SlideshowActions)(Slideshow);
