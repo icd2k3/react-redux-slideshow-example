@@ -13,49 +13,32 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import * as SlideshowDotActions from './SlideshowDotActions.js';
+import SlideshowDotActions from './SlideshowDotActions.js';
 
 // styles specific to this component
 import styles from './SlideshowDot.css';
 
-const
-
-    // component jsx markup
-    SlideshowDot = ({
-        actions,
-        index,
-        selected
-    }) => (
-        <div
-            className={`${styles.root} ${selected ? styles.selected : ''}`}
-            onClick={
-                selected
-                    ? null
-                    : () => actions.onClick(index)
-            }
-        />
-    ),
-
-    // takes redux state as an input and remaps it to props for this component
-    mapStateToProps = () => ({}),
-
-    // takes redux dispatch function as an input and remaps it to props for this component
-    mapDispatchToProps = (dispatch) => ({
-        actions: {
-            onClick: (index) => {
-                dispatch(SlideshowDotActions.selectDot(index));
-            }
+const SlideshowDot = ({
+    index,
+    onSelectDot,
+    selected
+}) => (
+    <div
+        className={`${styles.root} ${selected ? styles.selected : ''}`}
+        onClick={
+            selected
+                ? null
+                : () => onSelectDot(index)
         }
-    });
+    />
+);
 
 // validate that this component is passed the properties it expects
 SlideshowDot.propTypes = {
-    actions: React.PropTypes.shape({
-        onClick: React.PropTypes.func.isRequired
-    }).isRequired,
     index: React.PropTypes.number.isRequired,
+    onSelectDot: React.PropTypes.func.isRequired,
     selected: React.PropTypes.bool
 };
 
 // export the redux-connected component
-export default connect(mapStateToProps, mapDispatchToProps)(SlideshowDot);
+export default connect(null, SlideshowDotActions)(SlideshowDot);

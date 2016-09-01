@@ -1,6 +1,6 @@
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import * as SlideshowActions from './SlideshowActions.js';
+import SlideshowActions from './SlideshowActions.js';
 
 describe('SlideshowActions.js', () => {
     let store;
@@ -25,8 +25,8 @@ describe('SlideshowActions.js', () => {
             ]
         });
 
-        return store
-            .dispatch(SlideshowActions.requestJSON(filePath))
+        return SlideshowActions(store.dispatch)
+            .onRequestJSON(filePath)
             .then(store.testExpectedActions);
     });
 
@@ -46,8 +46,8 @@ describe('SlideshowActions.js', () => {
             ]
         });
 
-        return store
-            .dispatch(SlideshowActions.requestJSON(filePath))
+        return SlideshowActions(store.dispatch)
+            .onRequestJSON(filePath)
             .then(store.testExpectedActions);
     });
 
@@ -60,7 +60,7 @@ describe('SlideshowActions.js', () => {
             ]
         });
 
-        store.dispatch(SlideshowActions.toggleSettings());
+        SlideshowActions(store.dispatch).onToggleSettings();
 
         store.testExpectedActions();
 

@@ -1,11 +1,8 @@
 import { ACTIONS } from 'constants';
 
-const
-    selectDot = (slideIndex) => ({
+export default (dispatch) => ({
+    onSelectDot: (slideIndex) => dispatch({
         slideIndex,
         type: ACTIONS.SLIDESHOW_CONTROLS_DOT_SELECT
-    });
-
-module.exports = {
-    selectDot
-};
+    })
+});

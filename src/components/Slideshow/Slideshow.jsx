@@ -13,8 +13,13 @@ import {
     connect
 } from 'react-redux';
 
+// constants
+import {
+    JSON_PATH
+} from 'constants';
+
 // actions this view can dispatch
-import * as SlideshowActions from './SlideshowActions.js';
+import SlideshowActions from './SlideshowActions.js';
 
 // children
 import SlideTransition from '../SlideTransition/SlideTransition.jsx';
@@ -30,7 +35,7 @@ class Slideshow extends React.Component {
 
     componentDidMount() {
         if (!this.props.SlideshowReducer.slides) {
-            this.props.actions.onRequestJSON();
+            this.props.onRequestJSON(JSON_PATH);
         }
     }
 
@@ -66,24 +71,6 @@ class Slideshow extends React.Component {
     }
 }
 
-const
-
-    // takes redux state as an input and remaps it to props for this component
-    mapStateToProps = (state) => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer,
-        SlideshowSettingsReducer: state.SlideshowSettingsReducer
-    }),
-
-    // takes redux dispatch function as an input and remaps it to props for this component
-    mapDispatchToProps = (dispatch) => ({
-        actions: {
-            onRequestJSON: () => {
-                dispatch(SlideshowActions.requestJSON('src/static/json/slideshow.json'));
-            }
-        }
-    });
-
 // validate that this component is passed the properties it expects
 Slideshow.propTypes = {
     SlideshowControlsReducer: React.PropTypes.shape({
@@ -100,10 +87,12 @@ Slideshow.propTypes = {
         toggled: React.PropTypes.bool,
         transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
     }).isRequired,
-    actions: React.PropTypes.shape({
-        onRequestJSON: React.PropTypes.func.isRequired
-    }).isRequired
+    onRequestJSON: React.PropTypes.func.isRequired
 };
 
 // EXPORT /////////////////////////////////////////
-export default connect(mapStateToProps, mapDispatchToProps)(Slideshow);
+export default connect((state) => ({
+    SlideshowControlsReducer: state.SlideshowControlsReducer,
+    SlideshowReducer: state.SlideshowReducer,
+    SlideshowSettingsReducer: state.SlideshowSettingsReducer
+}), SlideshowActions)(Slideshow);
