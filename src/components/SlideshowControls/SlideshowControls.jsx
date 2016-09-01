@@ -19,14 +19,26 @@ import SlideshowDot from '../SlideshowDot/SlideshowDot.jsx';
 // styles specific to this component
 import styles from './SlideshowControls.css';
 
-const
+const propTypes = {
+        SlideshowControlsReducer: React.PropTypes.shape({
+            currentSlideIndex: React.PropTypes.number.isRequired
+        }).isRequired,
+        SlideshowReducer: React.PropTypes.shape({
+            slides: React.PropTypes.array
+        }).isRequired,
+        enabled: React.PropTypes.bool.isRequired
+    },
+    mapStateToProps = (state) => ({
+        SlideshowControlsReducer: state.SlideshowControlsReducer,
+        SlideshowReducer: state.SlideshowReducer
+    });
 
-    // component jsx markup
-    SlideshowControls = ({
-        SlideshowControlsReducer,
-        SlideshowReducer,
-        enabled
-    }) => (enabled &&
+function SlideshowControls({
+    SlideshowControlsReducer,
+    SlideshowReducer,
+    enabled
+}) {
+    return (enabled &&
         <div className={styles.root}>
             <SlideshowPrevNextButton prev />
             <SlideshowPrevNextButton next />
@@ -40,24 +52,11 @@ const
                 ))}
             </div>
         </div>
-    ),
-
-    // takes redux state as an input and remaps it to props for this component
-    mapStateToProps = (state) => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer
-    });
+    );
+}
 
 // validate that this component is passed the properties it expects
-SlideshowControls.propTypes = {
-    SlideshowControlsReducer: React.PropTypes.shape({
-        currentSlideIndex: React.PropTypes.number.isRequired
-    }).isRequired,
-    SlideshowReducer: React.PropTypes.shape({
-        slides: React.PropTypes.array
-    }).isRequired,
-    enabled: React.PropTypes.bool.isRequired
-};
+SlideshowControls.propTypes = propTypes;
 
 // export this redux connected component
 export default connect(mapStateToProps)(SlideshowControls);

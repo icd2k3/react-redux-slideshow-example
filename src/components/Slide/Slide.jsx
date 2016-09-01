@@ -21,7 +21,19 @@ import SlideInfo from '../SlideInfo/SlideInfo.jsx';
 // styles specific to this component
 import styles from './Slide.css';
 
-// COMPONENT ///////////////////////////////////////
+const propTypes = {
+        SlideshowSettingsReducer: React.PropTypes.shape({
+            backgroundSize: React.PropTypes.oneOf(['cover', 'contain'])
+        }).isRequired,
+        id: React.PropTypes.string.isRequired,
+        onSlideView: React.PropTypes.func.isRequired,
+        src: React.PropTypes.string.isRequired,
+        views: React.PropTypes.number.isRequired
+    },
+    mapStateToProps = (state) => ({
+        SlideshowSettingsReducer: state.SlideshowSettingsReducer
+    });
+
 class Slide extends React.Component {
 
     componentWillMount() {
@@ -48,17 +60,7 @@ class Slide extends React.Component {
 }
 
 // validate that this component is passed the properties it expects
-Slide.propTypes = {
-    SlideshowSettingsReducer: React.PropTypes.shape({
-        backgroundSize: React.PropTypes.oneOf(['cover', 'contain'])
-    }).isRequired,
-    id: React.PropTypes.string.isRequired,
-    onSlideView: React.PropTypes.func.isRequired,
-    src: React.PropTypes.string.isRequired,
-    views: React.PropTypes.number.isRequired
-};
+Slide.propTypes = propTypes;
 
 // export the redux-connected component
-export default connect((state) => ({
-    SlideshowSettingsReducer: state.SlideshowSettingsReducer
-}), SlideActions)(Slide);
+export default connect(mapStateToProps, SlideActions)(Slide);

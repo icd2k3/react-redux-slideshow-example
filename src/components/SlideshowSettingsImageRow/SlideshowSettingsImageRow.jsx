@@ -13,32 +13,36 @@ import React from 'react';
 // styles specific to this component
 import styles from './SlideshowSettingsImageRow.css';
 
-const SlideshowSettingsImageRow = ({
-    id,
-    selected,
-    src,
-    views
-}) => (
-    <div className={styles.root}>
-        <div
-            className={`${styles.thumbnail} ${selected ? styles.thumbnailSelected : ''}`}
-            style={{ backgroundImage: `url('${src}')` }}
-        />
-        <ul className={styles.info}>
-            <li><strong>ID</strong><span>{id}</span></li>
-            <li><strong>SRC</strong><span>{src}</span></li>
-            <li><strong>VIEWS</strong><span>{views}</span></li>
-        </ul>
-    </div>
-);
-
-// validate that this component is passed the properties it expects
-SlideshowSettingsImageRow.propTypes = {
+const propTypes = {
     id: React.PropTypes.string.isRequired,
     selected: React.PropTypes.bool.isRequired,
     src: React.PropTypes.string.isRequired,
     views: React.PropTypes.number.isRequired
 };
+
+function SlideshowSettingsImageRow({
+    id,
+    selected,
+    src,
+    views
+}) {
+    return (
+        <div className={styles.root}>
+            <div
+                className={`${styles.thumbnail} ${selected ? styles.thumbnailSelected : ''}`}
+                style={{ backgroundImage: `url('${src}')` }}
+            />
+            <ul className={styles.info}>
+                <li><strong>ID</strong><span>{id}</span></li>
+                <li><strong>SRC</strong><span>{src}</span></li>
+                <li><strong>VIEWS</strong><span>{views}</span></li>
+            </ul>
+        </div>
+    );
+}
+
+// validate that this component is passed the properties it expects
+SlideshowSettingsImageRow.propTypes = propTypes;
 
 // export the presentational component
 export default SlideshowSettingsImageRow;

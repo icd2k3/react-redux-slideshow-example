@@ -19,30 +19,34 @@ import SlideshowPrevNextButtonActions from './SlideshowPrevNextButtonActions.js'
 // styles specific to this component
 import styles from './SlideshowPrevNextButton.css';
 
-const SlideshowPrevNextButton = ({
-    onNext,
-    onPrev,
-    prev
-}) => (
-    <div
-        className={`${styles.root} ${prev ? styles.prev : styles.next}`}
-        onClick={prev ? onPrev : onNext}
-    >
-        <i
-            className={`
-                ${styles.icon}
-                ${prev ? 'icon-arrow-left2' : 'icon-arrow-right2'}
-            `}
-        />
-    </div>
-);
-
-// validate that this component is passed the properties it expects
-SlideshowPrevNextButton.propTypes = {
+const propTypes = {
     onNext: React.PropTypes.func.isRequired,
     onPrev: React.PropTypes.func.isRequired,
     prev: React.PropTypes.bool
 };
+
+function SlideshowPrevNextButton({
+    onNext,
+    onPrev,
+    prev
+}) {
+    return (
+        <div
+            className={`${styles.root} ${prev ? styles.prev : styles.next}`}
+            onClick={prev ? onPrev : onNext}
+        >
+            <i
+                className={`
+                    ${styles.icon}
+                    ${prev ? 'icon-arrow-left2' : 'icon-arrow-right2'}
+                `}
+            />
+        </div>
+    );
+}
+
+// validate that this component is passed the properties it expects
+SlideshowPrevNextButton.propTypes = propTypes;
 
 // export this redux connected component
 export default connect(null, SlideshowPrevNextButtonActions)(SlideshowPrevNextButton);
