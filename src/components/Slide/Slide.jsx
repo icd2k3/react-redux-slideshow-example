@@ -22,17 +22,12 @@ import SlideInfo from '../SlideInfo/SlideInfo';
 import styles from './Slide.css';
 
 const propTypes = {
-        SlideshowSettingsReducer: React.PropTypes.shape({
-            backgroundSize: React.PropTypes.oneOf(['cover', 'contain'])
-        }).isRequired,
-        id: React.PropTypes.string.isRequired,
-        onSlideView: React.PropTypes.func.isRequired,
-        src: React.PropTypes.string.isRequired,
-        views: React.PropTypes.number.isRequired
-    },
-    mapStateToProps = state => ({
-        SlideshowSettingsReducer: state.SlideshowSettingsReducer
-    });
+    backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
+    id: React.PropTypes.string.isRequired,
+    onSlideView: React.PropTypes.func.isRequired,
+    src: React.PropTypes.string.isRequired,
+    views: React.PropTypes.number.isRequired
+};
 
 class Slide extends React.Component {
 
@@ -43,7 +38,7 @@ class Slide extends React.Component {
     render() {
         const inlineStyle = {
             backgroundImage: `url('${this.props.src}')`,
-            backgroundSize: this.props.SlideshowSettingsReducer.backgroundSize
+            backgroundSize: this.props.backgroundSize
         };
 
         return (
@@ -64,4 +59,4 @@ class Slide extends React.Component {
 Slide.propTypes = propTypes;
 
 // export the redux-connected component
-export default connect(mapStateToProps, SlideActions)(Slide);
+export default connect(null, SlideActions)(Slide);

@@ -31,63 +31,71 @@ import SlideshowSettingsButton from '../SlideshowSettingsButton/SlideshowSetting
 import styles from './Slideshow.css';
 
 const propTypes = {
-        SlideshowControlsReducer: React.PropTypes.shape({
-            currentSlideIndex: React.PropTypes.number.isRequired,
-            direction: React.PropTypes.oneOf(['prev', 'next'])
-        }).isRequired,
-        SlideshowReducer: React.PropTypes.shape({
-            slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-                src: React.PropTypes.string.isRequired,
-                views: React.PropTypes.number.isRequired
-            }))
-        }).isRequired,
-        SlideshowSettingsReducer: React.PropTypes.shape({
-            toggled: React.PropTypes.bool,
-            transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
-        }).isRequired,
+        backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
+        currentSlideIndex: React.PropTypes.number.isRequired,
+        direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
+        error: React.PropTypes.string,
+        settingsPanel: React.PropTypes.bool,
+        slides: React.PropTypes.arrayOf(React.PropTypes.shape({
+            id: React.PropTypes.string.isRequired,
+            src: React.PropTypes.string.isRequired,
+            views: React.PropTypes.number.isRequired
+        })),
+        loading: React.PropTypes.bool,
+        transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired,
         onRequestJSON: React.PropTypes.func.isRequired
     },
     mapStateToProps = state => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer,
-        SlideshowSettingsReducer: state.SlideshowSettingsReducer
+        backgroundSize: state.SlideshowReducer.backgroundSize,
+        currentSlideIndex: state.SlideshowReducer.currentSlideIndex,
+        direction: state.SlideshowReducer.direction,
+        error: state.SlideshowReducer.error,
+        settingsPanel: state.SlideshowReducer.settingsPanel,
+        slides: state.SlideshowReducer.slides,
+        loading: state.SlideshowReducer.loading,
+        transition: state.SlideshowReducer.transition
     });
 
 class Slideshow extends React.Component {
 
     componentDidMount() {
-        if (!this.props.SlideshowReducer.slides) {
+        if (!this.props.slides) {
             this.props.onRequestJSON(JSON_PATH);
         }
     }
 
     render() {
-        const currentSlideIndex = this.props.SlideshowControlsReducer.currentSlideIndex,
-            slide = this.props.SlideshowReducer.slides
-                && this.props.SlideshowReducer.slides[currentSlideIndex];
+        const slide = this.props.slides && this.props.slides[this.props.currentSlideIndex];
 
         return (
             <div className={styles.root}>
                 <div
                     className={`
                         ${styles.content}
-                        ${this.props.SlideshowSettingsReducer.toggled
+                        ${this.props.settingsPanel
                             ? styles.contentSettingsToggled
                             : ''
                         }
                     `}
                 >
                     <SlideTransition
-                        direction={this.props.SlideshowControlsReducer.direction}
+                        backgroundSize={this.props.backgroundSize}
+                        direction={this.props.direction}
                         slide={slide}
-                        transition={this.props.SlideshowSettingsReducer.transition}
+                        transition={this.props.transition}
                     />
-                    <SlideshowControls
-                        enabled={Boolean(slide)}
-                    />
+                    {this.props.slides &&
+                        <SlideshowControls
+                            currentSlideIndex={this.props.currentSlideIndex}
+                            slides={this.props.slides}
+                        />
+                    }
                     <SlideshowSettingsButton />
                 </div>
-                <SlideshowSettings />
+                <SlideshowSettings
+                    currentSlideIndex={this.props.currentSlideIndex}
+                    slides={this.props.slides}
+                />
             </div>
         );
     }

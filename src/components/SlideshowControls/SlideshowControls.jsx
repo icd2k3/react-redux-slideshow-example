@@ -8,9 +8,6 @@
  */
 
 import React from 'react';
-import {
-    connect
-} from 'react-redux';
 
 // children components
 import SlideshowPrevNextButton from '../SlideshowPrevNextButton/SlideshowPrevNextButton';
@@ -20,34 +17,28 @@ import SlideshowDot from '../SlideshowDot/SlideshowDot';
 import styles from './SlideshowControls.css';
 
 const propTypes = {
-        SlideshowControlsReducer: React.PropTypes.shape({
-            currentSlideIndex: React.PropTypes.number.isRequired
-        }).isRequired,
-        SlideshowReducer: React.PropTypes.shape({
-            slides: React.PropTypes.array
-        }).isRequired,
-        enabled: React.PropTypes.bool.isRequired
-    },
-    mapStateToProps = (state) => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer
-    });
+    currentSlideIndex: React.PropTypes.number.isRequired,
+    slides: React.PropTypes.arrayOf(React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired,
+        src: React.PropTypes.string.isRequired,
+        views: React.PropTypes.number.isRequired
+    }))
+};
 
 function SlideshowControls({
-    SlideshowControlsReducer,
-    SlideshowReducer,
-    enabled
+    currentSlideIndex,
+    slides
 }) {
-    return (enabled &&
+    return (
         <div className={styles.root}>
             <SlideshowPrevNextButton prev />
             <SlideshowPrevNextButton next />
             <div className={styles.dotsContainer}>
-                {SlideshowReducer.slides.map((slide, i) => (
+                {slides.map((slide, index) => (
                     <SlideshowDot
-                        index={i}
-                        key={i}
-                        selected={SlideshowControlsReducer.currentSlideIndex === i}
+                        index={index}
+                        key={index}
+                        selected={currentSlideIndex === index}
                     />
                 ))}
             </div>
@@ -58,5 +49,4 @@ function SlideshowControls({
 // validate that this component is passed the properties it expects
 SlideshowControls.propTypes = propTypes;
 
-// export this redux connected component
-export default connect(mapStateToProps)(SlideshowControls);
+export default SlideshowControls;

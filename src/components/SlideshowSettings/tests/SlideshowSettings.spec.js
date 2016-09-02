@@ -7,27 +7,21 @@ import { ACTIONS } from 'constants';
 import SlideshowSettings from '../SlideshowSettings';
 
 describe('SlideshowSettings', () => {
-    const mockState = {
-        SlideshowControlsReducer: {
-            currentSlideIndex: 1
-        },
-        SlideshowReducer: {
-            slides: [
-                { id: 'mock-id', src: 'mock-src', views: 7 },
-                { id: 'mock-id-2', src: 'mock-src-2', views: 10 }
-            ]
-        }
+    const mockProps = {
+        currentSlideIndex: 1,
+        slides: [
+            { id: 'mock-id', src: 'mock-src', views: 7 },
+            { id: 'mock-id-2', src: 'mock-src-2', views: 10 }
+        ]
     };
 
     describe('Basic rendering', () => {
         it('Should render expected components and content if not selected', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
-                    <SlideshowSettings />
+                    <SlideshowSettings {...mockProps} />
                 </Provider>
             );
 
@@ -61,12 +55,11 @@ describe('SlideshowSettings', () => {
                             transition: 'slide',
                             type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION
                         }
-                    ],
-                    state: mockState
+                    ]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowSettings />
+                        <SlideshowSettings {...mockProps} />
                     </Provider>
                 );
 
@@ -84,12 +77,11 @@ describe('SlideshowSettings', () => {
                             backgroundSize: 'cover',
                             type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE
                         }
-                    ],
-                    state: mockState
+                    ]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowSettings />
+                        <SlideshowSettings {...mockProps} />
                     </Provider>
                 );
 
@@ -106,12 +98,11 @@ describe('SlideshowSettings', () => {
                         {
                             type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
                         }
-                    ],
-                    state: mockState
+                    ]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowSettings />
+                        <SlideshowSettings {...mockProps} />
                     </Provider>
                 );
 

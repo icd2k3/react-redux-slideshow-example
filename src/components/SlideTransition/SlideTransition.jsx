@@ -18,6 +18,7 @@ import Slide from '../Slide/Slide';
 import styles from './SlideTransition.css';
 
 const propTypes = {
+    backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
     direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
     slide: React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
@@ -28,6 +29,7 @@ const propTypes = {
 };
 
 function SlideTransition({
+    backgroundSize,
     direction,
     slide,
     transition
@@ -43,6 +45,7 @@ function SlideTransition({
         >
             {slide
                 && <Slide
+                    backgroundSize={backgroundSize}
                     id={slide.id}
                     key={slide.id}
                     src={slide.src}

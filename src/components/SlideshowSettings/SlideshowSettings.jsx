@@ -13,31 +13,23 @@ import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSet
 import styles from './SlideshowSettings.css';
 
 const propTypes = {
-        SlideshowControlsReducer: React.PropTypes.shape({
-            currentSlideIndex: React.PropTypes.number.isRequired
-        }).isRequired,
-        SlideshowReducer: React.PropTypes.shape({
-            slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-                id: React.PropTypes.string.isRequired,
-                src: React.PropTypes.string.isRequired,
-                views: React.PropTypes.number.isRequired
-            }))
-        }).isRequired,
-        onChangeBackgroundSize: React.PropTypes.func.isRequired,
-        onChangeTransition: React.PropTypes.func.isRequired,
-        onToggle: React.PropTypes.func.isRequired
-    },
-    mapStateToProps = (state) => ({
-        SlideshowControlsReducer: state.SlideshowControlsReducer,
-        SlideshowReducer: state.SlideshowReducer
-    });
+    currentSlideIndex: React.PropTypes.number.isRequired,
+    onChangeBackgroundSize: React.PropTypes.func.isRequired,
+    onChangeTransition: React.PropTypes.func.isRequired,
+    onToggle: React.PropTypes.func.isRequired,
+    slides: React.PropTypes.arrayOf(React.PropTypes.shape({
+        id: React.PropTypes.string.isRequired,
+        src: React.PropTypes.string.isRequired,
+        views: React.PropTypes.number.isRequired
+    }))
+};
 
 function SlideshowSettings({
-    SlideshowControlsReducer,
-    SlideshowReducer,
+    currentSlideIndex,
     onChangeBackgroundSize,
     onChangeTransition,
-    onToggle
+    onToggle,
+    slides
 }) {
     return (
         <div className={styles.root}>
@@ -64,12 +56,12 @@ function SlideshowSettings({
                     <option value="contain">Contain</option>
                 </select>
                 <label htmlFor="imageDataList">Image Data</label>
-                {SlideshowReducer.slides
-                    && SlideshowReducer.slides.map((slide, index) => (
+                {slides
+                    && slides.map((slide, index) => (
                         <SlideshowSettingsImageRow
                             id={slide.id}
                             key={slide.id}
-                            selected={SlideshowControlsReducer.currentSlideIndex === index}
+                            selected={currentSlideIndex === index}
                             src={slide.src}
                             views={slide.views}
                         />
@@ -83,4 +75,4 @@ function SlideshowSettings({
 SlideshowSettings.propTypes = propTypes;
 
 // export this redux connected component
-export default connect(mapStateToProps, SlideshowSettingsActions)(SlideshowSettings);
+export default connect(null, SlideshowSettingsActions)(SlideshowSettings);

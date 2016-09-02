@@ -1,9 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 // individual reducer data
-import SlideshowControlsReducer from 'components/SlideshowControls/SlideshowControlsReducer';
 import SlideshowReducer from 'components/Slideshow/SlideshowReducer';
-import SlideshowSettingsReducer from 'components/SlideshowSettings/SlideshowSettingsReducer';
 
 // middleware for redux
 import thunk from 'redux-thunk';
@@ -12,9 +10,7 @@ import exceptionReporter from './middleware/exceptionReporter';
 
 // combine all individual reducers into 1 object
 const reducer = combineReducers({
-    SlideshowControlsReducer,
-    SlideshowReducer,
-    SlideshowSettingsReducer
+    SlideshowReducer
 });
 
 // init redux store

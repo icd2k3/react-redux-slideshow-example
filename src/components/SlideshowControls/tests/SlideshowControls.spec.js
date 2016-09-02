@@ -7,25 +7,16 @@ import { mockStore } from 'testUtils';
 import SlideshowControls from '../SlideshowControls';
 
 describe('SlideshowControls', () => {
-    const mockState = {
-            SlideshowControlsReducer: {
-                currentSlideIndex: 3
-            },
-            SlideshowReducer: {
-                slides: [{}, {}, {}, {}]
-            }
-        },
-        mockProps = {
-            enabled: true
-        };
+    const mockProps = {
+        currentSlideIndex: 3,
+        slides: [{}, {}, {}, {}]
+    };
 
     describe('Basic rendering', () => {
         it('Should render expected components and content', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
                     <SlideshowControls {...mockProps} />
                 </Provider>
