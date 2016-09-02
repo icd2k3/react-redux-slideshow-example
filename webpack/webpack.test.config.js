@@ -33,6 +33,12 @@ module.exports = {
                             replacement: function() {
                                 return '/* istanbul ignore next */ var _createClass';
                             }
+                        },
+                        {
+                            pattern: /function \(target\)/g,
+                            replacement: function() {
+                                return '/* istanbul ignore next */ function (target)';
+                            }
                         }
                     ]
                 })

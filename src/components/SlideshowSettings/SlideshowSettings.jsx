@@ -27,22 +27,30 @@ const propTypes = {
 
 class SlideshowSettings extends React.Component {
     shouldComponentUpdate(nextProps) {
-        return this.props.settingsPanel || nextProps.settingsPanel;
+        return Boolean(this.props.settingsPanel || nextProps.settingsPanel);
     }
 
     render() {
+        const {
+            currentSlideIndex,
+            onChangeBackgroundSize,
+            onChangeTransition,
+            onToggle,
+            slides
+        } = this.props;
+
         return (
             <div className={styles.root}>
                 <div className={styles.inner}>
                     <i
                         className={`${styles.close} icon-cross`}
-                        onClick={this.props.onToggle}
+                        onClick={onToggle}
                     />
                     <h1>Settings</h1>
                     <label htmlFor="selectTransition">Transition</label>
                     <select
                         id="selectTransition"
-                        onChange={(e) => this.props.onChangeTransition(e.target.value)}
+                        onChange={(e) => onChangeTransition(e.target.value)}
                     >
                         <option value="slide">Slide</option>
                         <option value="fade">Fade</option>
@@ -50,18 +58,18 @@ class SlideshowSettings extends React.Component {
                     <label htmlFor="selectBackgroundSize">Background Size</label>
                     <select
                         id="selectBackgroundSize"
-                        onChange={(e) => this.props.onChangeBackgroundSize(e.target.value)}
+                        onChange={(e) => onChangeBackgroundSize(e.target.value)}
                     >
                         <option value="cover">Cover</option>
                         <option value="contain">Contain</option>
                     </select>
                     <label htmlFor="imageDataList">Image Data</label>
-                    {this.props.slides
-                        && this.props.slides.map((slide, index) => (
+                    {slides
+                        && slides.map((slide, index) => (
                             <SlideshowSettingsImageRow
                                 id={slide.id}
                                 key={slide.id}
-                                selected={this.props.currentSlideIndex === index}
+                                selected={currentSlideIndex === index}
                                 src={slide.src}
                                 views={slide.views}
                             />
@@ -77,3 +85,6 @@ SlideshowSettings.propTypes = propTypes;
 
 // export this redux connected component
 export default connect(null, SlideshowSettingsActions)(SlideshowSettings);
+
+// used only for testing purposes
+export { SlideshowSettings as PureSlideshowSettings };

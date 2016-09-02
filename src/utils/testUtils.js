@@ -71,3 +71,5 @@ export function reducerActionHandler(opts) {
         ---------------
     `).to.deep.eql(JSON.stringify(deepSortObject(mergedOpts.expectedState)));
 }
+
+export function emptyFunction() {}

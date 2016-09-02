@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import { mockStore } from 'testUtils';
+import { mockStore, emptyFunction } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowSettings from '../SlideshowSettings';
+import SlideshowSettings, { PureSlideshowSettings } from '../SlideshowSettings';
 
 describe('SlideshowSettings', () => {
     const mockProps = {
@@ -110,6 +110,21 @@ describe('SlideshowSettings', () => {
             component.find('.icon-cross').simulate('click');
 
             store.testExpectedActions();
+
+            done();
+        });
+
+        it('Should run `shouldComponentUpdate` when props change', (done) => {
+            const component = mount(
+                <PureSlideshowSettings
+                    onChangeBackgroundSize={emptyFunction}
+                    onChangeTransition={emptyFunction}
+                    onToggle={emptyFunction}
+                    {...mockProps}
+                />
+            );
+
+            component.setProps({ enabled: false });
 
             done();
         });
