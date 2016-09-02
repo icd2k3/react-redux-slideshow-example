@@ -4,7 +4,12 @@ import { ACTIONS } from 'constants';
 import SlideshowReducer, { defaultState } from '../SlideshowReducer';
 
 describe('SlideshowReducer', () => {
-    const slides = [{},{},{},{}];
+    const slides = [
+        { src: 'mock', views: 1, id: 'mock' },
+        { src: 'mock', views: 2, id: 'mock2' },
+        { src: 'mock', views: 3, id: 'mock3' },
+        { src: 'mock', views: 4, id: 'mock4' }
+    ];
 
     it('Should return initial state, even with bad input', (done) => {
         expect(SlideshowReducer()).to.eql(defaultState);
