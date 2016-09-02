@@ -5,27 +5,21 @@ import { expect } from 'chai';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
 
-import Slide from './Slide.jsx';
+import Slide from '../Slide';
 
-describe('Slide.jsx', () => {
-    const mockState = {
-            SlideshowSettingsReducer: {
-                backgroundSize: 'cover'
-            }
-        },
-        mockProps = {
-            id: 'mock',
-            src: 'mock',
-            views: 99
-        };
+describe('Slide', () => {
+    const mockProps = {
+        backgroundSize: 'cover',
+        id: 'mock',
+        src: 'mock',
+        views: 99
+    };
 
     describe('Basic rendering', () => {
         it('Should render expected components and content if passed expected props', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
                     <Slide {...mockProps} />
                 </Provider>
@@ -45,7 +39,6 @@ describe('Slide.jsx', () => {
     describe('User interactions', () => {
         it(`Should dispatch ${ACTIONS.SLIDE_VIEW} on mount`, (done) => {
             const store = mockStore({
-                state: mockState,
                 expectedActions: [{
                     id: mockProps.id,
                     type: ACTIONS.SLIDE_VIEW

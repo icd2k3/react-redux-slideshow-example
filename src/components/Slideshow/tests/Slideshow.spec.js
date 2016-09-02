@@ -5,32 +5,27 @@ import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS, JSON_PATH } from 'constants';
 
-import Slideshow from './Slideshow.jsx';
+import Slideshow from '../Slideshow';
 
-describe('Slideshow.jsx', () => {
+describe('Slideshow', () => {
     const mockState = {
         noSlide: {
-            SlideshowControlsReducer: {
+            SlideshowReducer: {
+                backgroundSize: 'cover',
                 currentSlideIndex: 0,
-                direction: 'next'
-            },
-            SlideshowReducer: {},
-            SlideshowSettingsReducer: {
+                direction: 'next',
                 transition: 'slide'
             }
         },
         slide: {
-            SlideshowControlsReducer: {
-                currentSlideIndex: 0,
-                direction: 'next'
-            },
             SlideshowReducer: {
+                backgroundSize: 'cover',
+                currentSlideIndex: 0,
+                direction: 'next',
                 slides: [
                     { src: 'mock', views: 10, id: 'mock' },
                     { src: 'mock', views: 7, id: 'mock2' }
-                ]
-            },
-            SlideshowSettingsReducer: {
+                ],
                 transition: 'slide'
             }
         }
@@ -50,8 +45,7 @@ describe('Slideshow.jsx', () => {
 
             expect(component).to.be.ok;
             expect(component.find('Slide').length, 'Slide').to.equal(0);
-            expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(1);
-            expect(component.find('SlideshowControls').props().enabled, 'SlideshowControls.props.enabled').to.equal(false);
+            expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(0);
 
             done();
         });
@@ -73,7 +67,6 @@ describe('Slideshow.jsx', () => {
             expect(component.find('Slide').props().src, 'Slide.props.src').to.equal('mock');
             expect(component.find('Slide').props().views, 'Slide.props.views').to.equal(10);
             expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(1);
-            expect(component.find('SlideshowControls').props().enabled, 'SlideshowControls.props.enabled').to.equal(true);
 
             done();
         });

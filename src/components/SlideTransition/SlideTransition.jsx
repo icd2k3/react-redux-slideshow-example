@@ -12,12 +12,13 @@ import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // children
-import Slide from '../Slide/Slide.jsx';
+import Slide from '../Slide/Slide';
 
 // styles specific to this component
 import styles from './SlideTransition.css';
 
 const propTypes = {
+    backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
     direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
     slide: React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
@@ -28,6 +29,7 @@ const propTypes = {
 };
 
 function SlideTransition({
+    backgroundSize,
     direction,
     slide,
     transition
@@ -43,6 +45,7 @@ function SlideTransition({
         >
             {slide
                 && <Slide
+                    backgroundSize={backgroundSize}
                     id={slide.id}
                     key={slide.id}
                     src={slide.src}

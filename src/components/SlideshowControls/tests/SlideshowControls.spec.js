@@ -4,28 +4,24 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 
-import SlideshowControls from './SlideshowControls.jsx';
+import SlideshowControls from '../SlideshowControls';
 
-describe('SlideshowControls.jsx', () => {
-    const mockState = {
-            SlideshowControlsReducer: {
-                currentSlideIndex: 3
-            },
-            SlideshowReducer: {
-                slides: [{}, {}, {}, {}]
-            }
-        },
-        mockProps = {
-            enabled: true
-        };
+describe('SlideshowControls', () => {
+    const mockProps = {
+        currentSlideIndex: 3,
+        slides: [
+            { src: 'mock', views: 1, id: 'mock' },
+            { src: 'mock', views: 2, id: 'mock2' },
+            { src: 'mock', views: 3, id: 'mock3' },
+            { src: 'mock', views: 4, id: 'mock4' }
+        ]
+    };
 
     describe('Basic rendering', () => {
         it('Should render expected components and content', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
                     <SlideshowControls {...mockProps} />
                 </Provider>

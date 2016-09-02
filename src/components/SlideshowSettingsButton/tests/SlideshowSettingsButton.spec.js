@@ -4,9 +4,9 @@ import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
 
-import SlideshowSettingsButton from './SlideshowSettingsButton.jsx';
+import SlideshowSettingsButton from '../SlideshowSettingsButton';
 
-describe('SlideshowSettingsButton.jsx', () => {
+describe('SlideshowSettingsButton', () => {
     it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} when rendered and clicked`, (done) => {
         const store = mockStore({
                 expectedActions: [

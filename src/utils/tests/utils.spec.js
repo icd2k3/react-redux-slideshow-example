@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as utils from 'utils';
 
-describe('utils.js', () => {
+describe('utils', () => {
     it('Should contain `generateId` method', (done) => {
         expect(utils.generateId).to.be.a.function;
 

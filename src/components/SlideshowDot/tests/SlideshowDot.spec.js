@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowDot from './SlideshowDot.jsx';
+import SlideshowDot from '../SlideshowDot';
 
-describe('SlideshowDot.jsx', () => {
+describe('SlideshowDot', () => {
     const mockProps = {
         normal: {
             index: 3

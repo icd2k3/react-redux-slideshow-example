@@ -2,32 +2,27 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import { mockStore } from 'testUtils';
+import { mockStore, emptyFunction } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowSettings from './SlideshowSettings.jsx';
+import SlideshowSettings, { PureSlideshowSettings } from '../SlideshowSettings';
 
-describe('SlideshowSettings.jsx', () => {
-    const mockState = {
-        SlideshowControlsReducer: {
-            currentSlideIndex: 1
-        },
-        SlideshowReducer: {
-            slides: [
-                { id: 'mock-id', src: 'mock-src', views: 7 },
-                { id: 'mock-id-2', src: 'mock-src-2', views: 10 }
-            ]
-        }
+describe('SlideshowSettings', () => {
+    const mockProps = {
+        currentSlideIndex: 1,
+        enabled: true,
+        slides: [
+            { id: 'mock-id', src: 'mock-src', views: 7 },
+            { id: 'mock-id-2', src: 'mock-src-2', views: 10 }
+        ]
     };
 
     describe('Basic rendering', () => {
         it('Should render expected components and content if not selected', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
-                    <SlideshowSettings />
+                    <SlideshowSettings {...mockProps} />
                 </Provider>
             );
 
@@ -61,12 +56,11 @@ describe('SlideshowSettings.jsx', () => {
                             transition: 'slide',
                             type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION
                         }
-                    ],
-                    state: mockState
+                    ]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowSettings />
+                        <SlideshowSettings {...mockProps} />
                     </Provider>
                 );
 
@@ -84,12 +78,11 @@ describe('SlideshowSettings.jsx', () => {
                             backgroundSize: 'cover',
                             type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE
                         }
-                    ],
-                    state: mockState
+                    ]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowSettings />
+                        <SlideshowSettings {...mockProps} />
                     </Provider>
                 );
 
@@ -106,18 +99,32 @@ describe('SlideshowSettings.jsx', () => {
                         {
                             type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
                         }
-                    ],
-                    state: mockState
+                    ]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowSettings />
+                        <SlideshowSettings {...mockProps} />
                     </Provider>
                 );
 
             component.find('.icon-cross').simulate('click');
 
             store.testExpectedActions();
+
+            done();
+        });
+
+        it('Should run `shouldComponentUpdate` when props change', (done) => {
+            const component = mount(
+                <PureSlideshowSettings
+                    onChangeBackgroundSize={emptyFunction}
+                    onChangeTransition={emptyFunction}
+                    onToggle={emptyFunction}
+                    {...mockProps}
+                />
+            );
+
+            component.setProps({ enabled: false });
 
             done();
         });

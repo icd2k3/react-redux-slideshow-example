@@ -14,7 +14,7 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import SlideshowSettingsButtonActions from './SlideshowSettingsButtonActions.js';
+import SlideshowSettingsButtonActions from './SlideshowSettingsButtonActions';
 
 // styles specific to this component
 import styles from './SlideshowSettingsButton.css';
