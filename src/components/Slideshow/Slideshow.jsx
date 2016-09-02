@@ -34,38 +34,44 @@ const propTypes = {
         backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
         currentSlideIndex: React.PropTypes.number.isRequired,
         direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
-        error: React.PropTypes.string,
+        onRequestJSON: React.PropTypes.func.isRequired,
         settingsPanel: React.PropTypes.bool,
         slides: React.PropTypes.arrayOf(React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
             src: React.PropTypes.string.isRequired,
             views: React.PropTypes.number.isRequired
         })),
-        loading: React.PropTypes.bool,
-        transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired,
-        onRequestJSON: React.PropTypes.func.isRequired
+        transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
     },
     mapStateToProps = state => ({
         backgroundSize: state.SlideshowReducer.backgroundSize,
         currentSlideIndex: state.SlideshowReducer.currentSlideIndex,
         direction: state.SlideshowReducer.direction,
-        error: state.SlideshowReducer.error,
         settingsPanel: state.SlideshowReducer.settingsPanel,
         slides: state.SlideshowReducer.slides,
-        loading: state.SlideshowReducer.loading,
         transition: state.SlideshowReducer.transition
     });
 
 class Slideshow extends React.Component {
 
     componentDidMount() {
-        if (!this.props.slides) {
-            this.props.onRequestJSON(JSON_PATH);
+        const { slides, onRequestJSON } = this.props;
+
+        if (!slides) {
+            onRequestJSON(JSON_PATH);
         }
     }
 
     render() {
-        const slide = this.props.slides && this.props.slides[this.props.currentSlideIndex];
+        const {
+                backgroundSize,
+                currentSlideIndex,
+                direction,
+                settingsPanel,
+                slides,
+                transition
+            } = this.props,
+            slide = slides && slides[currentSlideIndex];
 
         return (
             <div className={styles.root}>
@@ -78,25 +84,13 @@ class Slideshow extends React.Component {
                         }
                     `}
                 >
-                    <SlideTransition
-                        backgroundSize={this.props.backgroundSize}
-                        direction={this.props.direction}
-                        slide={slide}
-                        transition={this.props.transition}
-                    />
-                    {this.props.slides &&
-                        <SlideshowControls
-                            currentSlideIndex={this.props.currentSlideIndex}
-                            slides={this.props.slides}
-                        />
+                    <SlideTransition {...{ backgroundSize, direction, slide, transition }} />
+                    {slides &&
+                        <SlideshowControls {...{ currentSlideIndex, slides }} />
                     }
                     <SlideshowSettingsButton />
                 </div>
-                <SlideshowSettings
-                    currentSlideIndex={this.props.currentSlideIndex}
-                    slides={this.props.slides}
-                    enabled={this.props.settingsPanel}
-                />
+                <SlideshowSettings {...{ currentSlideIndex, slides, settingsPanel }} />
             </div>
         );
     }
