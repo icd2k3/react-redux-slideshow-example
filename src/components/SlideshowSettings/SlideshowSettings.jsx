@@ -14,10 +14,10 @@ import styles from './SlideshowSettings.css';
 
 const propTypes = {
     currentSlideIndex: React.PropTypes.number.isRequired,
-    enabled: React.PropTypes.bool,
     onChangeBackgroundSize: React.PropTypes.func.isRequired,
     onChangeTransition: React.PropTypes.func.isRequired,
     onToggle: React.PropTypes.func.isRequired,
+    settingsPanel: React.PropTypes.bool,
     slides: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
         src: React.PropTypes.string.isRequired,
@@ -27,7 +27,7 @@ const propTypes = {
 
 class SlideshowSettings extends React.Component {
     shouldComponentUpdate(nextProps) {
-        return this.props.enabled || nextProps.enabled;
+        return this.props.settingsPanel || nextProps.settingsPanel;
     }
 
     render() {
