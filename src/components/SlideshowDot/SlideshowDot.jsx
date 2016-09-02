@@ -13,7 +13,7 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import SlideshowDotActions from './SlideshowDotActions.js';
+import SlideshowDotActions from './SlideshowDotActions';
 
 // styles specific to this component
 import styles from './SlideshowDot.css';

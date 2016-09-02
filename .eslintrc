@@ -10,7 +10,9 @@
         "no-param-reassign": ["error", {"props": false}],
         "one-var": [2, "always"],
         "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4]
+        "react/jsx-indent-props": ["error", 4],
+        "react/require-extension": 0,
+        "import/extensions": 2
     },
     "settings": {
         "import/resolver": {

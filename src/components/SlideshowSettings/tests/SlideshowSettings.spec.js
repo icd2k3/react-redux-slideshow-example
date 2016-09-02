@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowSettings from './SlideshowSettings.jsx';
+import SlideshowSettings from '../SlideshowSettings';
 
-describe('SlideshowSettings.jsx', () => {
+describe('SlideshowSettings', () => {
     const mockState = {
         SlideshowControlsReducer: {
             currentSlideIndex: 1

@@ -13,8 +13,8 @@ import {
 } from 'react-redux';
 
 // children components
-import SlideshowPrevNextButton from '../SlideshowPrevNextButton/SlideshowPrevNextButton.jsx';
-import SlideshowDot from '../SlideshowDot/SlideshowDot.jsx';
+import SlideshowPrevNextButton from '../SlideshowPrevNextButton/SlideshowPrevNextButton';
+import SlideshowDot from '../SlideshowDot/SlideshowDot';
 
 // styles specific to this component
 import styles from './SlideshowControls.css';

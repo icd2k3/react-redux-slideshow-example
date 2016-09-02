@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowPrevNextButton from './SlideshowPrevNextButton.jsx';
+import SlideshowPrevNextButton from '../SlideshowPrevNextButton';
 
-describe('SlideshowPrevNextButton.jsx', () => {
+describe('SlideshowPrevNextButton', () => {
     describe('Basic rendering', () => {
         it('Should render expected components and content if next button', (done) => {
             const component = mount(

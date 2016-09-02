@@ -19,13 +19,13 @@ import {
 } from 'constants';
 
 // actions this view can dispatch
-import SlideshowActions from './SlideshowActions.js';
+import SlideshowActions from './SlideshowActions';
 
 // children
-import SlideTransition from '../SlideTransition/SlideTransition.jsx';
-import SlideshowControls from '../SlideshowControls/SlideshowControls.jsx';
-import SlideshowSettings from '../SlideshowSettings/SlideshowSettings.jsx';
-import SlideshowSettingsButton from '../SlideshowSettingsButton/SlideshowSettingsButton.jsx';
+import SlideTransition from '../SlideTransition/SlideTransition';
+import SlideshowControls from '../SlideshowControls/SlideshowControls';
+import SlideshowSettings from '../SlideshowSettings/SlideshowSettings';
+import SlideshowSettingsButton from '../SlideshowSettingsButton/SlideshowSettingsButton';
 
 // styles specific to this component
 import styles from './Slideshow.css';
@@ -47,7 +47,7 @@ const propTypes = {
         }).isRequired,
         onRequestJSON: React.PropTypes.func.isRequired
     },
-    mapStateToProps = (state) => ({
+    mapStateToProps = state => ({
         SlideshowControlsReducer: state.SlideshowControlsReducer,
         SlideshowReducer: state.SlideshowReducer,
         SlideshowSettingsReducer: state.SlideshowSettingsReducer

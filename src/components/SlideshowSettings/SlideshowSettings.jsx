@@ -4,10 +4,10 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import SlideshowSettingsActions from './SlideshowSettingsActions.js';
+import SlideshowSettingsActions from './SlideshowSettingsActions';
 
 // child components
-import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSettingsImageRow.jsx';
+import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSettingsImageRow';
 
 // styles specific to this component
 import styles from './SlideshowSettings.css';

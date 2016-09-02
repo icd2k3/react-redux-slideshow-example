@@ -12,7 +12,7 @@ import React from 'react';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 // children
-import Slide from '../Slide/Slide.jsx';
+import Slide from '../Slide/Slide';
 
 // styles specific to this component
 import styles from './SlideTransition.css';

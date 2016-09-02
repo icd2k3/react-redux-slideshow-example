@@ -11,7 +11,7 @@
   },
   "betterScripts": {
     "dev": {
-      "command": "./node_modules/.bin/webpack-dashboard -- ./node_modules/.bin/webpack-dev-server --config webpack/webpack.config.js --inline --hot -d",
+      "command": "./node_modules/.bin/webpack-dashboard -t slideshow -c cyan -- ./node_modules/.bin/webpack-dev-server --config webpack/webpack.config.js --inline --hot -d",
       "env": {
         "NODE_ENV": "development"
       }

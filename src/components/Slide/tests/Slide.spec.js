@@ -5,9 +5,9 @@ import { expect } from 'chai';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
 
-import Slide from './Slide.jsx';
+import Slide from '../Slide';
 
-describe('Slide.jsx', () => {
+describe('Slide', () => {
     const mockState = {
             SlideshowSettingsReducer: {
                 backgroundSize: 'cover'

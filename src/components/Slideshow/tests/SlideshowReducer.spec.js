@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { reducerActionHandler } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowReducer, { defaultState } from './SlideshowReducer.js';
+import SlideshowReducer, { defaultState } from '../SlideshowReducer';
 
-describe('SlideshowReducer.js', () => {
+describe('SlideshowReducer', () => {
     it('Should return initial state, even with bad input', (done) => {
         expect(SlideshowReducer()).to.eql(defaultState);
         expect(SlideshowReducer(), {}).to.eql(defaultState);

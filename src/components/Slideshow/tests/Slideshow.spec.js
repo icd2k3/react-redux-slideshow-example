@@ -5,9 +5,9 @@ import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS, JSON_PATH } from 'constants';
 
-import Slideshow from './Slideshow.jsx';
+import Slideshow from '../Slideshow';
 
-describe('Slideshow.jsx', () => {
+describe('Slideshow', () => {
     const mockState = {
         noSlide: {
             SlideshowControlsReducer: {

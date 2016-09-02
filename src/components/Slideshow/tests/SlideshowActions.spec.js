@@ -1,8 +1,8 @@
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowActions from './SlideshowActions.js';
+import SlideshowActions from '../SlideshowActions';
 
-describe('SlideshowActions.js', () => {
+describe('SlideshowActions', () => {
     let store;
 
     beforeEach(() => {

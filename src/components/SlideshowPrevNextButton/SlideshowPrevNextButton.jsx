@@ -14,7 +14,7 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import SlideshowPrevNextButtonActions from './SlideshowPrevNextButtonActions.js';
+import SlideshowPrevNextButtonActions from './SlideshowPrevNextButtonActions';
 
 // styles specific to this component
 import styles from './SlideshowPrevNextButton.css';

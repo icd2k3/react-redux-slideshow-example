@@ -13,10 +13,10 @@ import {
 } from 'react-redux';
 
 // actions this view can dispatch
-import SlideActions from './SlideActions.js';
+import SlideActions from './SlideActions';
 
 // children components
-import SlideInfo from '../SlideInfo/SlideInfo.jsx';
+import SlideInfo from '../SlideInfo/SlideInfo';
 
 // styles specific to this component
 import styles from './Slide.css';
@@ -30,7 +30,7 @@ const propTypes = {
         src: React.PropTypes.string.isRequired,
         views: React.PropTypes.number.isRequired
     },
-    mapStateToProps = (state) => ({
+    mapStateToProps = state => ({
         SlideshowSettingsReducer: state.SlideshowSettingsReducer
     });
 
@@ -57,6 +57,7 @@ class Slide extends React.Component {
             </div>
         );
     }
+
 }
 
 // validate that this component is passed the properties it expects

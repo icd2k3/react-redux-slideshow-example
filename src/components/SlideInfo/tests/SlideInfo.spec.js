@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
-import SlideInfo from './SlideInfo.jsx';
+import SlideInfo from '../SlideInfo';
 
-describe('SlideInfo.jsx', () => {
+describe('SlideInfo', () => {
     const mockProps = {
         views: 99
     };

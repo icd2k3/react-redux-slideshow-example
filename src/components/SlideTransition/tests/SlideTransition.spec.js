@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 
-import SlideTransition from './SlideTransition.jsx';
+import SlideTransition from '../SlideTransition';
 
-describe('SlideTransition.jsx', () => {
+describe('SlideTransition', () => {
     const mockState = {
             SlideshowSettingsReducer: {
                 backgroundSize: 'cover'
