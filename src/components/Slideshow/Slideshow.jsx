@@ -95,6 +95,7 @@ class Slideshow extends React.Component {
                 <SlideshowSettings
                     currentSlideIndex={this.props.currentSlideIndex}
                     slides={this.props.slides}
+                    enabled={this.props.settingsPanel}
                 />
             </div>
         );

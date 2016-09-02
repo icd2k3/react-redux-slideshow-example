@@ -9,7 +9,12 @@ import SlideshowControls from '../SlideshowControls';
 describe('SlideshowControls', () => {
     const mockProps = {
         currentSlideIndex: 3,
-        slides: [{}, {}, {}, {}]
+        slides: [
+            { src: 'mock', views: 1, id: 'mock' },
+            { src: 'mock', views: 2, id: 'mock2' },
+            { src: 'mock', views: 3, id: 'mock3' },
+            { src: 'mock', views: 4, id: 'mock4' }
+        ]
     };
 
     describe('Basic rendering', () => {

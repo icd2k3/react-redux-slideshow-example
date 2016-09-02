@@ -7,34 +7,29 @@ import { mockStore } from 'testUtils';
 import SlideTransition from '../SlideTransition';
 
 describe('SlideTransition', () => {
-    const mockState = {
-            SlideshowSettingsReducer: {
-                backgroundSize: 'cover'
-            }
-        },
-        mockProps = {
+    const mockProps = {
+        slide: {
+            backgroundSize: 'cover',
+            direction: 'next',
             slide: {
-                direction: 'next',
-                slide: {
-                    id: 'mock',
-                    src: 'mock',
-                    views: 1
-                },
-                transition: 'slide'
+                id: 'mock',
+                src: 'mock',
+                views: 1
             },
-            noSlide: {
-                direction: 'next',
-                transition: 'slide'
-            }
-        };
+            transition: 'slide'
+        },
+        noSlide: {
+            backgroundSize: 'cover',
+            direction: 'next',
+            transition: 'slide'
+        }
+    };
 
     describe('Basic rendering', () => {
         it('Should render expected components and content if no current slide is available yet', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
                     <SlideTransition {...mockProps.noSlide} />
                 </Provider>
@@ -49,9 +44,7 @@ describe('SlideTransition', () => {
         it('Should render expected components and content if slide is passed', (done) => {
             const component = mount(
                 <Provider
-                    store={mockStore({
-                        state: mockState
-                    })}
+                    store={mockStore()}
                 >
                     <SlideTransition {...mockProps.slide} />
                 </Provider>

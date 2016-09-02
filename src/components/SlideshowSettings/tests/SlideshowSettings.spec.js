@@ -9,6 +9,7 @@ import SlideshowSettings from '../SlideshowSettings';
 describe('SlideshowSettings', () => {
     const mockProps = {
         currentSlideIndex: 1,
+        enabled: true,
         slides: [
             { id: 'mock-id', src: 'mock-src', views: 7 },
             { id: 'mock-id-2', src: 'mock-src-2', views: 10 }
