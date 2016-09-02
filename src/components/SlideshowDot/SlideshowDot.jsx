@@ -20,13 +20,13 @@ import styles from './SlideshowDot.css';
 
 const propTypes = {
     index: React.PropTypes.number.isRequired,
-    onSelectDot: React.PropTypes.func.isRequired,
+    onClick: React.PropTypes.func.isRequired,
     selected: React.PropTypes.bool
 };
 
 function SlideshowDot({
     index,
-    onSelectDot,
+    onClick,
     selected
 }) {
     return (
@@ -35,7 +35,7 @@ function SlideshowDot({
             onClick={
                 selected
                     ? null
-                    : () => onSelectDot(index)
+                    : () => onClick(index)
             }
         />
     );
