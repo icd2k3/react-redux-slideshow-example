@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 // children
-import Slideshow from './components/Slideshow/Slideshow';
+import Slideshow from './components/containers/Slideshow/Slideshow';
 
 // root styles
 import './index.css';
