@@ -10,7 +10,7 @@ import Slideshow from '../Slideshow';
 describe('Slideshow', () => {
     const mockState = {
         noSlide: {
-            SlideshowReducer: {
+            slideshowReducer: {
                 backgroundSize: 'cover',
                 currentSlideIndex: 0,
                 direction: 'next',
@@ -18,7 +18,7 @@ describe('Slideshow', () => {
             }
         },
         slide: {
-            SlideshowReducer: {
+            slideshowReducer: {
                 backgroundSize: 'cover',
                 currentSlideIndex: 0,
                 direction: 'next',

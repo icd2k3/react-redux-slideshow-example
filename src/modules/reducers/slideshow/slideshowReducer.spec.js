@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { reducerActionHandler } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowReducer, { defaultState } from '../SlideshowReducer';
+import slideshowReducer, { defaultState } from './slideshowReducer';
 
-describe('SlideshowReducer', () => {
+describe('slideshowReducer', () => {
     const slides = [
         { src: 'mock', views: 1, id: 'mock' },
         { src: 'mock', views: 2, id: 'mock2' },
@@ -12,14 +12,14 @@ describe('SlideshowReducer', () => {
     ];
 
     it('Should return initial state, even with bad input', (done) => {
-        expect(SlideshowReducer()).to.eql(defaultState);
-        expect(SlideshowReducer(), {}).to.eql(defaultState);
+        expect(slideshowReducer()).to.eql(defaultState);
+        expect(slideshowReducer(), {}).to.eql(defaultState);
         done();
     });
 
     it(`Should handle the ${ACTIONS.SLIDESHOW_JSON_REQUEST} action`, (done) => {
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: defaultState,
             // action to be handeled by the reducer which will modify state
@@ -37,7 +37,7 @@ describe('SlideshowReducer', () => {
 
     it(`Should handle the ${ACTIONS.SLIDESHOW_JSON_RECEIVE} action`, (done) => {
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: Object.assign({}, defaultState, {
                 loading: true
@@ -61,7 +61,7 @@ describe('SlideshowReducer', () => {
         const mockError = new Error('mock');
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: Object.assign({}, defaultState, {
                 loading: true
@@ -90,7 +90,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state
@@ -112,7 +112,7 @@ describe('SlideshowReducer', () => {
 
     it(`Should handle the ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} action`, (done) => {
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: defaultState,
             // action to be handeled by the reducer which will modify state
@@ -130,7 +130,7 @@ describe('SlideshowReducer', () => {
 
     it(`Should handle the ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE} action`, (done) => {
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: defaultState,
             // action to be handeled by the reducer which will modify state
@@ -149,7 +149,7 @@ describe('SlideshowReducer', () => {
 
     it(`Should handle the ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION} action`, (done) => {
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: defaultState,
             // action to be handeled by the reducer which will modify state
@@ -174,7 +174,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state
@@ -198,7 +198,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state
@@ -223,7 +223,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state
@@ -248,7 +248,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state
@@ -274,7 +274,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state
@@ -298,7 +298,7 @@ describe('SlideshowReducer', () => {
         });
 
         reducerActionHandler({
-            reducer: SlideshowReducer,
+            reducer: slideshowReducer,
             // initial state
             state: modifiedDefaultState,
             // action to be handeled by the reducer which will modify state

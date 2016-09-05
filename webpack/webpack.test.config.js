@@ -1,6 +1,7 @@
 "use strict";
 
 var configFile = require('../config.js'),
+    clean = require('clean-webpack-plugin'),
     stringReplacePlugin = require('string-replace-webpack-plugin'),
     warningsPlugin = require('./webpack-karma-warnings-plugin');
 
@@ -9,11 +10,11 @@ module.exports = {
     devtool: 'inline-source-map',
     module: {
         preLoaders: [
-            {
+            /*{
                 test: [/\.js$/, /\.jsx$/],
                 loader: 'eslint-loader?{envs:["mocha"]}',
                 exclude: /node_modules/
-            }
+            }*/
         ],
         // this loader allows istanbul code coverage reported to ignore code that is added from Babel
         loaders: [
@@ -77,6 +78,9 @@ module.exports = {
     },
     // init string replace plugin for babel omissions above
     plugins: [
+        new clean([
+            configFile.code_coverage_path
+        ]),
         new stringReplacePlugin(),
         new warningsPlugin()
     ],
