@@ -26,7 +26,7 @@ module.exports = {
     webpack_css_regex          : /\.css$/,
     webpack_dev_config         : './webpack.dev.config',
     webpack_dist_config        : './webpack.dist.config',
-    webpack_entry              : srcPath + '/index.jsx',
+    webpack_entry              : ['babel-polyfill', srcPath + '/index.jsx'],
     webpack_resolve_extensions : ['', '.js', '.jsx'],
     webpack_exclude            : /node_modules/,
     webpack_test_config        : './webpack.test.config',

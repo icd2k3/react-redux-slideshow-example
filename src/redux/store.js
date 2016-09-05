@@ -4,20 +4,23 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import SlideshowReducer from 'components/containers/Slideshow/SlideshowReducer';
 
 // middleware for redux
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import logger from './middleware/logger';
 import exceptionReporter from './middleware/exceptionReporter';
 
+// sagas
+import sagas from '../modules/sagas';
+
 // combine all individual reducers into 1 object
 const reducer = combineReducers({
-    SlideshowReducer
-});
+        SlideshowReducer
+    }),
+    saga = createSagaMiddleware(),
+    store = createStore(
+        reducer,
+        applyMiddleware(saga, logger, exceptionReporter)
+    );
 
-// init redux store
-let state = {};
+saga.run(sagas);
 
-state = reducer(state, {
-    name: 'CONSTRUCT'
-});
-
-export default applyMiddleware(thunk, logger, exceptionReporter)(createStore)(reducer, state);
+export default store;
