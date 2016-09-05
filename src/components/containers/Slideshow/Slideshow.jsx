@@ -22,10 +22,10 @@ import {
 import SlideshowActions from './SlideshowActions';
 
 // children
-import SlideTransition from '../SlideTransition/SlideTransition';
-import SlideshowControls from '../SlideshowControls/SlideshowControls';
-import SlideshowSettings from '../SlideshowSettings/SlideshowSettings';
-import SlideshowSettingsButton from '../SlideshowSettingsButton/SlideshowSettingsButton';
+import SlideTransition from './children/SlideTransition/SlideTransition';
+import SlideshowControls from './children/SlideshowControls/SlideshowControls';
+import SlideshowSettings from './children/SlideshowSettings/SlideshowSettings';
+import SlideshowSettingsButton from './children/SlideshowSettingsButton/SlideshowSettingsButton';
 
 // styles specific to this component
 import styles from './Slideshow.css';

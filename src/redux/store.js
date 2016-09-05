@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 
 // individual reducer data
-import SlideshowReducer from 'components/Slideshow/SlideshowReducer';
+import SlideshowReducer from 'components/containers/Slideshow/SlideshowReducer';
 
 // middleware for redux
 import thunk from 'redux-thunk';
