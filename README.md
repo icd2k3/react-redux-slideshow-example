@@ -2,6 +2,8 @@
 <a href="https://david-dm.org/icd2k3/react-redux-slideshow-example/?type=dev">![David](https://david-dm.org/icd2k3/react-redux-slideshow-example/dev-status.svg)</a>
  ![Travis](https://travis-ci.org/icd2k3/react-redux-slideshow-example.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/icd2k3/react-redux-slideshow-example/badge.svg?branch=master)](https://coveralls.io/github/icd2k3/react-redux-slideshow-example?branch=master)
 
+> Note: the eventual goal of this repo is to fork it into a full-stack starter kit (or possibly a yo generator), but for now it's just a place for me to try out different ways of structuring a react-redux UI.
+
 # React + Redux Slideshow Example Project
 Slideshow example app built with [React](https://facebook.github.io/react), Redux, Webpack, Babel, & Karma.
 
