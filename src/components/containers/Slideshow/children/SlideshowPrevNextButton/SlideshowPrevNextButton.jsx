@@ -9,31 +9,39 @@
  */
 
 import React from 'react';
-import {
-    connect
-} from 'react-redux';
+import { connect } from 'react-redux';
 
 // actions this view can dispatch
-import SlideshowPrevNextButtonActions from './SlideshowPrevNextButtonActions';
+import { goToSlideViaIndex } from 'actions/slideshow/slideshowActions';
 
 // styles specific to this component
 import styles from './SlideshowPrevNextButton.css';
 
 const propTypes = {
-    onNext: React.PropTypes.func.isRequired,
-    onPrev: React.PropTypes.func.isRequired,
-    prev: React.PropTypes.bool
-};
+        actions: React.PropTypes.shape({
+            onClick: React.PropTypes.func.isRequired
+        }).isRequired,
+        currentSlideIndex: React.PropTypes.number.isRequired,
+        prev: React.PropTypes.bool
+    },
+    // actions that this view can dispatch/trigger
+    mapDispatchToProps = dispatch => ({
+        actions: {
+            onClick: slideIndex => dispatch(
+                goToSlideViaIndex(slideIndex)
+            )
+        }
+    });
 
 function SlideshowPrevNextButton({
-    onNext,
-    onPrev,
+    actions,
+    currentSlideIndex,
     prev
 }) {
     return (
         <div
             className={`${styles.root} ${prev ? styles.prev : styles.next}`}
-            onClick={prev ? onPrev : onNext}
+            onClick={() => actions.onClick(prev ? currentSlideIndex - 1 : currentSlideIndex + 1)}
         >
             <i
                 className={`
@@ -49,4 +57,4 @@ function SlideshowPrevNextButton({
 SlideshowPrevNextButton.propTypes = propTypes;
 
 // export this redux connected component
-export default connect(null, SlideshowPrevNextButtonActions)(SlideshowPrevNextButton);
+export default connect(null, mapDispatchToProps)(SlideshowPrevNextButton);

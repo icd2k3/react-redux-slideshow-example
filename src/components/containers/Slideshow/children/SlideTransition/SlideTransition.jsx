@@ -46,7 +46,6 @@ function SlideTransition({
             {slide
                 && <Slide
                     backgroundSize={backgroundSize}
-                    id={slide.id}
                     key={slide.id}
                     src={slide.src}
                     views={slide.views}

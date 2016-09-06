@@ -46,7 +46,7 @@ var configFile = require('../config'),
             extensions: configFile.webpack_resolve_extensions,
             root: configFile.src_path,
             alias: {
-                actions$: configFile.webpack_actions_path,
+                actions: configFile.webpack_actions_path,
                 components: configFile.webpack_components_path,
                 constants$: configFile.webpack_constants_path,
                 modules$: configFile.webpack_modules_path,

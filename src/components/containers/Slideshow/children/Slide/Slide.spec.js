@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
 import { mockStore } from 'testUtils';
-import { ACTIONS } from 'constants';
 
 import Slide from './Slide';
 
@@ -31,27 +30,6 @@ describe('Slide', () => {
                 component.find('SlideInfo').props().views,
                 'expect slide info to be sent views'
             ).to.equal(mockProps.views);
-
-            done();
-        });
-    });
-
-    describe('User interactions', () => {
-        it(`Should dispatch ${ACTIONS.SLIDE_VIEW} on mount`, (done) => {
-            const store = mockStore({
-                expectedActions: [{
-                    id: mockProps.id,
-                    type: ACTIONS.SLIDE_VIEW
-                }]
-            });
-
-            mount(
-                <Provider store={store}>
-                    <Slide {...mockProps} />
-                </Provider>
-            );
-
-            store.testExpectedActions();
 
             done();
         });

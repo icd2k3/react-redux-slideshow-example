@@ -11,7 +11,7 @@ describe('SlideshowPrevNextButton', () => {
         it('Should render expected components and content if next button', (done) => {
             const component = mount(
                 <Provider store={mockStore()}>
-                    <SlideshowPrevNextButton next />
+                    <SlideshowPrevNextButton currentSlideIndex={1} />
                 </Provider>
             );
 
@@ -25,7 +25,7 @@ describe('SlideshowPrevNextButton', () => {
         it('Should render expected components and content if prev button', (done) => {
             const component = mount(
                 <Provider store={mockStore()}>
-                    <SlideshowPrevNextButton prev />
+                    <SlideshowPrevNextButton currentSlideIndex={1} prev />
                 </Provider>
             );
 
@@ -38,15 +38,16 @@ describe('SlideshowPrevNextButton', () => {
     });
 
     describe('User interactions', () => {
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_CONTROLS_NEXT} on click for next button`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_GO_TO_SLIDE_VIA_INDEX} on click for next button`, (done) => {
             const store = mockStore({
                     expectedActions: [{
-                        type: ACTIONS.SLIDESHOW_CONTROLS_NEXT
+                        slideIndex: 2,
+                        type: ACTIONS.SLIDESHOW_GO_TO_SLIDE_VIA_INDEX
                     }]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowPrevNextButton next />
+                        <SlideshowPrevNextButton currentSlideIndex={1} />
                     </Provider>
                 );
 
@@ -57,15 +58,16 @@ describe('SlideshowPrevNextButton', () => {
             done();
         });
 
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_CONTROLS_PREV} on click for prev button`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_GO_TO_SLIDE_VIA_INDEX} on click for prev button`, (done) => {
             const store = mockStore({
                     expectedActions: [{
-                        type: ACTIONS.SLIDESHOW_CONTROLS_PREV
+                        slideIndex: 0,
+                        type: ACTIONS.SLIDESHOW_GO_TO_SLIDE_VIA_INDEX
                     }]
                 }),
                 component = mount(
                     <Provider store={store}>
-                        <SlideshowPrevNextButton prev />
+                        <SlideshowPrevNextButton currentSlideIndex={1} prev />
                     </Provider>
                 );
 

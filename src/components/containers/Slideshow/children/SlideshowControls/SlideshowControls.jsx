@@ -31,8 +31,8 @@ function SlideshowControls({
 }) {
     return (
         <div className={styles.root}>
-            <SlideshowPrevNextButton prev />
-            <SlideshowPrevNextButton next />
+            <SlideshowPrevNextButton currentSlideIndex={currentSlideIndex} prev />
+            <SlideshowPrevNextButton currentSlideIndex={currentSlideIndex} />
             <div className={styles.dotsContainer}>
                 {slides.map((slide, index) => (
                     <SlideshowDot

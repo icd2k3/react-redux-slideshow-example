@@ -2,21 +2,19 @@
 import { takeLatest } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { ACTIONS } from 'constants';
+import {
+    receiveJSON,
+    receiveJSONError
+} from 'actions/slideshow/slideshowActions';
 import { jsonLoader } from 'utils';
 
 export function* fetchJSON(action) {
     try {
         const parsedJSON = yield call(jsonLoader, action.filePath);
 
-        yield put({
-            parsedJSON,
-            type: ACTIONS.SLIDESHOW_JSON_RECEIVE
-        });
+        yield put(receiveJSON(parsedJSON));
     } catch (error) {
-        yield put({
-            error,
-            type: ACTIONS.SLIDESHOW_JSON_RECEIVE_ERROR
-        });
+        yield put(receiveJSONError(error));
     }
 }
 

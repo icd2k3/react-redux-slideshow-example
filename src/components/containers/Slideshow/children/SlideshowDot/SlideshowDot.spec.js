@@ -48,7 +48,7 @@ describe('SlideshowDot', () => {
             const store = mockStore({
                     expectedActions: [{
                         slideIndex: 3,
-                        type: ACTIONS.SLIDESHOW_CONTROLS_DOT_SELECT
+                        type: ACTIONS.SLIDESHOW_GO_TO_SLIDE_VIA_INDEX
                     }]
                 }),
                 component = mount(

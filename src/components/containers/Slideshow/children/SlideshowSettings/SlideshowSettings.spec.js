@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import { mockStore, emptyFunction } from 'testUtils';
+import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
 import SlideshowSettings, { PureSlideshowSettings } from './SlideshowSettings';
 
@@ -49,12 +49,12 @@ describe('SlideshowSettings', () => {
     });
 
     describe('User interactions', () => {
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION} if user changes background`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_CHANGE_TRANSITION} if user changes background`, (done) => {
             const store = mockStore({
                     expectedActions: [
                         {
                             transition: 'slide',
-                            type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION
+                            type: ACTIONS.SLIDESHOW_CHANGE_TRANSITION
                         }
                     ]
                 }),
@@ -71,12 +71,12 @@ describe('SlideshowSettings', () => {
             done();
         });
 
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE} if user changes background`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_CHANGE_BACKGROUND_SIZE} if user changes background`, (done) => {
             const store = mockStore({
                     expectedActions: [
                         {
                             backgroundSize: 'cover',
-                            type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE
+                            type: ACTIONS.SLIDESHOW_CHANGE_BACKGROUND_SIZE
                         }
                     ]
                 }),
@@ -93,11 +93,11 @@ describe('SlideshowSettings', () => {
             done();
         });
 
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} if user closes settings panel`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_TOGGLE_SETTINGS} if user closes settings panel`, (done) => {
             const store = mockStore({
                     expectedActions: [
                         {
-                            type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
+                            type: ACTIONS.SLIDESHOW_TOGGLE_SETTINGS
                         }
                     ]
                 }),
@@ -117,9 +117,11 @@ describe('SlideshowSettings', () => {
         it('Should run `shouldComponentUpdate` when props change', (done) => {
             const component = mount(
                 <PureSlideshowSettings
-                    onChangeBackgroundSize={emptyFunction}
-                    onChangeTransition={emptyFunction}
-                    onToggle={emptyFunction}
+                    actions={{
+                        changeBackgroundSize: () => {},
+                        changeTransition: () => {},
+                        close: () => {}
+                    }}
                     {...mockProps}
                 />
             );

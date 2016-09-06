@@ -12,6 +12,7 @@
         "react/jsx-indent": ["error", 4],
         "react/jsx-indent-props": ["error", 4],
         "react/require-extension": 0,
+        "react/jsx-sort-props": 2,
         "import/extensions": 2
     },
     "settings": {

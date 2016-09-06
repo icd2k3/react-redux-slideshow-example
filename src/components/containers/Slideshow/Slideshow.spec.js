@@ -50,7 +50,7 @@ describe('Slideshow', () => {
             done();
         });
 
-        it('Should render expected components and content if slide if current slide is available', (done) => {
+        it('Should render expected components and content if current slide is available', (done) => {
             const component = mount(
                 <Provider
                     store={mockStore({
@@ -63,7 +63,6 @@ describe('Slideshow', () => {
 
             expect(component).to.be.ok;
             expect(component.find('Slide').length, 'Slide').to.equal(1);
-            expect(component.find('Slide').props().id, 'Slide.props.id').to.equal('mock');
             expect(component.find('Slide').props().src, 'Slide.props.src').to.equal('mock');
             expect(component.find('Slide').props().views, 'Slide.props.views').to.equal(10);
             expect(component.find('SlideshowControls').length, 'SlideshowControls').to.equal(1);

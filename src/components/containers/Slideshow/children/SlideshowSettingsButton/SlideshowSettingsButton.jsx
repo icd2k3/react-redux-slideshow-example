@@ -9,27 +9,31 @@
  */
 
 import React from 'react';
-import {
-    connect
-} from 'react-redux';
-
-// actions this view can dispatch
-import SlideshowSettingsButtonActions from './SlideshowSettingsButtonActions';
-
-// styles specific to this component
+import { connect } from 'react-redux';
+import { toggleSettings } from 'actions/slideshow/slideshowActions';
 import styles from './SlideshowSettingsButton.css';
 
 const propTypes = {
-    onClick: React.PropTypes.func.isRequired
-};
+        actions: React.PropTypes.shape({
+            onClick: React.PropTypes.func.isRequired
+        }).isRequired
+    },
+    // actions that this view can dispatch/trigger
+    mapDispatchToProps = dispatch => ({
+        actions: {
+            onClick: () => dispatch(
+                toggleSettings()
+            )
+        }
+    });
 
 function SlideshowSettingsButton({
-    onClick
+    actions
 }) {
     return (
         <a
             className={`${styles.root} icon-cog`}
-            onClick={onClick}
+            onClick={actions.onClick}
         />
     );
 }
@@ -38,4 +42,4 @@ function SlideshowSettingsButton({
 SlideshowSettingsButton.propTypes = propTypes;
 
 // export the redux-connected component
-export default connect(null, SlideshowSettingsButtonActions)(SlideshowSettingsButton);
+export default connect(null, mapDispatchToProps)(SlideshowSettingsButton);
