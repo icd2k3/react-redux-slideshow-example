@@ -4,7 +4,7 @@ import { call, put } from 'redux-saga/effects';
 import { ACTIONS } from 'constants';
 import { jsonLoader } from 'utils';
 
-function* fetchJSON(action) {
+export function* fetchJSON(action) {
     try {
         const parsedJSON = yield call(jsonLoader, action.filePath);
 
@@ -20,6 +20,6 @@ function* fetchJSON(action) {
     }
 }
 
-export default function* watchJSONRequest() {
+export function* watchJSONRequest() {
     yield* takeLatest(ACTIONS.SLIDESHOW_JSON_REQUEST, fetchJSON);
 }
