@@ -1,7 +1,7 @@
 "use strict";
 
 var configFile = require('../config.js'),
-    stringReplacePlugin = require('string-replace-webpack-plugin'),
+    clean = require('clean-webpack-plugin'),
     warningsPlugin = require('./webpack-karma-warnings-plugin');
 
 // test config
@@ -15,46 +15,11 @@ module.exports = {
                 exclude: /node_modules/
             }
         ],
-        // this loader allows istanbul code coverage reported to ignore code that is added from Babel
         loaders: [
-            {
-                test: configFile.webpack_client_regex,
-                exclude: configFile.webpack_exclude,
-                loader: stringReplacePlugin.replace({
-                    replacements: [
-                        {
-                            pattern: /function _/g,
-                            replacement: function() {
-                                return '/* istanbul ignore next */ function _';
-                            }
-                        },
-                        {
-                            pattern: /var _createClass/g,
-                            replacement: function() {
-                                return '/* istanbul ignore next */ var _createClass';
-                            }
-                        },
-                        {
-                            pattern: /function \(target\)/g,
-                            replacement: function() {
-                                return '/* istanbul ignore next */ function (target)';
-                            }
-                        }
-                    ]
-                })
-            },
             {
                 test: configFile.webpack_css_regex,
                 loader: 'style-loader!css-loader!postcss-loader',
                 exclude: configFile.webpack_exclude
-            }
-        ],
-        // this is necessary or else test report will be for entire webpack bundle instead of each component
-        postLoaders: [
-            {
-                test: configFile.webpack_client_regex,
-                exclude: configFile.webpack_exclude,
-                loader: 'istanbul-instrumenter'
             }
         ]
     },
@@ -77,7 +42,9 @@ module.exports = {
     },
     // init string replace plugin for babel omissions above
     plugins: [
-        new stringReplacePlugin(),
+        new clean([
+            configFile.code_coverage_path
+        ]),
         new warningsPlugin()
     ],
     resolve: {

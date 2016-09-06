@@ -44,12 +44,12 @@ const propTypes = {
         transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
     },
     mapStateToProps = state => ({
-        backgroundSize: state.SlideshowReducer.backgroundSize,
-        currentSlideIndex: state.SlideshowReducer.currentSlideIndex,
-        direction: state.SlideshowReducer.direction,
-        settingsPanel: state.SlideshowReducer.settingsPanel,
-        slides: state.SlideshowReducer.slides,
-        transition: state.SlideshowReducer.transition
+        backgroundSize: state.slideshowReducer.backgroundSize,
+        currentSlideIndex: state.slideshowReducer.currentSlideIndex,
+        direction: state.slideshowReducer.direction,
+        settingsPanel: state.slideshowReducer.settingsPanel,
+        slides: state.slideshowReducer.slides,
+        transition: state.slideshowReducer.transition
     });
 
 class Slideshow extends React.Component {

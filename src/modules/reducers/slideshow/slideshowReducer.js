@@ -26,7 +26,7 @@ export default function (state = defaultState, action = {}) {
         if (Array.isArray(action.parsedJSON)) {
             action.parsedJSON.forEach((slide) => {
                 slide.id = generateId();
-                slide.views = 0;
+                slide.views = 1; // seed with first view
             });
         }
 

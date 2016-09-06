@@ -328,6 +328,11 @@
       "from": "babel-plugin-check-es2015-constants@>=6.3.13 <7.0.0",
       "resolved": "https://registry.npmjs.org/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.8.0.tgz"
     },
+    "babel-plugin-istanbul": {
+      "version": "2.0.1",
+      "from": "babel-plugin-istanbul@*",
+      "resolved": "https://registry.npmjs.org/babel-plugin-istanbul/-/babel-plugin-istanbul-2.0.1.tgz"
+    },
     "babel-plugin-react-transform": {
       "version": "2.0.2",
       "from": "babel-plugin-react-transform@*",
@@ -2083,11 +2088,6 @@
       "from": "file-entry-cache@>=2.0.0 <3.0.0",
       "resolved": "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-2.0.0.tgz"
     },
-    "file-loader": {
-      "version": "0.8.5",
-      "from": "file-loader@>=0.8.1 <0.9.0",
-      "resolved": "https://registry.npmjs.org/file-loader/-/file-loader-0.8.5.tgz"
-    },
     "filename-regex": {
       "version": "2.0.0",
       "from": "filename-regex@>=2.0.0 <3.0.0",
@@ -2896,10 +2896,15 @@
         }
       }
     },
-    "istanbul-instrumenter-loader": {
-      "version": "0.2.0",
-      "from": "istanbul-instrumenter-loader@*",
-      "resolved": "https://registry.npmjs.org/istanbul-instrumenter-loader/-/istanbul-instrumenter-loader-0.2.0.tgz"
+    "istanbul-lib-coverage": {
+      "version": "1.0.0",
+      "from": "istanbul-lib-coverage@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/istanbul-lib-coverage/-/istanbul-lib-coverage-1.0.0.tgz"
+    },
+    "istanbul-lib-instrument": {
+      "version": "1.1.1",
+      "from": "istanbul-lib-instrument@>=1.1.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/istanbul-lib-instrument/-/istanbul-lib-instrument-1.1.1.tgz"
     },
     "jodid25519": {
       "version": "1.0.2",
@@ -4758,10 +4763,10 @@
       "from": "redux-mock-store@1.1.4",
       "resolved": "https://registry.npmjs.org/redux-mock-store/-/redux-mock-store-1.1.4.tgz"
     },
-    "redux-thunk": {
-      "version": "2.1.0",
-      "from": "redux-thunk@*",
-      "resolved": "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.1.0.tgz"
+    "redux-saga": {
+      "version": "0.11.1",
+      "from": "redux-saga@*",
+      "resolved": "https://registry.npmjs.org/redux-saga/-/redux-saga-0.11.1.tgz"
     },
     "regenerate": {
       "version": "1.3.1",
@@ -4896,6 +4901,11 @@
       "version": "2.0.1",
       "from": "request-progress@>=2.0.1 <2.1.0",
       "resolved": "https://registry.npmjs.org/request-progress/-/request-progress-2.0.1.tgz"
+    },
+    "require-main-filename": {
+      "version": "1.0.1",
+      "from": "require-main-filename@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/require-main-filename/-/require-main-filename-1.0.1.tgz"
     },
     "require-uncached": {
       "version": "1.0.2",
@@ -5304,38 +5314,6 @@
       "from": "string-hash@>=1.1.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/string-hash/-/string-hash-1.1.0.tgz"
     },
-    "string-replace-webpack-plugin": {
-      "version": "0.0.3",
-      "from": "string-replace-webpack-plugin@*",
-      "resolved": "https://registry.npmjs.org/string-replace-webpack-plugin/-/string-replace-webpack-plugin-0.0.3.tgz",
-      "dependencies": {
-        "async": {
-          "version": "0.2.10",
-          "from": "async@>=0.2.10 <0.3.0",
-          "resolved": "https://registry.npmjs.org/async/-/async-0.2.10.tgz"
-        },
-        "css-loader": {
-          "version": "0.9.1",
-          "from": "css-loader@>=0.9.1 <0.10.0",
-          "resolved": "https://registry.npmjs.org/css-loader/-/css-loader-0.9.1.tgz"
-        },
-        "csso": {
-          "version": "1.3.12",
-          "from": "csso@>=1.3.0 <1.4.0",
-          "resolved": "https://registry.npmjs.org/csso/-/csso-1.3.12.tgz"
-        },
-        "source-map": {
-          "version": "0.1.43",
-          "from": "source-map@>=0.1.38 <0.2.0",
-          "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.1.43.tgz"
-        },
-        "style-loader": {
-          "version": "0.8.3",
-          "from": "style-loader@>=0.8.3 <0.9.0",
-          "resolved": "https://registry.npmjs.org/style-loader/-/style-loader-0.8.3.tgz"
-        }
-      }
-    },
     "string-width": {
       "version": "1.0.2",
       "from": "string-width@>=1.0.1 <2.0.0",
@@ -5442,6 +5420,11 @@
       "version": "2.7.0",
       "from": "tcomb@>=2.5.1 <3.0.0",
       "resolved": "https://registry.npmjs.org/tcomb/-/tcomb-2.7.0.tgz"
+    },
+    "test-exclude": {
+      "version": "2.1.2",
+      "from": "test-exclude@>=2.1.1 <3.0.0",
+      "resolved": "https://registry.npmjs.org/test-exclude/-/test-exclude-2.1.2.tgz"
     },
     "text-table": {
       "version": "0.2.0",
