@@ -2,7 +2,6 @@
 
 var configFile = require('../config.js'),
     clean = require('clean-webpack-plugin'),
-    stringReplacePlugin = require('string-replace-webpack-plugin'),
     warningsPlugin = require('./webpack-karma-warnings-plugin');
 
 // test config
@@ -10,52 +9,17 @@ module.exports = {
     devtool: 'inline-source-map',
     module: {
         preLoaders: [
-            /*{
+            {
                 test: [/\.js$/, /\.jsx$/],
                 loader: 'eslint-loader?{envs:["mocha"]}',
                 exclude: /node_modules/
-            }*/
+            }
         ],
-        // this loader allows istanbul code coverage reported to ignore code that is added from Babel
         loaders: [
-            {
-                test: configFile.webpack_client_regex,
-                exclude: configFile.webpack_exclude,
-                loader: stringReplacePlugin.replace({
-                    replacements: [
-                        {
-                            pattern: /function _/g,
-                            replacement: function() {
-                                return '/* istanbul ignore next */ function _';
-                            }
-                        },
-                        {
-                            pattern: /var _createClass/g,
-                            replacement: function() {
-                                return '/* istanbul ignore next */ var _createClass';
-                            }
-                        },
-                        {
-                            pattern: /function \(target\)/g,
-                            replacement: function() {
-                                return '/* istanbul ignore next */ function (target)';
-                            }
-                        }
-                    ]
-                })
-            },
             {
                 test: configFile.webpack_css_regex,
                 loader: 'style-loader!css-loader!postcss-loader',
                 exclude: configFile.webpack_exclude
-            }
-        ],
-        // this is necessary or else test report will be for entire webpack bundle instead of each component
-        postLoaders: [
-            {
-                test: configFile.webpack_client_regex,
-                exclude: configFile.webpack_exclude,
-                loader: 'istanbul-instrumenter'
             }
         ]
     },
@@ -81,7 +45,6 @@ module.exports = {
         new clean([
             configFile.code_coverage_path
         ]),
-        new stringReplacePlugin(),
         new warningsPlugin()
     ],
     resolve: {

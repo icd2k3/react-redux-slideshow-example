@@ -9,6 +9,9 @@
                 "locals": ["module"]
                 }]
             }]]
+        },
+        "test": {
+            "plugins": ["istanbul"]
         }
     }
 }

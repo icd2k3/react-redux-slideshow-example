@@ -5,7 +5,6 @@ import { jsonLoader } from 'utils';
 import { fetchJSON } from './slideshowSagas';
 
 describe('slideshowSagas', () => {
-
     it(`Generator \`fetchJSON\` should take action \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` load json file and dispatch \`${ACTIONS.SLIDESHOW_JSON_RECEIVE}\` with valid data`, (done) => {
         const filePath = 'mock.json',
             generator = fetchJSON({
@@ -49,5 +48,4 @@ describe('slideshowSagas', () => {
 
         done();
     });
-
 });
