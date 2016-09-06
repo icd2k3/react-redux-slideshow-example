@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
 
-import Slide from '../Slide';
+import Slide from './Slide';
 
 describe('Slide', () => {
     const mockProps = {

@@ -1,6 +1,6 @@
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowActions from '../SlideshowActions';
+import SlideshowActions from './SlideshowActions';
 
 describe('SlideshowActions', () => {
     let store;

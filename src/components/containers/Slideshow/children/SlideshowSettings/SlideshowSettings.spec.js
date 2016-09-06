@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore, emptyFunction } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowSettings, { PureSlideshowSettings } from '../SlideshowSettings';
+import SlideshowSettings, { PureSlideshowSettings } from './SlideshowSettings';
 
 describe('SlideshowSettings', () => {
     const mockProps = {
