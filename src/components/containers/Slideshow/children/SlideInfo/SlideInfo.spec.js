@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { expect } from 'chai';
-import SlideInfo from '../SlideInfo';
+import SlideInfo from './SlideInfo';
 
 describe('SlideInfo', () => {
     const mockProps = {

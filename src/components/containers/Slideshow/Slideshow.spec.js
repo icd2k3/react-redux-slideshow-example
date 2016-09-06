@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS, JSON_PATH } from 'constants';
 
-import Slideshow from '../Slideshow';
+import Slideshow from './Slideshow';
 
 describe('Slideshow', () => {
     const mockState = {

@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 import { ACTIONS } from 'constants';
-import SlideshowPrevNextButton from '../SlideshowPrevNextButton';
+import SlideshowPrevNextButton from './SlideshowPrevNextButton';
 
 describe('SlideshowPrevNextButton', () => {
     describe('Basic rendering', () => {

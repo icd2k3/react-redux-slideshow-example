@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { mockStore } from 'testUtils';
-import exceptionReporter from '../exceptionReporter';
+import exceptionReporter from './exceptionReporter';
 
 describe('exceptionReporter', () => {
     it('Should be a function and validate actions being passed through it', (done) => {

@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme';
 import { mockStore } from 'testUtils';
 
-import SlideshowControls from '../SlideshowControls';
+import SlideshowControls from './SlideshowControls';
 
 describe('SlideshowControls', () => {
     const mockProps = {
