@@ -8,25 +8,29 @@
  */
 
 import React from 'react';
-import {
-    connect
-} from 'react-redux';
-
-// actions this view can dispatch
-import SlideshowDotActions from './SlideshowDotActions';
-
-// styles specific to this component
+import { connect } from 'react-redux';
+import { goToSlideViaIndex } from 'actions/slideshow/slideshowActions';
 import styles from './SlideshowDot.css';
 
 const propTypes = {
-    index: React.PropTypes.number.isRequired,
-    onClick: React.PropTypes.func.isRequired,
-    selected: React.PropTypes.bool
-};
+        actions: React.PropTypes.shape({
+            goToSlideViaIndex: React.PropTypes.func.isRequired
+        }).isRequired,
+        index: React.PropTypes.number.isRequired,
+        selected: React.PropTypes.bool
+    },
+    // actions that this view can dispatch/trigger
+    mapDispatchToProps = dispatch => ({
+        actions: {
+            goToSlideViaIndex: slideIndex => dispatch(
+                goToSlideViaIndex(slideIndex)
+            )
+        }
+    });
 
 function SlideshowDot({
+    actions,
     index,
-    onClick,
     selected
 }) {
     return (
@@ -35,7 +39,7 @@ function SlideshowDot({
             onClick={
                 selected
                     ? null
-                    : () => onClick(index)
+                    : () => actions.goToSlideViaIndex(index)
             }
         />
     );
@@ -45,4 +49,4 @@ function SlideshowDot({
 SlideshowDot.propTypes = propTypes;
 
 // export the redux-connected component
-export default connect(null, SlideshowDotActions)(SlideshowDot);
+export default connect(null, mapDispatchToProps)(SlideshowDot);

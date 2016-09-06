@@ -9,8 +9,6 @@
  */
 
 import React from 'react';
-
-// styles specific to this component
 import styles from './SlideshowSettingsImageRow.css';
 
 const propTypes = {

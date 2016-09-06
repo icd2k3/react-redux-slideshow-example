@@ -9,19 +9,9 @@
  */
 
 import React from 'react';
-import {
-    connect
-} from 'react-redux';
-
-// constants
-import {
-    JSON_PATH
-} from 'constants';
-
-// actions this view can dispatch
-import SlideshowActions from './SlideshowActions';
-
-// children
+import { connect } from 'react-redux';
+import { JSON_PATH } from 'constants';
+import * as slideshowActions from 'actions/slideshow/slideshowActions';
 import SlideTransition from './children/SlideTransition/SlideTransition';
 import SlideshowControls from './children/SlideshowControls/SlideshowControls';
 import SlideshowSettings from './children/SlideshowSettings/SlideshowSettings';
@@ -31,10 +21,12 @@ import SlideshowSettingsButton from './children/SlideshowSettingsButton/Slidesho
 import styles from './Slideshow.css';
 
 const propTypes = {
+        actions: React.PropTypes.shape({
+            requestJSON: React.PropTypes.func.isRequired
+        }).isRequired,
         backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
         currentSlideIndex: React.PropTypes.number.isRequired,
         direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
-        onRequestJSON: React.PropTypes.func.isRequired,
         settingsPanel: React.PropTypes.bool,
         slides: React.PropTypes.arrayOf(React.PropTypes.shape({
             id: React.PropTypes.string.isRequired,
@@ -43,6 +35,7 @@ const propTypes = {
         })),
         transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
     },
+    // map redux state to this.props for component
     mapStateToProps = state => ({
         backgroundSize: state.slideshowReducer.backgroundSize,
         currentSlideIndex: state.slideshowReducer.currentSlideIndex,
@@ -50,15 +43,23 @@ const propTypes = {
         settingsPanel: state.slideshowReducer.settingsPanel,
         slides: state.slideshowReducer.slides,
         transition: state.slideshowReducer.transition
+    }),
+    // actions that this view can dispatch/trigger
+    mapDispatchToProps = dispatch => ({
+        actions: {
+            requestJSON: filePath => dispatch(
+                slideshowActions.requestJSON(filePath)
+            )
+        }
     });
 
 class Slideshow extends React.Component {
 
     componentDidMount() {
-        const { slides, onRequestJSON } = this.props;
+        const { slides, actions } = this.props;
 
         if (!slides) {
-            onRequestJSON(JSON_PATH);
+            actions.requestJSON(JSON_PATH);
         }
     }
 
@@ -99,5 +100,4 @@ class Slideshow extends React.Component {
 // validate that this component is passed the properties it expects
 Slideshow.propTypes = propTypes;
 
-// EXPORT /////////////////////////////////////////
-export default connect(mapStateToProps, SlideshowActions)(Slideshow);
+export default connect(mapStateToProps, mapDispatchToProps)(Slideshow);

@@ -110,14 +110,14 @@ describe('slideshowReducer', () => {
         done();
     });
 
-    it(`Should handle the ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} action`, (done) => {
+    it(`Should handle the ${ACTIONS.SLIDESHOW_TOGGLE_SETTINGS} action`, (done) => {
         reducerActionHandler({
             reducer: slideshowReducer,
             // initial state
             state: defaultState,
             // action to be handeled by the reducer which will modify state
             action: {
-                type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
+                type: ACTIONS.SLIDESHOW_TOGGLE_SETTINGS
             },
             // expected state after handling the action above
             expectedState: Object.assign({}, defaultState, {
@@ -147,7 +147,7 @@ describe('slideshowReducer', () => {
         done();
     });
 
-    it(`Should handle the ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION} action`, (done) => {
+    it(`Should handle the ${ACTIONS.SLIDESHOW_CHANGE_TRANSITION} action`, (done) => {
         reducerActionHandler({
             reducer: slideshowReducer,
             // initial state
@@ -155,7 +155,7 @@ describe('slideshowReducer', () => {
             // action to be handeled by the reducer which will modify state
             action: {
                 transition: 'mock',
-                type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION
+                type: ACTIONS.SLIDESHOW_CHANGE_TRANSITION
             },
             // expected state after handling the action above
             expectedState: Object.assign({}, defaultState, {

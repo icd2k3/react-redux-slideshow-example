@@ -12,6 +12,8 @@ export const defaultState = Object.freeze({
     transition: 'slide'
 });
 
+let adjustedIndex; // used for looping slideshow back to start/end
+
 export default function (state = defaultState, action = {}) {
     switch (action.type) {
 
@@ -41,47 +43,34 @@ export default function (state = defaultState, action = {}) {
             loading: false
         });
 
-    case ACTIONS.SLIDE_VIEW:
-        state.slides.filter((slide) => slide.id === action.id)[0].views++;
-
-        return Object.assign({}, state);
-
-    case ACTIONS.SLIDESHOW_SETTINGS_TOGGLE:
+    case ACTIONS.SLIDESHOW_TOGGLE_SETTINGS:
         return Object.assign({}, state, {
             settingsPanel: !state.settingsPanel
         });
 
-    case ACTIONS.SLIDESHOW_SETTINGS_CHANGE_BACKGROUND_SIZE:
+    case ACTIONS.SLIDESHOW_CHANGE_BACKGROUND_SIZE:
         return Object.assign({}, state, {
             backgroundSize: action.backgroundSize
         });
 
-    case ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION:
+    case ACTIONS.SLIDESHOW_CHANGE_TRANSITION:
         return Object.assign({}, state, {
             transition: action.transition
         });
 
-    case ACTIONS.SLIDESHOW_CONTROLS_NEXT:
-        return Object.assign({}, state, {
-            currentSlideIndex:
-                state.currentSlideIndex >= state.slides.length - 1
-                    ? 0
-                    : state.currentSlideIndex + 1,
-            direction: 'next'
-        });
+    case ACTIONS.SLIDESHOW_GO_TO_SLIDE_VIA_INDEX:
+        adjustedIndex = action.slideIndex;
 
-    case ACTIONS.SLIDESHOW_CONTROLS_PREV:
-        return Object.assign({}, state, {
-            currentSlideIndex:
-                state.currentSlideIndex === 0
-                    ? state.slides.length - 1
-                    : state.currentSlideIndex - 1,
-            direction: 'prev'
-        });
+        if (adjustedIndex < 0) {
+            adjustedIndex = state.slides.length - 1;
+        } else if (adjustedIndex >= state.slides.length) {
+            adjustedIndex = 0;
+        }
 
-    case ACTIONS.SLIDESHOW_CONTROLS_DOT_SELECT:
+        state.slides[adjustedIndex].views++;
+
         return Object.assign({}, state, {
-            currentSlideIndex: action.slideIndex,
+            currentSlideIndex: adjustedIndex,
             direction: action.slideIndex > state.currentSlideIndex ? 'next' : 'prev'
         });
 

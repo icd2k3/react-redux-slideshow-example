@@ -1,29 +1,40 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
-    connect
-} from 'react-redux';
-
-// actions this view can dispatch
-import SlideshowSettingsActions from './SlideshowSettingsActions';
-
-// child components
+    changeBackgroundSize,
+    changeTransition,
+    toggleSettings
+} from 'actions/slideshow/slideshowActions';
 import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSettingsImageRow';
-
-// styles specific to this component
 import styles from './SlideshowSettings.css';
 
 const propTypes = {
-    currentSlideIndex: React.PropTypes.number.isRequired,
-    onChangeBackgroundSize: React.PropTypes.func.isRequired,
-    onChangeTransition: React.PropTypes.func.isRequired,
-    onToggle: React.PropTypes.func.isRequired,
-    settingsPanel: React.PropTypes.bool,
-    slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        src: React.PropTypes.string.isRequired,
-        views: React.PropTypes.number.isRequired
-    }))
-};
+        actions: React.PropTypes.shape({
+            changeBackgroundSize: React.PropTypes.func.isRequired,
+            changeTransition: React.PropTypes.func.isRequired
+        }).isRequired,
+        currentSlideIndex: React.PropTypes.number.isRequired,
+        settingsPanel: React.PropTypes.bool,
+        slides: React.PropTypes.arrayOf(React.PropTypes.shape({
+            id: React.PropTypes.string.isRequired,
+            src: React.PropTypes.string.isRequired,
+            views: React.PropTypes.number.isRequired
+        }))
+    },
+    // actions that this view can dispatch/trigger
+    mapDispatchToProps = dispatch => ({
+        actions: {
+            changeBackgroundSize: backgroundSize => dispatch(
+                changeBackgroundSize(backgroundSize)
+            ),
+            changeTransition: transition => dispatch(
+                changeTransition(transition)
+            ),
+            close: () => dispatch(
+                toggleSettings()
+            )
+        }
+    });
 
 class SlideshowSettings extends React.Component {
     shouldComponentUpdate(nextProps) {
@@ -32,10 +43,8 @@ class SlideshowSettings extends React.Component {
 
     render() {
         const {
+            actions,
             currentSlideIndex,
-            onChangeBackgroundSize,
-            onChangeTransition,
-            onToggle,
             slides
         } = this.props;
 
@@ -44,13 +53,13 @@ class SlideshowSettings extends React.Component {
                 <div className={styles.inner}>
                     <i
                         className={`${styles.close} icon-cross`}
-                        onClick={onToggle}
+                        onClick={actions.close}
                     />
                     <h1>Settings</h1>
                     <label htmlFor="selectTransition">Transition</label>
                     <select
                         id="selectTransition"
-                        onChange={(e) => onChangeTransition(e.target.value)}
+                        onChange={(e) => actions.changeTransition(e.target.value)}
                     >
                         <option value="slide">Slide</option>
                         <option value="fade">Fade</option>
@@ -58,7 +67,7 @@ class SlideshowSettings extends React.Component {
                     <label htmlFor="selectBackgroundSize">Background Size</label>
                     <select
                         id="selectBackgroundSize"
-                        onChange={(e) => onChangeBackgroundSize(e.target.value)}
+                        onChange={(e) => actions.changeBackgroundSize(e.target.value)}
                     >
                         <option value="cover">Cover</option>
                         <option value="contain">Contain</option>
@@ -84,7 +93,7 @@ class SlideshowSettings extends React.Component {
 SlideshowSettings.propTypes = propTypes;
 
 // export this redux connected component
-export default connect(null, SlideshowSettingsActions)(SlideshowSettings);
+export default connect(null, mapDispatchToProps)(SlideshowSettings);
 
 // used only for testing purposes
 export { SlideshowSettings as PureSlideshowSettings };

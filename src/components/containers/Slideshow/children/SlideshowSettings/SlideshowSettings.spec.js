@@ -49,12 +49,12 @@ describe('SlideshowSettings', () => {
     });
 
     describe('User interactions', () => {
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION} if user changes background`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_CHANGE_TRANSITION} if user changes background`, (done) => {
             const store = mockStore({
                     expectedActions: [
                         {
                             transition: 'slide',
-                            type: ACTIONS.SLIDESHOW_SETTINGS_CHANGE_TRANSITION
+                            type: ACTIONS.SLIDESHOW_CHANGE_TRANSITION
                         }
                     ]
                 }),
@@ -93,11 +93,11 @@ describe('SlideshowSettings', () => {
             done();
         });
 
-        it(`Should dispatch ${ACTIONS.SLIDESHOW_SETTINGS_TOGGLE} if user closes settings panel`, (done) => {
+        it(`Should dispatch ${ACTIONS.SLIDESHOW_TOGGLE_SETTINGS} if user closes settings panel`, (done) => {
             const store = mockStore({
                     expectedActions: [
                         {
-                            type: ACTIONS.SLIDESHOW_SETTINGS_TOGGLE
+                            type: ACTIONS.SLIDESHOW_TOGGLE_SETTINGS
                         }
                     ]
                 }),
