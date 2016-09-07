@@ -1,7 +1,7 @@
 "use strict";
 
 // overall config params
-var configFile = require('../config.js'),
+var configFile = require('../config'),
 
     // extended webpack config files based on NODE_ENV
     devConfig = require(configFile.webpack_dev_config),
@@ -43,9 +43,15 @@ var configFile = require('../config.js'),
         },
         // shortcut paths (ex: utils from 'utils' instead of '../../utils/utils.js')
         resolve: {
+            extensions: configFile.webpack_resolve_extensions,
             root: configFile.src_path,
             alias: {
+                actions: configFile.webpack_actions_path,
+                components: configFile.webpack_components_path,
                 constants$: configFile.webpack_constants_path,
+                modules$: configFile.webpack_modules_path,
+                reducers$: configFile.webpack_reducers_path,
+                sagas$: configFile.webpack_sagas_path,
                 utils$: configFile.webpack_utils_path
             }
         }

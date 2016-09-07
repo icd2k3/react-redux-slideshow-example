@@ -2,9 +2,10 @@ import { expect } from 'chai';
 import deepSortObject from 'deep-sort-object';
 import outdent from 'outdent';
 import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
-const reduxMockStore = configureStore([thunk]);
+const saga = createSagaMiddleware(),
+    reduxMockStore = configureStore([saga]);
 
 export function mockStore(opts) {
     const defaults = {
@@ -71,3 +72,5 @@ export function reducerActionHandler(opts) {
         ---------------
     `).to.deep.eql(JSON.stringify(deepSortObject(mergedOpts.expectedState)));
 }
+
+export function emptyFunction() {}

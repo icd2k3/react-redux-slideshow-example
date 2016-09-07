@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 // app data
-import store from './redux/store.js';
+import store from './redux/store';
 
 // children
-import Slideshow from './components/Slideshow/Slideshow.jsx';
+import Slideshow from './components/containers/Slideshow/Slideshow';
 
 // root styles
 import './index.css';

@@ -1,27 +1,18 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-
-// middleware for redux
-import thunk from 'redux-thunk';
-import logger from './middleware/logger.js';
-import exceptionReporter from './middleware/exceptionReporter.js';
-
-// individual reducer data
-import SlideshowControlsReducer from './reducers/SlideshowControlsReducer.js';
-import SlideshowReducer from './reducers/SlideshowReducer.js';
-import SlideshowSettingsReducer from './reducers/SlideshowSettingsReducer.js';
+import reducers from 'reducers';
+import sagas from 'sagas';
+import createSagaMiddleware from 'redux-saga';
+import logger from './middleware/logger';
+import exceptionReporter from './middleware/exceptionReporter';
 
 // combine all individual reducers into 1 object
-const reducer = combineReducers({
-    SlideshowControlsReducer,
-    SlideshowReducer,
-    SlideshowSettingsReducer
-});
+const reducer = combineReducers(reducers),
+    saga = createSagaMiddleware(),
+    store = createStore(
+        reducer,
+        applyMiddleware(saga, logger, exceptionReporter)
+    );
 
-// init redux store
-let state = {};
+saga.run(sagas);
 
-state = reducer(state, {
-    name: 'CONSTRUCT'
-});
-
-export default applyMiddleware(thunk, logger, exceptionReporter)(createStore)(reducer, state);
+export default store;
