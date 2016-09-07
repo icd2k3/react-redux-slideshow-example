@@ -17,33 +17,33 @@ import SlideshowDot from '../SlideshowDot/SlideshowDot';
 import styles from './SlideshowControls.css';
 
 const propTypes = {
-    currentSlideIndex: React.PropTypes.number.isRequired,
-    slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        src: React.PropTypes.string.isRequired,
-        views: React.PropTypes.number.isRequired
-    }))
+  currentSlideIndex: React.PropTypes.number.isRequired,
+  slides: React.PropTypes.arrayOf(React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    src: React.PropTypes.string.isRequired,
+    views: React.PropTypes.number.isRequired
+  }))
 };
 
 function SlideshowControls({
-    currentSlideIndex,
-    slides
+  currentSlideIndex,
+  slides
 }) {
-    return (
-        <div className={styles.root}>
-            <SlideshowPrevNextButton currentSlideIndex={currentSlideIndex} prev />
-            <SlideshowPrevNextButton currentSlideIndex={currentSlideIndex} />
-            <div className={styles.dotsContainer}>
-                {slides.map((slide, index) => (
-                    <SlideshowDot
-                        index={index}
-                        key={index}
-                        selected={currentSlideIndex === index}
-                    />
-                ))}
-            </div>
-        </div>
-    );
+  return (
+    <div className={styles.root}>
+      <SlideshowPrevNextButton currentSlideIndex={currentSlideIndex} prev />
+      <SlideshowPrevNextButton currentSlideIndex={currentSlideIndex} />
+      <div className={styles.dotsContainer}>
+        {slides.map((slide, index) => (
+          <SlideshowDot
+            index={index}
+            key={index}
+            selected={currentSlideIndex === index}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 // validate that this component is passed the properties it expects

@@ -18,41 +18,41 @@ import Slide from '../Slide/Slide';
 import styles from './SlideTransition.css';
 
 const propTypes = {
-    backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
-    direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
-    slide: React.PropTypes.shape({
-        id: React.PropTypes.string.isRequired,
-        src: React.PropTypes.string.isRequired,
-        views: React.PropTypes.number.isRequired
-    }),
-    transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
+  backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
+  direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
+  slide: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    src: React.PropTypes.string.isRequired,
+    views: React.PropTypes.number.isRequired
+  }),
+  transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
 };
 
 function SlideTransition({
-    backgroundSize,
-    direction,
-    slide,
-    transition
+  backgroundSize,
+  direction,
+  slide,
+  transition
 }) {
-    return (
-        <CSSTransitionGroup
-            className={styles.root}
-            transitionEnterTimeout={450}
-            transitionLeaveTimeout={450}
-            transitionName={
-                `react-css-transition-${transition}-${direction}`
-            }
-        >
-            {slide
-                && <Slide
-                    backgroundSize={backgroundSize}
-                    key={slide.id}
-                    src={slide.src}
-                    views={slide.views}
-                />
-            }
-        </CSSTransitionGroup>
-    );
+  return (
+    <CSSTransitionGroup
+      className={styles.root}
+      transitionEnterTimeout={450}
+      transitionLeaveTimeout={450}
+      transitionName={
+        `react-css-transition-${transition}-${direction}`
+      }
+    >
+      {slide
+        && <Slide
+          backgroundSize={backgroundSize}
+          key={slide.id}
+          src={slide.src}
+          views={slide.views}
+        />
+      }
+    </CSSTransitionGroup>
+  );
 }
 
 // validate that this component is passed the properties it expects
