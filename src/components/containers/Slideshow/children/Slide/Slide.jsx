@@ -12,31 +12,31 @@ import SlideInfo from '../SlideInfo/SlideInfo';
 import styles from './Slide.css';
 
 const propTypes = {
-    backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
-    src: React.PropTypes.string.isRequired,
-    views: React.PropTypes.number.isRequired
+  backgroundSize: React.PropTypes.oneOf(['cover', 'contain']).isRequired,
+  src: React.PropTypes.string.isRequired,
+  views: React.PropTypes.number.isRequired
 };
 
 function Slide({
-    backgroundSize,
-    src,
-    views
+  backgroundSize,
+  src,
+  views
 }) {
-    const inlineStyle = {
-        backgroundImage: `url('${src}')`,
-        backgroundSize
-    };
+  const inlineStyle = {
+    backgroundImage: `url('${src}')`,
+    backgroundSize
+  };
 
-    return (
-        <div
-            className={styles.root}
-            style={inlineStyle}
-        >
-            <SlideInfo
-                views={views}
-            />
-        </div>
-    );
+  return (
+    <div
+      className={styles.root}
+      style={inlineStyle}
+    >
+      <SlideInfo
+        views={views}
+      />
+    </div>
+  );
 }
 
 // validate that this component is passed the properties it expects

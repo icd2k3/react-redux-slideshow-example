@@ -7,8 +7,8 @@ import exceptionReporter from './middleware/exceptionReporter';
 
 // combine all individual reducers into 1 object
 const reducer = combineReducers(reducers),
-    saga = createSagaMiddleware(),
-    store = createStore(
+  saga = createSagaMiddleware(),
+  store = createStore(
         reducer,
         applyMiddleware(saga, logger, exceptionReporter)
     );

@@ -1,25 +1,22 @@
 {
-    "extends": "airbnb",
-    "globals": {
-        "document": true,
-        "XMLHttpRequest": true
-    },
-    "rules": {
-        "comma-dangle": 0,
-        "indent": ["error", 4],
-        "no-param-reassign": ["error", {"props": false}],
-        "one-var": [2, "always"],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
-        "react/require-extension": 0,
-        "react/jsx-sort-props": 2,
-        "import/extensions": 2
-    },
-    "settings": {
-        "import/resolver": {
-            "webpack": {
-                "config": "webpack/webpack.config.js"
-            }
-        }
+  "extends": "airbnb",
+  "globals": {
+    "document": true,
+    "XMLHttpRequest": true
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "no-param-reassign": ["error", {"props": false}],
+    "one-var": [2, "always"],
+    "react/require-extension": 0,
+    "react/jsx-sort-props": 2,
+    "import/extensions": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack/webpack.config.js"
+      }
     }
+  }
 }

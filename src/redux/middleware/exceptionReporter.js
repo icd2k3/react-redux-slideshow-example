@@ -1,13 +1,13 @@
 /* eslint no-console: 0 */
 
 export default (store) => (next) => (action) => {
-    try {
-        return next(action);
+  try {
+    return next(action);
 
     /* istanbul ignore next */
-    } catch (err) {
+  } catch (err) {
         /* istanbul ignore next */
-        console.error(
+    console.error(
             'Caught an exception error stack ===>',
             err,
             'state at error is  ===>',
@@ -15,6 +15,6 @@ export default (store) => (next) => (action) => {
         );
 
         /* istanbul ignore next */
-        throw err;
-    }
+    throw err;
+  }
 };

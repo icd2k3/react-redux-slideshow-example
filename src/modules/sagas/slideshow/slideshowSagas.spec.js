@@ -10,38 +10,38 @@ import { jsonLoader } from 'utils';
 import { fetchJSON } from './slideshowSagas';
 
 describe('slideshowSagas', () => {
-    it(`Generator \`fetchJSON\` should take action \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` load json file and dispatch \`${ACTIONS.SLIDESHOW_JSON_RECEIVE}\` with valid data`, (done) => {
-        const filePath = 'mock.json',
-            generator = fetchJSON(requestJSON(filePath)),
-            parsedJSON = { mock: 'mock' };
+  it(`Generator \`fetchJSON\` should take action \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` load json file and dispatch \`${ACTIONS.SLIDESHOW_JSON_RECEIVE}\` with valid data`, (done) => {
+    const filePath = 'mock.json',
+      generator = fetchJSON(requestJSON(filePath)),
+      parsedJSON = { mock: 'mock' };
 
-        let next = generator.next();
+    let next = generator.next();
 
-        expect(next.value).to.eql(call(jsonLoader, filePath));
+    expect(next.value).to.eql(call(jsonLoader, filePath));
 
-        next = generator.next(parsedJSON);
+    next = generator.next(parsedJSON);
 
-        expect(next.value).to.eql(put(receiveJSON(parsedJSON)));
+    expect(next.value).to.eql(put(receiveJSON(parsedJSON)));
 
-        done();
-    });
+    done();
+  });
 
-    it(`Generator \`fetchJSON\` should take action \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` load json file and dispatch \`${ACTIONS.SLIDESHOW_JSON_RECEIVE_ERROR}\` with invalid data`, (done) => {
-        const filePath = 'mock.json',
-            error = 'error',
-            generator = fetchJSON({
-                filePath,
-                type: ACTIONS.SLIDESHOW_JSON_REQUEST
-            });
+  it(`Generator \`fetchJSON\` should take action \`${ACTIONS.SLIDESHOW_JSON_REQUEST}\` load json file and dispatch \`${ACTIONS.SLIDESHOW_JSON_RECEIVE_ERROR}\` with invalid data`, (done) => {
+    const filePath = 'mock.json',
+      error = 'error',
+      generator = fetchJSON({
+        filePath,
+        type: ACTIONS.SLIDESHOW_JSON_REQUEST
+      });
 
-        let next = generator.next();
+    let next = generator.next();
 
-        expect(next.value).to.eql(call(jsonLoader, filePath));
+    expect(next.value).to.eql(call(jsonLoader, filePath));
 
-        next = generator.throw(error);
+    next = generator.throw(error);
 
-        expect(next.value).to.eql(put(receiveJSONError(error)));
+    expect(next.value).to.eql(put(receiveJSONError(error)));
 
-        done();
-    });
+    done();
+  });
 });

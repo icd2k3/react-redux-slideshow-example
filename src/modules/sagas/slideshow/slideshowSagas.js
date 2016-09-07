@@ -9,15 +9,15 @@ import {
 import { jsonLoader } from 'utils';
 
 export function* fetchJSON(action) {
-    try {
-        const parsedJSON = yield call(jsonLoader, action.filePath);
+  try {
+    const parsedJSON = yield call(jsonLoader, action.filePath);
 
-        yield put(receiveJSON(parsedJSON));
-    } catch (error) {
-        yield put(receiveJSONError(error));
-    }
+    yield put(receiveJSON(parsedJSON));
+  } catch (error) {
+    yield put(receiveJSONError(error));
+  }
 }
 
 export function* watchJSONRequest() {
-    yield* takeLatest(ACTIONS.SLIDESHOW_JSON_REQUEST, fetchJSON);
+  yield* takeLatest(ACTIONS.SLIDESHOW_JSON_REQUEST, fetchJSON);
 }

@@ -5,22 +5,22 @@ import configureStore from 'redux-mock-store';
 import createSagaMiddleware from 'redux-saga';
 
 const saga = createSagaMiddleware(),
-    reduxMockStore = configureStore([saga]);
+  reduxMockStore = configureStore([saga]);
 
 export function mockStore(opts) {
-    const defaults = {
-            done: null,
-            expectedActions: [],
-            state: {}
-        },
-        mergedOpts = Object.assign({}, defaults, opts),
-        storeMock = reduxMockStore(mergedOpts.state, mergedOpts.expectedActions, mergedOpts.done);
+  const defaults = {
+      done: null,
+      expectedActions: [],
+      state: {}
+    },
+    mergedOpts = Object.assign({}, defaults, opts),
+    storeMock = reduxMockStore(mergedOpts.state, mergedOpts.expectedActions, mergedOpts.done);
 
-    storeMock.testExpectedActions = () => {
-        const expectedActions = mergedOpts.expectedActions,
-            actualActions = storeMock.getActions();
+  storeMock.testExpectedActions = () => {
+    const expectedActions = mergedOpts.expectedActions,
+      actualActions = storeMock.getActions();
 
-        return expect(
+    return expect(
             expectedActions,
             outdent`
             ----------------------------------
@@ -36,22 +36,22 @@ export function mockStore(opts) {
             ----------------------------------
             `
         ).to.deep.eql(actualActions);
-    };
+  };
 
-    return storeMock;
+  return storeMock;
 }
 
 export function reducerActionHandler(opts) {
-    const defaults = {
-            action: {},
-            expectedState: {},
-            reducer: null,
-            state: {}
-        },
-        mergedOpts = Object.assign({}, defaults, opts),
-        newState = mergedOpts.reducer(mergedOpts.state, mergedOpts.action);
+  const defaults = {
+      action: {},
+      expectedState: {},
+      reducer: null,
+      state: {}
+    },
+    mergedOpts = Object.assign({}, defaults, opts),
+    newState = mergedOpts.reducer(mergedOpts.state, mergedOpts.action);
 
-    return expect(
+  return expect(
         JSON.stringify(deepSortObject(newState)),
         outdent`
         New state did not match expected state:

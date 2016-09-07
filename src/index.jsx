@@ -13,21 +13,21 @@ import Slideshow from './components/containers/Slideshow/Slideshow';
 import './index.css';
 
 class Index extends React.Component {
-    render() {
-        return (
-            <Provider store={this.props.store}>
-                <Slideshow />
-            </Provider>
-        );
-    }
+  render() {
+    return (
+      <Provider store={this.props.store}>
+        <Slideshow />
+      </Provider>
+    );
+  }
 }
 
 Index.propTypes = {
-    store: React.PropTypes.object.isRequired
+  store: React.PropTypes.object.isRequired
 };
 
 Index.defaultProps = {
-    store
+  store
 };
 
 ReactDOM.render(<Index />, document.getElementById('app'));

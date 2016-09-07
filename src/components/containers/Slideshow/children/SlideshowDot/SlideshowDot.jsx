@@ -13,36 +13,36 @@ import { goToSlideViaIndex } from 'actions/slideshow/slideshowActions';
 import styles from './SlideshowDot.css';
 
 const propTypes = {
-        actions: React.PropTypes.shape({
-            goToSlideViaIndex: React.PropTypes.func.isRequired
-        }).isRequired,
-        index: React.PropTypes.number.isRequired,
-        selected: React.PropTypes.bool
-    },
+    actions: React.PropTypes.shape({
+      goToSlideViaIndex: React.PropTypes.func.isRequired
+    }).isRequired,
+    index: React.PropTypes.number.isRequired,
+    selected: React.PropTypes.bool
+  },
     // actions that this view can dispatch/trigger
-    mapDispatchToProps = dispatch => ({
-        actions: {
-            goToSlideViaIndex: slideIndex => dispatch(
-                goToSlideViaIndex(slideIndex)
-            )
-        }
-    });
+  mapDispatchToProps = dispatch => ({
+    actions: {
+      goToSlideViaIndex: slideIndex => dispatch(
+        goToSlideViaIndex(slideIndex)
+      )
+    }
+  });
 
 function SlideshowDot({
     actions,
     index,
     selected
 }) {
-    return (
-        <div
-            className={`${styles.root} ${selected ? styles.selected : ''}`}
-            onClick={
-                selected
-                    ? null
-                    : () => actions.goToSlideViaIndex(index)
-            }
-        />
-    );
+  return (
+    <div
+      className={`${styles.root} ${selected ? styles.selected : ''}`}
+      onClick={
+        selected
+          ? null
+          : () => actions.goToSlideViaIndex(index)
+      }
+    />
+  );
 }
 
 // validate that this component is passed the properties it expects

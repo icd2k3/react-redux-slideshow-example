@@ -13,16 +13,16 @@ import React from 'react';
 import styles from './SlideInfo.css';
 
 const propTypes = {
-    views: React.PropTypes.number.isRequired
+  views: React.PropTypes.number.isRequired
 };
 
 // component jsx markup
 function SlideInfo({ views }) {
-    return (
-        <div className={styles.root}>
-            <i className="icon-eye" /> <span>{views} VIEWS</span>
-        </div>
-    );
+  return (
+    <div className={styles.root}>
+      <i className="icon-eye" /> <span>{views} VIEWS</span>
+    </div>
+  );
 }
 
 // validate that this component is passed the properties it expects

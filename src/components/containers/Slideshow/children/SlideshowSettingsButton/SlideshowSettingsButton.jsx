@@ -14,28 +14,28 @@ import { toggleSettings } from 'actions/slideshow/slideshowActions';
 import styles from './SlideshowSettingsButton.css';
 
 const propTypes = {
-        actions: React.PropTypes.shape({
-            onClick: React.PropTypes.func.isRequired
-        }).isRequired
-    },
+    actions: React.PropTypes.shape({
+      onClick: React.PropTypes.func.isRequired
+    }).isRequired
+  },
     // actions that this view can dispatch/trigger
-    mapDispatchToProps = dispatch => ({
-        actions: {
-            onClick: () => dispatch(
-                toggleSettings()
-            )
-        }
-    });
+  mapDispatchToProps = dispatch => ({
+    actions: {
+      onClick: () => dispatch(
+        toggleSettings()
+      )
+    }
+  });
 
 function SlideshowSettingsButton({
-    actions
+  actions
 }) {
-    return (
-        <a
-            className={`${styles.root} icon-cog`}
-            onClick={actions.onClick}
-        />
-    );
+  return (
+    <a
+      className={`${styles.root} icon-cog`}
+      onClick={actions.onClick}
+    />
+  );
 }
 
 // validate that this component is passed the properties it expects
