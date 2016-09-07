@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "./node_modules/.bin/better-npm-run dev",
     "dist": "./node_modules/.bin/better-npm-run dist",
+    "e2e-setup": "./node_modules/selenium-standalone/bin/selenium-standalone install",
     "karma": "./node_modules/.bin/better-npm-run karma",
     "test": "./node_modules/.bin/better-npm-run test"
   },
