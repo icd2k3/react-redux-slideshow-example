@@ -21,7 +21,7 @@ describe('SlideshowSettingsButton', () => {
         </Provider>
       );
 
-    component.find('a').simulate('click');
+    component.find('button').simulate('click');
 
     done();
   });

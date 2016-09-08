@@ -9,6 +9,9 @@
   cursor: pointer;
   z-index: 1;
   transition: transform 0.15s $ease-out-quad;
+  border: none;
+  background: none;
+  outline: none;
 
   &:hover {
     transform: scale(1.2, 1.2);

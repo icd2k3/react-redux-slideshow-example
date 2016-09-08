@@ -18,30 +18,26 @@ import { goToSlideViaIndex } from 'actions/slideshow/slideshowActions';
 import styles from './SlideshowPrevNextButton.css';
 
 const propTypes = {
-    actions: React.PropTypes.shape({
-      onClick: React.PropTypes.func.isRequired
-    }).isRequired,
+    onClick: React.PropTypes.func.isRequired,
     currentSlideIndex: React.PropTypes.number.isRequired,
     prev: React.PropTypes.bool
   },
     // actions that this view can dispatch/trigger
   mapDispatchToProps = dispatch => ({
-    actions: {
-      onClick: slideIndex => dispatch(
-                goToSlideViaIndex(slideIndex)
-            )
-    }
+    onClick: slideIndex => dispatch(
+      goToSlideViaIndex(slideIndex)
+    )
   });
 
 function SlideshowPrevNextButton({
-  actions,
+  onClick,
   currentSlideIndex,
   prev
 }) {
   return (
-    <div
+    <button
       className={`${styles.root} ${prev ? styles.prev : styles.next}`}
-      onClick={() => actions.onClick(prev ? currentSlideIndex - 1 : currentSlideIndex + 1)}
+      onClick={() => onClick(prev ? currentSlideIndex - 1 : currentSlideIndex + 1)}
     >
       <i
         className={`
@@ -49,7 +45,7 @@ function SlideshowPrevNextButton({
           ${prev ? 'icon-arrow-left2' : 'icon-arrow-right2'}
         `}
       />
-    </div>
+    </button>
   );
 }
 

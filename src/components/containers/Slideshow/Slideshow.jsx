@@ -28,11 +28,7 @@ const propTypes = {
     currentSlideIndex: React.PropTypes.number.isRequired,
     direction: React.PropTypes.oneOf(['next', 'prev']).isRequired,
     settingsPanel: React.PropTypes.bool,
-    slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
-      src: React.PropTypes.string.isRequired,
-      views: React.PropTypes.number.isRequired
-    })),
+    slides: React.PropTypes.arrayOf(React.PropTypes.shape({})),
     transition: React.PropTypes.oneOf(['slide', 'fade']).isRequired
   },
     // map redux state to this.props for component
@@ -56,10 +52,8 @@ const propTypes = {
 class Slideshow extends React.Component {
 
   componentDidMount() {
-    const { slides, actions } = this.props;
-
-    if (!slides) {
-      actions.requestJSON(JSON_PATH);
+    if (!this.props.slides) {
+      this.props.actions.requestJSON(JSON_PATH);
     }
   }
 

@@ -18,11 +18,7 @@ import styles from './SlideshowControls.css';
 
 const propTypes = {
   currentSlideIndex: React.PropTypes.number.isRequired,
-  slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    src: React.PropTypes.string.isRequired,
-    views: React.PropTypes.number.isRequired
-  }))
+  slides: React.PropTypes.arrayOf(React.PropTypes.shape())
 };
 
 function SlideshowControls({

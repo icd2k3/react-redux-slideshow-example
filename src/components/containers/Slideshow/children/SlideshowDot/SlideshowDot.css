@@ -7,6 +7,9 @@
   margin-right: 30px;
   position: relative;
   cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
 
   &::before,
   &::after {
