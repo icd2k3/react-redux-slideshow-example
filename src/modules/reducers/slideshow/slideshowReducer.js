@@ -67,7 +67,7 @@ export default function (state = defaultState, action = {}) {
         adjustedIndex = 0;
       }
 
-      state.slides[adjustedIndex].views++;
+      state.slides[adjustedIndex].views += 1;
 
       return Object.assign({}, state, {
         currentSlideIndex: adjustedIndex,

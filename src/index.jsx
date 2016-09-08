@@ -23,7 +23,7 @@ class Index extends React.Component {
 }
 
 Index.propTypes = {
-  store: React.PropTypes.object.isRequired
+  store: React.PropTypes.shape().isRequired
 };
 
 Index.defaultProps = {

@@ -9,31 +9,24 @@ import SlideshowSettingsImageRow from '../SlideshowSettingsImageRow/SlideshowSet
 import styles from './SlideshowSettings.css';
 
 const propTypes = {
-    actions: React.PropTypes.shape({
-      changeBackgroundSize: React.PropTypes.func.isRequired,
-      changeTransition: React.PropTypes.func.isRequired
-    }).isRequired,
     currentSlideIndex: React.PropTypes.number.isRequired,
+    onChangeBackgroundSize: React.PropTypes.func.isRequired,
+    onChangeTransition: React.PropTypes.func.isRequired,
+    onClose: React.PropTypes.func.isRequired,
     settingsPanel: React.PropTypes.bool,
-    slides: React.PropTypes.arrayOf(React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
-      src: React.PropTypes.string.isRequired,
-      views: React.PropTypes.number.isRequired
-    }))
+    slides: React.PropTypes.arrayOf(React.PropTypes.shape())
   },
     // actions that this view can dispatch/trigger
   mapDispatchToProps = dispatch => ({
-    actions: {
-      changeBackgroundSize: backgroundSize => dispatch(
-        changeBackgroundSize(backgroundSize)
-      ),
-      changeTransition: transition => dispatch(
-        changeTransition(transition)
-      ),
-      close: () => dispatch(
-        toggleSettings()
-      )
-    }
+    onChangeBackgroundSize: backgroundSize => dispatch(
+      changeBackgroundSize(backgroundSize)
+    ),
+    onChangeTransition: transition => dispatch(
+      changeTransition(transition)
+    ),
+    onClose: () => dispatch(
+      toggleSettings()
+    )
   });
 
 class SlideshowSettings extends React.Component {
@@ -43,23 +36,25 @@ class SlideshowSettings extends React.Component {
 
   render() {
     const {
-      actions,
       currentSlideIndex,
+      onChangeBackgroundSize,
+      onChangeTransition,
+      onClose,
       slides
     } = this.props;
 
     return (
       <div className={styles.root}>
         <div className={styles.inner}>
-          <i
+          <button
             className={`${styles.close} icon-cross`}
-            onClick={actions.close}
+            onClick={onClose}
           />
           <h1>Settings</h1>
           <label htmlFor="selectTransition">Transition</label>
           <select
             id="selectTransition"
-            onChange={(e) => actions.changeTransition(e.target.value)}
+            onChange={(e) => onChangeTransition(e.target.value)}
           >
             <option value="slide">Slide</option>
             <option value="fade">Fade</option>
@@ -67,7 +62,7 @@ class SlideshowSettings extends React.Component {
           <label htmlFor="selectBackgroundSize">Background Size</label>
           <select
             id="selectBackgroundSize"
-            onChange={(e) => actions.changeBackgroundSize(e.target.value)}
+            onChange={(e) => onChangeBackgroundSize(e.target.value)}
           >
             <option value="cover">Cover</option>
             <option value="contain">Contain</option>
