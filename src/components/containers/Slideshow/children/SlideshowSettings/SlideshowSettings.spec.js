@@ -117,11 +117,9 @@ describe('SlideshowSettings', () => {
     it('Should run `shouldComponentUpdate` when props change', (done) => {
       const component = mount(
         <PureSlideshowSettings
-          actions={{
-            changeBackgroundSize: () => {},
-            changeTransition: () => {},
-            close: () => {}
-          }}
+          onChangeBackgroundSize={() => {}}
+          onChangeTransition={() => {}}
+          onClose={() => {}}
           {...mockProps}
         />
       );
